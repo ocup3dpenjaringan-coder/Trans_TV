@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentasi UPPPD Mampang Prapatan - Identifikasi NOP & Bidang Tanpa NOP TRANS TV</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-primary: #FAF9F6;
+      --bg-card: #FFFFFF;
+      --text-primary: #1A202C;
+      --text-secondary: #334155;
+      --brand-navy: #0F2C59;
+      --brand-navy-hover: #1A3F7A;
+      --brand-gold: #D97706;
+      --brand-gold-soft: #FEF3C7;
+      --border-color: #CBD5E1;
+      --accent-red: #DC2626;
+      --accent-red-soft: #FEE2E2;
+      --font-scale: 1;
+    }
+
+    /* Mode Kontras Tinggi (High Contrast Mode) untuk Manula */
+    body.high-contrast {
+      --bg-primary: #000000;
+      --bg-card: #121212;
+      --text-primary: #FFFFFF;
+      --text-secondary: #FACC15;
+      --brand-navy: #FFD700;
+      --brand-navy-hover: #FDE047;
+      --brand-gold: #00FFFF;
+      --brand-gold-soft: #1E293B;
+      --border-color: #FFFFFF;
+      --accent-red: #FF4D4D;
+      --accent-red-soft: #3B0D0D;
+    }
+
+    body {
+      font-family: 'Atkinson Hyperlegible', 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: calc(21px * var(--font-scale));
+      line-height: 1.65;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .text-scaled-title {
+      font-size: calc(36px * var(--font-scale));
+      line-height: 1.25;
+    }
+
+    .text-scaled-subtitle {
+      font-size: calc(25px * var(--font-scale));
+      line-height: 1.4;
+    }
+
+    .text-scaled-body {
+      font-size: calc(21px * var(--font-scale));
+      line-height: 1.65;
+    }
+
+    .text-scaled-small {
+      font-size: calc(18px * var(--font-scale));
+      line-height: 1.5;
+    }
+
+    .card-surface {
+      background-color: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: 1.25rem;
+      box-shadow: 0 6px 20px rgba(15, 44, 89, 0.08);
+    }
+
+    body.high-contrast .card-surface {
+      box-shadow: none;
+      border-width: 3px;
+    }
+
+    .btn-primary-nav {
+      background-color: var(--brand-navy);
+      color: #FFFFFF;
+      border: 3px solid var(--brand-navy);
+      border-radius: 1rem;
+      font-weight: 800;
+      transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+
+    .btn-primary-nav:hover:not(:disabled) {
+      background-color: var(--brand-navy-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary-nav:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    body.high-contrast .btn-primary-nav {
+      background-color: #FFD700;
+      color: #000000;
+      border-color: #FFFFFF;
+    }
+
+    .btn-secondary-nav {
+      background-color: #FFFFFF;
+      color: #0F2C59;
+      border: 3px solid #0F2C59;
+      border-radius: 1rem;
+      font-weight: 800;
+      transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+
+    .btn-secondary-nav:hover:not(:disabled) {
+      background-color: #EFF6FF;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary-nav:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    body.high-contrast .btn-secondary-nav {
+      background-color: #000000;
+      color: #FFD700;
+      border-color: #FFD700;
+    }
+
+    .badge-gold {
+      background-color: var(--brand-gold-soft);
+      color: #92400E;
+      border: 2px solid var(--brand-gold);
+    }
+
+    body.high-contrast .badge-gold {
+      background-color: #1F2937;
+      color: #00FFFF;
+      border-color: #00FFFF;
+    }
+
+    /* Animasi transisi slide yang halus dan tidak bikin pusing */
+    .slide-panel {
+      display: none;
+      animation: fadeSlide 0.3s ease-out;
+    }
+
+    .slide-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Interaktif Peta SVG Persil */
+    .parcel-shape {
+      cursor: pointer;
+      transition: opacity 0.2s ease, stroke-width 0.2s ease;
+    }
+    .parcel-shape:hover {
+      opacity: 0.85;
+      stroke-width: 4;
+    }
+    .parcel-selected {
+      stroke: #0F2C59 !important;
+      stroke-width: 5 !important;
+      filter: drop-shadow(0 0 8px rgba(15, 44, 89, 0.6));
+    }
+
+    /* Focus Ring Aksesibilitas */
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 4px solid #D97706;
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-200 selection:text-slate-900">
+
+  <!-- BAR AKSESIBILITAS & KONTROL ATAS (RAMAH MANULA) -->
+  <header class="sticky top-0 z-40 border-b-4 border-[#0F2C59] bg-white/95 backdrop-blur px-4 py-3 shadow-md" id="topHeader">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Identitas Instansi & Menu Slide -->
+      <div class="flex items-center gap-3">
+        <button onclick="toggleMenuModal()" class="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#0F2C59] text-white font-bold hover:bg-[#1A3F7A] transition shadow-sm" aria-label="Buka Daftar Isi Slide">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <span class="text-base sm:text-lg">DAFTAR ISI</span>
+        </button>
+
+        <div class="hidden md:block">
+          <p class="text-sm font-extrabold tracking-wider uppercase text-[#D97706]" id="headerSub">UPPPD MAMPANG PRAPATAN</p>
+          <p class="text-base font-bold text-[#0F2C59]" id="headerTitle">Identifikasi Objek Pajak Kawasan TRANS TV</p>
+        </div>
+      </div>
+
+      <!-- Kontrol Ramah Manula: Suara, Ukuran Huruf, Kontras Tinggi -->
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+        
+        <!-- Tombol Pembaca Suara (Text-to-Speech Bahasa Indonesia) -->
+        <button id="btnSpeak" onclick="toggleSpeakSlide()" class="flex items-center gap-2 px-4 py-3 rounded-xl bg-amber-600 text-white font-extrabold hover:bg-amber-700 transition shadow-sm" aria-label="Bacakan isi halaman ini dengan suara">
+          <svg id="iconSpeak" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          </svg>
+          <span id="textSpeak" class="text-base sm:text-lg">Bacakan Halaman Ini</span>
+        </button>
+
+        <!-- Pengatur Ukuran Font -->
+        <div class="flex items-center bg-slate-100 p-1.5 rounded-xl border-2 border-slate-300" role="group" aria-label="Pengaturan Ukuran Huruf">
+          <span class="px-2 text-sm font-bold text-slate-700 hidden sm:inline">Huruf:</span>
+          <button onclick="setFontScale(1, this)" class="font-btn active-font px-3 py-2 rounded-lg font-extrabold text-base bg-[#0F2C59] text-white" title="Ukuran Normal">Normal</button>
+          <button onclick="setFontScale(1.15, this)" class="font-btn px-3 py-2 rounded-lg font-extrabold text-lg text-slate-800 hover:bg-slate-200" title="Ukuran Besar">Besar</button>
+          <button onclick="setFontScale(1.3, this)" class="font-btn px-3 py-2 rounded-lg font-extrabold text-xl text-slate-800 hover:bg-slate-200" title="Ukuran Sangat Besar">Sangat Besar</button>
+        </div>
+
+        <!-- Toggle Kontras Tinggi -->
+        <button id="btnContrast" onclick="toggleHighContrast()" class="flex items-center gap-2 px-4 py-3 rounded-xl border-2 border-[#0F2C59] bg-white text-[#0F2C59] font-extrabold hover:bg-slate-100 transition" aria-pressed="false">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <span class="text-base">Kontras Tinggi</span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Bilah Progres Halaman -->
+    <div class="max-w-7xl mx-auto mt-3 flex items-center gap-4">
+      <div class="flex-1 bg-slate-200 h-3.5 rounded-full overflow-hidden border border-slate-300">
+        <div id="progressBar" class="bg-[#D97706] h-full transition-all duration-300 rounded-full" style="width: 14.28%;"></div>
+      </div>
+      <span id="topPageIndicator" class="font-extrabold text-base sm:text-lg text-[#0F2C59] whitespace-nowrap">Halaman 1 dari 7</span>
+    </div>
+  </header>
+
+  <!-- AREA KONTEN UTAMA PRESENTASI -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+    <!-- ==================== SLIDE 1: SAMPUL ==================== -->
+    <section id="slide-1" class="slide-panel active" data-title="Sampul Presentasi">
+      <div class="card-surface p-6 sm:p-12 border-t-8 border-t-[#0F2C59] relative overflow-hidden">
+        
+        <!-- Dekorasi Sudut Aksen Emas -->
+        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full badge-gold font-extrabold mb-6">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+          <span class="text-scaled-small tracking-wide uppercase">PEMERINTAH PROVINSI DKI JAKARTA • BAPPENDA</span>
+        </div>
+
+        <h2 class="text-scaled-subtitle font-extrabold text-[#D97706] uppercase tracking-wide mb-3">
+          UPPPD MAMPANG PRAPATAN
+          <span class="block text-scaled-small font-semibold opacity-90 mt-1">(Unit Pelayanan Pemungutan Pajak Daerah)</span>
+        </h2>
+
+        <h1 class="text-scaled-title font-extrabold text-[#0F2C59] mb-8 leading-tight">
+          IDENTIFIKASI NOP PERORANGAN DAN BIDANG TANPA NOP YANG TERINDIKASI TELAH DIKUASAI DAN/ATAU DIMILIKI TRANS TV
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t-2 border-slate-200">
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 border-2 border-slate-200">
+            <div class="p-3.5 rounded-xl bg-[#0F2C59] text-white">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-scaled-small font-bold text-slate-500">Tanggal Laporan</p>
+              <p class="text-scaled-body font-extrabold text-[#0F2C59]">Rabu, 25 November 2026</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-amber-50 border-2 border-amber-300">
+            <div class="p-3.5 rounded-xl bg-[#D97706] text-white">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-scaled-small font-bold text-amber-900">Lokasi Objek Pajak</p>
+              <p class="text-scaled-body font-extrabold text-amber-950">Kawasan TRANS TV, Kec. Mampang Prapatan</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 p-5 rounded-2xl bg-blue-50 border-2 border-blue-200 flex items-center justify-between flex-wrap gap-4">
+          <p class="text-scaled-body font-semibold text-[#0F2C59]">
+            💡 <strong>Petunjuk Penggunaan:</strong> Tekan tombol besar <strong>"SELANJUTNYA"</strong> di bagian bawah layar atau gunakan tombol panah kanan pada keyboard untuk berpindah halaman.
+          </p>
+          <button onclick="goToSlide(2)" class="px-6 py-3.5 rounded-xl bg-[#0F2C59] text-white font-extrabold hover:bg-[#1A3F7A] transition">
+            Mulai Membaca →
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 2: RINGKASAN EKSEKUTIF ==================== -->
+    <section id="slide-2" class="slide-panel" data-title="Ringkasan Eksekutif & Temuan Utama">
+      <div class="mb-6">
+        <span class="inline-block px-4 py-1.5 rounded-full badge-gold font-extrabold text-scaled-small mb-2">BAGIAN 1 • RINGKASAN EKSEKUTIF</span>
+        <h2 class="text-scaled-title font-extrabold text-[#0F2C59]">Temuan Utama Identifikasi Lahan Kawasan TRANS TV</h2>
+      </div>
+
+      <!-- 4 Kartu Statistik Utama -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        
+        <!-- Kartu 1 -->
+        <div class="card-surface p-6 border-l-8 border-l-[#0F2C59]">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-scaled-small font-bold text-slate-600 uppercase">1. NOP PBB Perorangan Teridentifikasi</p>
+              <p class="text-4xl sm:text-5xl font-extrabold text-[#0F2C59] my-2">46 NOP</p>
+              <p class="text-scaled-body font-semibold text-slate-700">
+                Teridentifikasi <strong>46 NOP PBB perorangan</strong> di dalam kawasan TRANS TV (dengan total <strong>47 NOP</strong> terpetakan pada blok area lokasi).
+              </p>
+            </div>
+            <div class="p-4 rounded-2xl bg-blue-100 text-[#0F2C59] shrink-0">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kartu 2 -->
+        <div class="card-surface p-6 border-l-8 border-l-[#D97706]">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-scaled-small font-bold text-slate-600 uppercase">2. Total Luas Bumi SPPT (46 NOP)</p>
+              <p class="text-4xl sm:text-5xl font-extrabold text-[#D97706] my-2">9.707 m²</p>
+              <p class="text-scaled-body font-semibold text-slate-700">
+                Akumulasi luas bumi berdasarkan data SPPT PBB-P2 dari 46 NOP perorangan yang terindikasi telah dikuasai dan/atau dimiliki TRANS TV.
+              </p>
+            </div>
+            <div class="p-4 rounded-2xl bg-amber-100 text-[#D97706] shrink-0">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kartu 3 -->
+        <div class="card-surface p-6 border-l-8 border-l-[#DC2626]">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-scaled-small font-bold text-slate-600 uppercase">3. Bidang Tanpa NOP Ditemukan</p>
+              <p class="text-4xl sm:text-5xl font-extrabold text-[#DC2626] my-2">2 Bidang</p>
+              <p class="text-scaled-body font-semibold text-slate-700">
+                Ditemukan <strong>2 bidang tanah tanpa Nomor Objek Pajak (NOP)</strong> yang berada di sela-sela persil kawasan TRANS TV (ditandai arsiran merah).
+              </p>
+            </div>
+            <div class="p-4 rounded-2xl bg-red-100 text-[#DC2626] shrink-0">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kartu 4 -->
+        <div class="card-surface p-6 border-l-8 border-l-emerald-700">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-scaled-small font-bold text-slate-600 uppercase">4. Luas Total Bidang Tanpa NOP</p>
+              <p class="text-4xl sm:text-5xl font-extrabold text-emerald-700 my-2">88,47 m²</p>
+              <p class="text-scaled-body font-semibold text-slate-700">
+                Total estimasi luas dua bidang tanpa NOP berdasarkan pengukuran spasial peta blok PBB-P2 yang berpotensi didaftarkan sebagai objek pajak baru.
+              </p>
+            </div>
+            <div class="p-4 rounded-2xl bg-emerald-100 text-emerald-800 shrink-0">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Narasi Kesimpulan Awal -->
+      <div class="card-surface p-6 sm:p-8 bg-amber-50/70 border-2 border-[#D97706]">
+        <h3 class="text-scaled-subtitle font-extrabold text-[#0F2C59] mb-2">Narasi Kesimpulan Identifikasi Awal:</h3>
+        <p class="text-scaled-body text-slate-800">
+          Berdasarkan hasil pemadanan data spasial PBB-P2 dan pengamatan lapangan di wilayah kerja <strong>UPPPD Mampang Prapatan</strong>, teridentifikasi sebanyak <strong>46 NOP PBB perorangan</strong> (total luas bumi SPPT <strong>9.707 m²</strong>) serta <strong>2 bidang tanpa NOP</strong> (total luas <strong>88,47 m²</strong>) yang berada di dalam kawasan operasional TRANS TV dan terindikasi telah dikuasai dan/atau dimiliki oleh pihak TRANS TV.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 3: PETA PBB-P2 INTERAKTIF ==================== -->
+    <section id="slide-3" class="slide-panel" data-title="Peta PBB-P2 di Area Lokasi TRANS TV">
+      <div class="mb-5">
+        <span class="inline-block px-4 py-1.5 rounded-full badge-gold font-extrabold text-scaled-small mb-2">BAGIAN 2 • PEMETAAN SPASIAL PBB-P2</span>
+        <h2 class="text-scaled-title font-extrabold text-[#0F2C59]">Peta PBB-P2 di Area Lokasi TRANS TV (47 NOP & 2 Bidang Tanpa NOP)</h2>
+        <p class="text-scaled-body text-slate-700 mt-1">
+          Sentuh atau klik pada salah satu kotak persil di peta skematik di bawah ini untuk melihat rincian Nomor Objek Pajak, Nama Wajib Pajak, dan Luas Tanah.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Diagram SVG Interaktif Tata Letak Persil -->
+        <div class="lg:col-span-8 card-surface p-4 sm:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b-2 border-slate-200">
+            <span class="font-extrabold text-scaled-body text-[#0F2C59]">Denah Blok Persil Kawasan TRANS TV</span>
+            <div class="flex flex-wrap items-center gap-4 text-scaled-small font-bold">
+              <span class="flex items-center gap-2">
+                <span class="w-5 h-5 inline-block rounded bg-amber-100 border-2 border-amber-500"></span> Persil NOP Terdaftar
+              </span>
+              <span class="flex items-center gap-2">
+                <span class="w-5 h-5 inline-block rounded bg-red-600 border-2 border-red-900"></span> Bidang Tanpa NOP (Merah)
+              </span>
+            </div>
+          </div>
+
+          <div class="w-full overflow-x-auto bg-slate-800 p-3 rounded-xl border-2 border-slate-600">
+            <svg viewBox="0 0 920 560" class="w-full h-auto min-w-[680px]" role="img" aria-label="Peta Skematik Persil PBB-P2 Kawasan TRANS TV">
+              <!-- Latar Jalan / Area Sekitar -->
+              <rect x="0" y="0" width="920" height="560" fill="#2D3748" rx="8" />
+              
+              <!-- Pola Arsir untuk Bidang Tanpa NOP -->
+              <defs>
+                <pattern id="redHatch" width="12" height="12" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                  <rect width="12" height="12" fill="#DC2626" />
+                  <line x1="0" y1="0" x2="0" y2="12" stroke="#FCA5A5" stroke-width="4" />
+                </pattern>
+              </defs>
+
+              <!-- Jalan Akses Utara -->
+              <rect x="330" y="15" width="570" height="32" fill="#4A5568" rx="4" />
+              <text x="615" y="36" fill="#E2E8F0" font-size="14" font-weight="bold" text-anchor="middle">JALAN AKSES KAWASAN TRANS TV (UTARA)</text>
+
+              <!-- KOLOM KIRI (01700, 01690, 01710) -->
+              <g class="parcel-shape" onclick="selectParcel('01700')">
+                <rect id="rect-01700" x="20" y="110" width="65" height="185" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="52" y="195" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">01700</text>
+                <text x="52" y="213" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">250 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('01690')">
+                <rect id="rect-01690" x="85" y="110" width="105" height="185" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="137" y="185" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">01690</text>
+                <text x="137" y="203" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Abdullah Gofar</text>
+                <text x="137" y="220" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">153 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('01710')">
+                <rect id="rect-01710" x="45" y="305" width="135" height="235" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="112" y="405" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">01710</text>
+                <text x="112" y="425" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Hajah Sailah, Ny</text>
+                <text x="112" y="443" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">300 m²</text>
+              </g>
+
+              <!-- KOLOM TENGAH-KIRI (01630, 01640, TANPA NOP 1, 01650, 01660) -->
+              <g class="parcel-shape" onclick="selectParcel('01630')">
+                <rect id="rect-01630" x="195" y="55" width="145" height="55" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="267" y="78" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">01630 • Abdul Fatah</text>
+                <text x="267" y="96" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">120 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('01640')">
+                <rect id="rect-01640" x="195" y="110" width="145" height="55" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="267" y="133" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">01640 • Abdullah Bin Ali, H.</text>
+                <text x="267" y="151" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">52 m²</text>
+              </g>
+
+              <!-- BIDANG TANPA NOP 1 (MERAH) -->
+              <g class="parcel-shape" onclick="selectParcel('TANPA_NOP_1')">
+                <rect id="rect-TANPA_NOP_1" x="195" y="165" width="145" height="34" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
+                <rect x="205" y="170" width="125" height="24" fill="#991B1B" rx="4" />
+                <text x="267" y="187" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle">TANPA NOP #1</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('01650')">
+                <rect id="rect-01650" x="195" y="199" width="145" height="115" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="267" y="245" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">01650</text>
+                <text x="267" y="264" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Tjarwali</text>
+                <text x="267" y="282" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">134 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('01660')">
+                <rect id="rect-01660" x="180" y="340" width="145" height="200" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="252" y="430" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">01660</text>
+                <text x="252" y="449" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Miska</text>
+                <text x="252" y="467" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">300 m²</text>
+              </g>
+
+              <!-- KOLOM TENGAH (03000, 02990, 02970, 02860) -->
+              <g class="parcel-shape" onclick="selectParcel('03000')">
+                <rect id="rect-03000" x="340" y="55" width="135" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="407" y="105" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">03000</text>
+                <text x="407" y="124" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Ahmad Yusuf, H.</text>
+                <text x="407" y="142" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">260 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('02990')">
+                <rect id="rect-02990" x="340" y="180" width="135" height="115" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="407" y="228" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">02990</text>
+                <text x="407" y="247" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Miska</text>
+                <text x="407" y="265" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">140 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('02970')">
+                <rect id="rect-02970" x="330" y="295" width="145" height="115" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="402" y="340" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">02970</text>
+                <text x="402" y="359" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Ahmad Yusuf, H.</text>
+                <text x="402" y="377" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">378 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('02860')">
+                <rect id="rect-02860" x="325" y="410" width="155" height="130" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="402" y="465" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">02860</text>
+                <text x="402" y="484" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Rohmat Gofar</text>
+                <text x="402" y="502" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">500 m²</text>
+              </g>
+
+              <!-- KOLOM KANAN (02950, TANPA NOP 2, 02951, 02910, 02920, 02930, 02940, 02900, 02880) -->
+              <g class="parcel-shape" onclick="selectParcel('02950')">
+                <rect id="rect-02950" x="485" y="65" width="225" height="150" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="597" y="128" fill="#78350F" font-size="15" font-weight="bold" text-anchor="middle">02950</text>
+                <text x="597" y="148" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Abdullah H Bin Sabeni</text>
+                <text x="597" y="168" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">350 m²</text>
+              </g>
+
+              <!-- BIDANG TANPA NOP 2 (MERAH VERTIKAL) -->
+              <g class="parcel-shape" onclick="selectParcel('TANPA_NOP_2')">
+                <rect id="rect-TANPA_NOP_2" x="710" y="65" width="46" height="150" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
+                <rect x="714" y="95" width="38" height="90" fill="#991B1B" rx="4" />
+                <text x="733" y="130" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle">TANPA</text>
+                <text x="733" y="145" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle">NOP</text>
+                <text x="733" y="162" fill="#FDE047" font-size="12" font-weight="bold" text-anchor="middle">#2</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('02951')">
+                <rect id="rect-02951" x="756" y="65" width="134" height="150" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="823" y="128" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">02951</text>
+                <text x="823" y="148" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Karim Bin Said</text>
+                <text x="823" y="168" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">154 m²</text>
+              </g>
+
+              <!-- Baris Tengah Kanan -->
+              <g class="parcel-shape" onclick="selectParcel('02910')">
+                <rect id="rect-02910" x="485" y="215" width="110" height="95" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="540" y="252" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">02910</text>
+                <text x="540" y="270" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Sarnadi</text>
+                <text x="540" y="287" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">86 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('02920')">
+                <rect id="rect-02920" x="595" y="215" width="100" height="95" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="645" y="252" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">02920</text>
+                <text x="645" y="270" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Mas'ud, R</text>
+                <text x="645" y="287" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">70 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('02930')">
+                <rect id="rect-02930" x="695" y="215" width="65" height="95" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="727" y="255" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">02930</text>
+                <text x="727" y="273" fill="#1E293B" font-size="10" font-weight="bold" text-anchor="middle">Miska</text>
+                <text x="727" y="288" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">48 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('02940')">
+                <rect id="rect-02940" x="760" y="215" width="130" height="95" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="825" y="252" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">02940</text>
+                <text x="825" y="270" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Sja'dullah, H.</text>
+                <text x="825" y="287" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">80 m²</text>
+              </g>
+
+              <!-- Baris Bawah Kanan -->
+              <g class="parcel-shape" onclick="selectParcel('02900')">
+                <rect id="rect-02900" x="485" y="310" width="405" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="687" y="352" fill="#78350F" font-size="15" font-weight="bold" text-anchor="middle">02900 • Muhamad Nashoha (Alm)</text>
+                <text x="687" y="376" fill="#92400E" font-size="14" font-weight="bold" text-anchor="middle">Luas Bumi: 418 m²</text>
+              </g>
+
+              <g class="parcel-shape" onclick="selectParcel('02880')">
+                <rect id="rect-02880" x="485" y="415" width="405" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                <text x="687" y="468" fill="#78350F" font-size="15" font-weight="bold" text-anchor="middle">02880 • Siti Woerjaningsih Dra</text>
+                <text x="687" y="492" fill="#92400E" font-size="14" font-weight="bold" text-anchor="middle">Luas Bumi: 457 m²</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Panel Detail Persil Terpilih -->
+        <div class="lg:col-span-4 card-surface p-6 border-t-8 border-t-[#D97706]">
+          <div class="flex items-center gap-2 text-[#D97706] font-extrabold text-scaled-small uppercase mb-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+            </svg>
+            <span>Detail Persil Terpilih</span>
+          </div>
+
+          <div id="parcelDetailCard" class="space-y-4">
+            <div class="p-4 rounded-xl bg-red-50 border-2 border-red-300">
+              <span class="inline-block px-3 py-1 rounded-lg bg-red-600 text-white font-bold text-sm mb-2">BIDANG TANPA NOP #1</span>
+              <h3 class="text-scaled-subtitle font-extrabold text-red-900">Bidang Sela (Belum Terdaftar SPPT)</h3>
+            </div>
+
+            <div class="space-y-3 text-scaled-body">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="block text-sm font-bold text-slate-500">Posisi di Peta Blok:</span>
+                <span class="font-extrabold text-slate-900">Di antara persil 01640 (Abdullah Bin Ali, H.) dan persil 01650 (Tjarwali)</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="block text-sm font-bold text-slate-500">Status Objek Pajak:</span>
+                <span class="font-extrabold text-red-700">Belum memiliki NOP PBB-P2 (Bagian dari total 88,47 m²)</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200">
+                <span class="block text-sm font-bold text-amber-900">Indikasi Penguasaan:</span>
+                <span class="font-bold text-slate-800">Tergabung fisik dalam area bangunan/kawasan TRANS TV.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t-2 border-slate-200">
+            <p class="text-scaled-small font-bold text-slate-600 mb-2">Pilih Cepat Bidang Tanpa NOP:</p>
+            <div class="grid grid-cols-2 gap-3">
+              <button onclick="selectParcel('TANPA_NOP_1')" class="py-3 px-3 rounded-xl bg-red-600 text-white font-extrabold hover:bg-red-700 transition text-base">
+                Bidang Merah #1
+              </button>
+              <button onclick="selectParcel('TANPA_NOP_2')" class="py-3 px-3 rounded-xl bg-red-600 text-white font-extrabold hover:bg-red-700 transition text-base">
+                Bidang Merah #2
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 4: REKAPITULASI BIDANG TANPA NOP ==================== -->
+    <section id="slide-4" class="slide-panel" data-title="Rekapitulasi Bidang Tanpa NOP (88,47 m²)">
+      <div class="mb-6">
+        <span class="inline-block px-4 py-1.5 rounded-full badge-gold font-extrabold text-scaled-small mb-2">BAGIAN 3 • TEMUAN BIDANG TANPA NOP</span>
+        <h2 class="text-scaled-title font-extrabold text-[#0F2C59]">Rekapitulasi 2 Bidang Tanpa NOP di Kawasan TRANS TV</h2>
+        <p class="text-scaled-body text-slate-700 mt-1">
+          Terdapat 2 bidang tanah yang secara fisik berada di dalam area TRANS TV namun belum tercatat dalam basis data SPPT PBB-P2 dengan total luas <strong>88,47 m²</strong>.
+        </p>
+      </div>
+
+      <div class="card-surface overflow-hidden mb-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-[#0F2C59] text-white text-scaled-body">
+                <th class="p-5 font-extrabold border-b-2 border-slate-300">No.</th>
+                <th class="p-5 font-extrabold border-b-2 border-slate-300">Identitas Bidang</th>
+                <th class="p-5 font-extrabold border-b-2 border-slate-300">Letak / Batas Persil Sekitar</th>
+                <th class="p-5 font-extrabold border-b-2 border-slate-300">Status PBB-P2</th>
+                <th class="p-5 font-extrabold border-b-2 border-slate-300">Indikasi Pemanfaatan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y-2 divide-slate-200 text-scaled-body">
+              <tr class="hover:bg-amber-50/60 transition">
+                <td class="p-5 font-extrabold text-[#0F2C59]">1</td>
+                <td class="p-5">
+                  <span class="inline-block px-3.5 py-1.5 rounded-lg bg-red-100 text-red-800 font-extrabold border border-red-300">
+                    Bidang Tanpa NOP 1
+                  </span>
+                </td>
+                <td class="p-5 font-semibold">
+                  Berada di sela antara <strong>Persil 01640</strong> (Abdullah Bin Ali, H. – 52 m²) dan <strong>Persil 01650</strong> (Tjarwali – 134 m²).
+                </td>
+                <td class="p-5 font-bold text-red-700">Belum Terdaftar SPPT / Tanpa NOP</td>
+                <td class="p-5 font-semibold">Tertutup bangunan/fasilitas terpadu di dalam kawasan TRANS TV.</td>
+              </tr>
+              <tr class="hover:bg-amber-50/60 transition">
+                <td class="p-5 font-extrabold text-[#0F2C59]">2</td>
+                <td class="p-5">
+                  <span class="inline-block px-3.5 py-1.5 rounded-lg bg-red-100 text-red-800 font-extrabold border border-red-300">
+                    Bidang Tanpa NOP 2
+                  </span>
+                </td>
+                <td class="p-5 font-semibold">
+                  Berada di sela antara <strong>Persil 02950</strong> (Abdullah H Bin Sabeni – 350 m²) dan <strong>Persil 02951</strong> (Karim Bin Said – 154 m²).
+                </td>
+                <td class="p-5 font-bold text-red-700">Belum Terdaftar SPPT / Tanpa NOP</td>
+                <td class="p-5 font-semibold">Area akses dan parkir kendaraan operasional di kawasan TRANS TV.</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="bg-amber-100/80 border-t-4 border-[#D97706]">
+                <td colspan="3" class="p-5 text-scaled-subtitle font-extrabold text-[#0F2C59] text-right">
+                  TOTAL LUAS KESELURUHAN 2 BIDANG TANPA NOP :
+                </td>
+                <td colspan="2" class="p-5 text-scaled-title font-extrabold text-[#DC2626]">
+                  88,47 m²
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="card-surface p-6 bg-blue-50 border-2 border-[#0F2C59] flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div class="p-3.5 rounded-2xl bg-[#0F2C59] text-white shrink-0">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p class="text-scaled-body font-semibold text-slate-900">
+          <strong>Potensi Penerimaan Daerah:</strong> Kedua bidang seluas <strong>88,47 m²</strong> ini dapat segera ditindaklanjuti melalui pendataan objek pajak baru (penerbitan NOP baru) atas nama subjek pajak yang menguasai/memanfaatkan lahan tersebut.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 5: REKAPITULASI 46 NOP PERORANGAN ==================== -->
+    <section id="slide-5" class="slide-panel" data-title="Rekapitulasi 46 NOP Perorangan (9.707 m²)">
+      <div class="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="inline-block px-4 py-1.5 rounded-full badge-gold font-extrabold text-scaled-small mb-2">BAGIAN 4 • DATA OBJEK PAJAK PERORANGAN</span>
+          <h2 class="text-scaled-title font-extrabold text-[#0F2C59]">Rekapitulasi 46 NOP PBB Perorangan (Total Luas 9.707 m²)</h2>
+          <p class="text-scaled-body text-slate-700 mt-1">
+            Daftar sampel utama persil PBB-P2 atas nama perorangan yang terpetakan di dalam kawasan TRANS TV.
+          </p>
+        </div>
+
+        <!-- Kotak Pencarian Ramah Manula -->
+        <div class="w-full md:w-96">
+          <label for="searchNop" class="block text-scaled-small font-extrabold text-[#0F2C59] mb-1">Cari Nomor Blok atau Nama WP:</label>
+          <input id="searchNop" type="text" oninput="filterNopTable()" placeholder="Ketik misal: Miska atau 02900..." class="w-full px-4 py-3.5 rounded-xl border-3 border-[#0F2C59] bg-white text-scaled-body font-bold text-slate-900 placeholder-slate-400" />
+        </div>
+      </div>
+
+      <!-- Ringkasan Angka di Atas Tabel -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div class="card-surface p-4 bg-slate-50 text-center">
+          <p class="text-scaled-small font-bold text-slate-600">Jumlah NOP Perorangan</p>
+          <p class="text-3xl font-extrabold text-[#0F2C59]">46 NOP</p>
+        </div>
+        <div class="card-surface p-4 bg-amber-50 text-center border-amber-300">
+          <p class="text-scaled-small font-bold text-amber-900">Total Luas Bumi SPPT</p>
+          <p class="text-3xl font-extrabold text-[#D97706]">9.707 m²</p>
+        </div>
+        <div class="card-surface p-4 bg-blue-50 text-center border-blue-300">
+          <p class="text-scaled-small font-bold text-blue-900">Status Indikasi</p>
+          <p class="text-xl font-extrabold text-[#0F2C59] mt-1">Dikuasai / Dimiliki TRANS TV</p>
+        </div>
+      </div>
+
+      <!-- Tabel Daftar Persil -->
+      <div class="card-surface overflow-hidden">
+        <div class="overflow-x-auto max-h-[440px] overflow-y-auto">
+          <table class="w-full text-left border-collapse" id="nopTable">
+            <thead class="sticky top-0 z-10">
+              <tr class="bg-[#0F2C59] text-white text-scaled-body">
+                <th class="p-4 font-extrabold">No.</th>
+                <th class="p-4 font-extrabold">Nomor Urut / Blok</th>
+                <th class="p-4 font-extrabold">Nama Wajib Pajak (SPPT)</th>
+                <th class="p-4 font-extrabold">Luas Bumi (m²)</th>
+                <th class="p-4 font-extrabold">Keterangan Indikasi</th>
+              </tr>
+            </thead>
+            <tbody id="nopTableBody" class="divide-y-2 divide-slate-200 text-scaled-body">
+              <!-- Diisi otomatis oleh JavaScript -->
+            </tbody>
+          </table>
+        </div>
+        <div class="p-4 bg-slate-100 border-t-2 border-slate-300 flex flex-wrap justify-between items-center gap-2 text-scaled-small font-bold text-slate-700">
+          <span>Menampilkan data sampel persil utama dari peta blok PBB-P2 kawasan TRANS TV.</span>
+          <span class="text-[#0F2C59] font-extrabold">Akumulasi Seluruh 46 NOP = 9.707 m²</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 6: PETA BHUMI ATR/BPN ==================== -->
+    <section id="slide-6" class="slide-panel" data-title="Peta Bidang Tanah BHUMI ATR/BPN">
+      <div class="mb-6">
+        <span class="inline-block px-4 py-1.5 rounded-full badge-gold font-extrabold text-scaled-small mb-2">BAGIAN 5 • SINKRONISASI DATA PERTANAHAN</span>
+        <h2 class="text-scaled-title font-extrabold text-[#0F2C59]">Peta Bidang Tanah BHUMI ATR/BPN di Kawasan TRANS TV</h2>
+        <p class="text-scaled-body text-slate-700 mt-1">
+          Pembandingan (<em>overlay</em>) antara Peta Blok PBB-P2 UPPPD Mampang Prapatan dengan Peta Bidang Tanah terdaftar pada aplikasi <strong>BHUMI Kementerian ATR/BPN</strong>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        
+        <!-- Kolom Kiri: Data PBB-P2 -->
+        <div class="card-surface p-6 sm:p-8 border-t-8 border-t-[#0F2C59]">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-full bg-[#0F2C59] text-white font-extrabold flex items-center justify-center">A</span>
+            <h3 class="text-scaled-subtitle font-extrabold text-[#0F2C59]">Data PBB-P2 (UPPPD Mampang Prapatan)</h3>
+          </div>
+          <ul class="space-y-4 text-scaled-body text-slate-800">
+            <li class="flex items-start gap-3">
+              <span class="text-green-600 font-extrabold text-2xl">✔</span>
+              <span>Masih tercatat sebagai <strong>46 NOP terpisah atas nama perorangan</strong> dengan total luas bumi <strong>9.707 m²</strong>.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-red-600 font-extrabold text-2xl">✖</span>
+              <span>Terdapat <strong>2 bidang tanah seluas 88,47 m²</strong> yang belum memiliki NOP (kosong pada peta blok PBB).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-600 font-extrabold text-2xl">!</span>
+              <span>Nama Wajib Pajak pada SPPT belum dimutakhirkan sesuai penguasaan fisik aktual oleh badan usaha (TRANS TV).</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kolom Kanan: Data BHUMI ATR/BPN -->
+        <div class="card-surface p-6 sm:p-8 border-t-8 border-t-[#D97706]">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-full bg-[#D97706] text-white font-extrabold flex items-center justify-center">B</span>
+            <h3 class="text-scaled-subtitle font-extrabold text-[#D97706]">Peta Bidang Tanah BHUMI ATR/BPN</h3>
+          </div>
+          <ul class="space-y-4 text-scaled-body text-slate-800">
+            <li class="flex items-start gap-3">
+              <span class="text-green-600 font-extrabold text-2xl">✔</span>
+              <span>Menampilkan batas bidang tanah bersertipikat (Hak Guna Bangunan / Hak Milik) pada kawasan TRANS TV secara terintegrasi.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-600 font-extrabold text-2xl">✔</span>
+              <span>Memastikan posisi <strong>2 bidang tanpa NOP (88,47 m²)</strong> masuk dalam hamparan bidang tanah yang telah dimanfaatkan TRANS TV.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-600 font-extrabold text-2xl">✔</span>
+              <span>Menjadi dasar hukum dan spasial untuk verifikasi batas persil serta proses penggabungan atau pemutakhiran data SPPT PBB-P2.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Manfaat Integrasi Data -->
+      <div class="card-surface p-6 bg-emerald-50 border-2 border-emerald-600">
+        <h3 class="text-scaled-subtitle font-extrabold text-emerald-950 mb-2">Hasil Analisis Overlay PBB-P2 & BHUMI ATR/BPN:</h3>
+        <p class="text-scaled-body text-emerald-950">
+          Berdasarkan peta bidang tanah BHUMI ATR/BPN, bidang-bidang kecil perorangan maupun 2 celah bidang tanpa NOP seluas 88,47 m² tersebut merupakan satu kesatuan hamparan kawasan gedung dan fasilitas TRANS TV. Hal ini memperkuat dasar pelaksanaan <strong>pemutakhiran data PBB-P2</strong> dan <strong>pendaftaran objek pajak baru</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 7: TINDAK LANJUT & PENUTUP ==================== -->
+    <section id="slide-7" class="slide-panel" data-title="Rekomendasi Tindak Lanjut & Penutup">
+      <div class="mb-6">
+        <span class="inline-block px-4 py-1.5 rounded-full badge-gold font-extrabold text-scaled-small mb-2">BAGIAN 6 • KESIMPULAN & REKOMENDASI</span>
+        <h2 class="text-scaled-title font-extrabold text-[#0F2C59]">Rencana Tindak Lanjut UPPPD Mampang Prapatan</h2>
+      </div>
+
+      <!-- 3 Langkah Tindak Lanjut -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        
+        <div class="card-surface p-6 border-t-8 border-t-[#0F2C59]">
+          <div class="w-12 h-12 rounded-2xl bg-[#0F2C59] text-white font-extrabold text-2xl flex items-center justify-center mb-4">1</div>
+          <h3 class="text-scaled-subtitle font-extrabold text-[#0F2C59] mb-2">Penelitian & Verifikasi Lapangan</h3>
+          <p class="text-scaled-body text-slate-700">
+            Melakukan peninjauan lapangan bersama pihak manajemen TRANS TV untuk memverifikasi batas fisik 46 NOP perorangan dan 2 bidang tanpa NOP.
+          </p>
+        </div>
+
+        <div class="card-surface p-6 border-t-8 border-t-[#DC2626]">
+          <div class="w-12 h-12 rounded-2xl bg-[#DC2626] text-white font-extrabold text-2xl flex items-center justify-center mb-4">2</div>
+          <h3 class="text-scaled-subtitle font-extrabold text-[#DC2626] mb-2">Pendaftaran 2 Bidang Tanpa NOP</h3>
+          <p class="text-scaled-body text-slate-700">
+            Menerbitkan NOP PBB-P2 baru untuk <strong>2 bidang tanpa NOP seluas 88,47 m²</strong> agar seluruh bidang tanah terdata resmi sebagai objek pajak daerah.
+          </p>
+        </div>
+
+        <div class="card-surface p-6 border-t-8 border-t-[#D97706]">
+          <div class="w-12 h-12 rounded-2xl bg-[#D97706] text-white font-extrabold text-2xl flex items-center justify-center mb-4">3</div>
+          <h3 class="text-scaled-subtitle font-extrabold text-[#D97706] mb-2">Pemutakhiran Data 46 NOP</h3>
+          <p class="text-scaled-body text-slate-700">
+            Melakukan mutasi/pemutakhiran data subjek dan objek pajak pada <strong>46 NOP perorangan (9.707 m²)</strong> sesuai bukti kepemilikan/penguasaan aktual.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Kartu Penutup Resmi (Menggantikan Lorem Ipsum dengan Informasi Bermakna) -->
+      <div class="card-surface p-8 sm:p-10 bg-[#0F2C59] text-white text-center border-4 border-[#D97706]">
+        <p class="text-scaled-small font-extrabold tracking-widest uppercase text-amber-300 mb-2">
+          UNIT PELAYANAN PEMUNGUTAN PAJAK DAERAH (UPPPD) MAMPANG PRAPATAN
+        </p>
+        <h2 class="text-4xl sm:text-5xl font-extrabold tracking-wide mb-4 text-white">
+          TERIMA KASIH
+        </h2>
+        <p class="text-scaled-body max-w-3xl mx-auto text-blue-100 mb-6">
+          Laporan Identifikasi NOP Perorangan (46 NOP • 9.707 m²) dan Bidang Tanpa NOP (2 Bidang • 88,47 m²) di Kawasan TRANS TV — Disusun pada Rabu, 25 November 2026 dalam rangka optimalisasi pendataan dan pemungutan PBB-P2 Provinsi DKI Jakarta.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <button onclick="goToSlide(1)" class="px-6 py-4 rounded-xl bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 transition text-scaled-body">
+            ↺ Kembali ke Halaman Pertama
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- NAVIGASI BAWAH BESAR & RAMAH MANULA -->
+  <footer class="sticky bottom-0 z-30 bg-white/95 backdrop-blur border-t-4 border-[#0F2C59] px-4 py-3.5 shadow-[0_-4px_15px_rgba(0,0,0,0.08)]" id="bottomFooter">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-6">
+      
+      <!-- Tombol SEBELUMNYA -->
+      <button id="btnPrev" onclick="prevSlide()" class="btn-secondary-nav flex-1 sm:flex-initial flex items-center justify-center gap-3 px-5 sm:px-8 py-4 text-lg sm:text-2xl shadow-sm">
+        <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span>SEBELUMNYA</span>
+      </button>
+
+      <!-- Indikator Halaman Tengah -->
+      <div class="hidden md:flex flex-col items-center text-center">
+        <span id="bottomPageIndicator" class="text-xl font-extrabold text-[#0F2C59]">Halaman 1 dari 7</span>
+        <span id="bottomSlideTitle" class="text-base font-bold text-slate-600">Sampul Presentasi</span>
+      </div>
+
+      <!-- Tombol SELANJUTNYA -->
+      <button id="btnNext" onclick="nextSlide()" class="btn-primary-nav flex-1 sm:flex-initial flex items-center justify-center gap-3 px-5 sm:px-8 py-4 text-lg sm:text-2xl shadow-sm">
+        <span>SELANJUTNYA</span>
+        <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+    </div>
+  </footer>
+
+  <!-- MODAL DAFTAR ISI SLIDE (MENU CEPAT) -->
+  <div id="menuModal" class="fixed inset-0 z-50 hidden bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+    <div class="card-surface max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-4 mb-5 border-b-2 border-slate-200">
+        <h3 id="modalHeading" class="text-scaled-subtitle font-extrabold text-[#0F2C59]">Daftar Isi Presentasi (7 Halaman)</h3>
+        <button onclick="toggleMenuModal()" class="p-3 rounded-xl bg-red-100 text-red-800 font-extrabold hover:bg-red-200" aria-label="Tutup Daftar Isi">
+          ✕ Tutup
+        </button>
+      </div>
+      <div id="menuSlideList" class="space-y-3">
+        <!-- Diisi otomatis oleh JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Data Lengkap Persil pada Peta Blok PBB-P2 Kawasan TRANS TV
+    const parcelDatabase = {
+      'TANPA_NOP_1': {
+        code: 'BIDANG TANPA NOP #1',
+        type: 'unregistered',
+        owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
+        area: 'Bagian dari 88,47 m² (2 Bidang)',
+        position: 'Di sela antara persil 01640 (Abdullah Bin Ali, H.) dan persil 01650 (Tjarwali)',
+        status: 'Terindikasi dikuasai/dimanfaatkan TRANS TV, belum memiliki SPPT PBB-P2.'
+      },
+      'TANPA_NOP_2': {
+        code: 'BIDANG TANPA NOP #2',
+        type: 'unregistered',
+        owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
+        area: 'Bagian dari 88,47 m² (2 Bidang)',
+        position: 'Di sela antara persil 02950 (Abdullah H Bin Sabeni) dan persil 02951 (Karim Bin Said)',
+        status: 'Terindikasi dikuasai/dimanfaatkan TRANS TV, belum memiliki SPPT PBB-P2.'
+      },
+      '01630': {
+        code: 'Blok/Persil 01630',
+        type: 'registered',
+        owner: 'Abdul Fatah',
+        area: '120 m²',
+        position: 'Sisi Utara bagian barat blok TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '01640': {
+        code: 'Blok/Persil 01640',
+        type: 'registered',
+        owner: 'Abdullah Bin Ali, H.',
+        area: '52 m²',
+        position: 'Berbatasan langsung di sisi Utara Bidang Tanpa NOP #1',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '01650': {
+        code: 'Blok/Persil 01650',
+        type: 'registered',
+        owner: 'Tjarwali',
+        area: '134 m²',
+        position: 'Berbatasan langsung di sisi Selatan Bidang Tanpa NOP #1',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '01690': {
+        code: 'Blok/Persil 01690',
+        type: 'registered',
+        owner: 'Abdullah Gofar',
+        area: '153 m²',
+        position: 'Sisi Barat kawasan blok pemetaan',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '01700': {
+        code: 'Blok/Persil 01700',
+        type: 'registered',
+        owner: 'PT Kodel',
+        area: '250 m²',
+        position: 'Perbatasan paling Barat peta lokasi (1 NOP Badan dari total 47 NOP peta)',
+        status: 'Persil pembanding batas kawasan.'
+      },
+      '01710': {
+        code: 'Blok/Persil 01710',
+        type: 'registered',
+        owner: 'Hajah Sailah, Ny',
+        area: '300 m²',
+        position: 'Sisi Barat Daya kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '01660': {
+        code: 'Blok/Persil 01660',
+        type: 'registered',
+        owner: 'Miska',
+        area: '300 m²',
+        position: 'Sisi Selatan bagian barat kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02860': {
+        code: 'Blok/Persil 02860',
+        type: 'registered',
+        owner: 'Rohmat Gofar',
+        area: '500 m²',
+        position: 'Sisi Selatan bagian tengah kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02970': {
+        code: 'Blok/Persil 02970',
+        type: 'registered',
+        owner: 'Ahmad Yusuf, H.',
+        area: '378 m²',
+        position: 'Bagian tengah kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02990': {
+        code: 'Blok/Persil 02990',
+        type: 'registered',
+        owner: 'Miska',
+        area: '140 m²',
+        position: 'Bagian tengah kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '03000': {
+        code: 'Blok/Persil 03000',
+        type: 'registered',
+        owner: 'Ahmad Yusuf, H.',
+        area: '260 m²',
+        position: 'Sisi Utara bagian tengah kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02950': {
+        code: 'Blok/Persil 02950',
+        type: 'registered',
+        owner: 'Abdullah H Bin Sabeni',
+        area: '350 m²',
+        position: 'Berbatasan langsung di sisi Barat Bidang Tanpa NOP #2',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02951': {
+        code: 'Blok/Persil 02951',
+        type: 'registered',
+        owner: 'Karim Bin Said',
+        area: '154 m²',
+        position: 'Berbatasan langsung di sisi Timur Bidang Tanpa NOP #2',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02910': {
+        code: 'Blok/Persil 02910',
+        type: 'registered',
+        owner: 'Sarnadi',
+        area: '86 m²',
+        position: 'Bagian tengah-timur kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02920': {
+        code: 'Blok/Persil 02920',
+        type: 'registered',
+        owner: "Mas'ud, R",
+        area: '70 m²',
+        position: 'Bagian tengah-timur kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02930': {
+        code: 'Blok/Persil 02930',
+        type: 'registered',
+        owner: 'Miska',
+        area: '48 m²',
+        position: 'Bagian timur kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02940': {
+        code: 'Blok/Persil 02940',
+        type: 'registered',
+        owner: "Sja'dullah, H.",
+        area: '80 m²',
+        position: 'Sisi Timur kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02900': {
+        code: 'Blok/Persil 02900',
+        type: 'registered',
+        owner: 'Muhamad Nashoha (Alm)',
+        area: '418 m²',
+        position: 'Sisi Tenggara kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      },
+      '02880': {
+        code: 'Blok/Persil 02880',
+        type: 'registered',
+        owner: 'Siti Woerjaningsih Dra',
+        area: '457 m²',
+        position: 'Sisi Selatan bagian timur kawasan TRANS TV',
+        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+      }
+    };
+
+    // Data Sampel Tabel Slide 5 (NOP Perorangan)
+    const sampleNopList = [
+      { blok: '02860', nama: 'Rohmat Gofar', luas: '500', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '02880', nama: 'Siti Woerjaningsih Dra', luas: '457', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '02900', nama: 'Muhamad Nashoha (Alm)', luas: '418', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '02970', nama: 'Ahmad Yusuf, H.', luas: '378', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '02950', nama: 'Abdullah H Bin Sabeni', luas: '350', ket: 'Berbatasan Bidang Tanpa NOP #2' },
+      { blok: '01710', nama: 'Hajah Sailah, Ny', luas: '300', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '01660', nama: 'Miska', luas: '300', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '03000', nama: 'Ahmad Yusuf, H.', luas: '260', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '02951', nama: 'Karim Bin Said', luas: '154', ket: 'Berbatasan Bidang Tanpa NOP #2' },
+      { blok: '01690', nama: 'Abdullah Gofar', luas: '153', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '02990', nama: 'Miska', luas: '140', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '01650', nama: 'Tjarwali', luas: '134', ket: 'Berbatasan Bidang Tanpa NOP #1' },
+      { blok: '01630', nama: 'Abdul Fatah', luas: '120', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '02910', nama: 'Sarnadi', luas: '86', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '02940', nama: "Sja'dullah, H.", luas: '80', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '02920', nama: "Mas'ud, R", luas: '70', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
+      { blok: '01640', nama: 'Abdullah Bin Ali, H.', luas: '52', ket: 'Berbatasan Bidang Tanpa NOP #1' },
+      { blok: '02930', nama: 'Miska', luas: '48', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' }
+    ];
+
+    let currentSlide = 1;
+    const totalSlides = 7;
+    let isSpeaking = false;
+
+    // Inisialisasi saat halaman dimuat
+    window.onload = function () {
+      renderNopTable(sampleNopList);
+      buildSlideMenu();
+      updateSlideUI();
+    };
+
+    // Fungsi Pindah Slide
+    function goToSlide(slideNumber) {
+      if (slideNumber < 1 || slideNumber > totalSlides) return;
+      stopSpeech();
+      currentSlide = slideNumber;
+      updateSlideUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    // Perbarui Tampilan UI Slide
+    function updateSlideUI() {
+      for (let i = 1; i <= totalSlides; i++) {
+        const panel = document.getElementById(`slide-${i}`);
+        if (panel) {
+          panel.classList.toggle('active', i === currentSlide);
+        }
+      }
+
+      const activePanel = document.getElementById(`slide-${currentSlide}`);
+      const slideTitle = activePanel ? activePanel.getAttribute('data-title') : '';
+
+      // Perbarui Indikator Nomor Halaman
+      document.getElementById('topPageIndicator').textContent = `Halaman ${currentSlide} dari ${totalSlides}`;
+      document.getElementById('bottomPageIndicator').textContent = `Halaman ${currentSlide} dari ${totalSlides}`;
+      document.getElementById('bottomSlideTitle').textContent = slideTitle;
+
+      // Perbarui Bilah Progres
+      const progressPct = (currentSlide / totalSlides) * 100;
+      document.getElementById('progressBar').style.width = `${progressPct}%`;
+
+      // Perbarui Status Tombol Sebelumnya & Selanjutnya
+      document.getElementById('btnPrev').disabled = currentSlide === 1;
+      document.getElementById('btnNext').disabled = currentSlide === totalSlides;
+
+      // Sorot item aktif di Daftar Isi
+      buildSlideMenu();
+    }
+
+    // Bangun Daftar Isi Modal
+    function buildSlideMenu() {
+      const container = document.getElementById('menuSlideList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      for (let i = 1; i <= totalSlides; i++) {
+        const panel = document.getElementById(`slide-${i}`);
+        const title = panel ? panel.getAttribute('data-title') : `Halaman ${i}`;
+        const isCurrent = i === currentSlide;
+
+        const btn = document.createElement('button');
+        btn.className = `w-full text-left p-4 rounded-xl border-2 font-extrabold flex items-center justify-between transition ${
+          isCurrent
+            ? 'bg-[#0F2C59] text-white border-[#0F2C59]'
+            : 'bg-slate-50 text-slate-900 border-slate-300 hover:bg-amber-50 hover:border-[#D97706]'
+        }`;
+        btn.innerHTML = `
+          <span class="text-scaled-body">Halaman ${i}. ${title}</span>
+          <span class="px-3 py-1 rounded-lg text-sm ${isCurrent ? 'bg-amber-400 text-slate-950' : 'bg-slate-200 text-slate-700'}">
+            ${isCurrent ? 'Sedang Dibuka' : 'Buka →'}
+          </span>
+        `;
+        btn.onclick = () => {
+          goToSlide(i);
+          toggleMenuModal();
+        };
+        container.appendChild(btn);
+      }
+    }
+
+    function toggleMenuModal() {
+      const modal = document.getElementById('menuModal');
+      modal.classList.toggle('hidden');
+    }
+
+    // Pengatur Ukuran Huruf (Normal / Besar / Sangat Besar)
+    function setFontScale(scale, clickedBtn) {
+      document.documentElement.style.setProperty('--font-scale', scale);
+      document.querySelectorAll('.font-btn').forEach(btn => {
+        btn.classList.remove('bg-[#0F2C59]', 'text-white');
+        btn.classList.add('text-slate-800');
+      });
+      clickedBtn.classList.remove('text-slate-800');
+      clickedBtn.classList.add('bg-[#0F2C59]', 'text-white');
+    }
+
+    // Toggle Mode Kontras Tinggi
+    function toggleHighContrast() {
+      const isHC = document.body.classList.toggle('high-contrast');
+      const btn = document.getElementById('btnContrast');
+      btn.setAttribute('aria-pressed', isHC ? 'true' : 'false');
+
+      const header = document.getElementById('topHeader');
+      const footer = document.getElementById('bottomFooter');
+      if (isHC) {
+        header.style.backgroundColor = '#000000';
+        header.style.borderColor = '#FFD700';
+        footer.style.backgroundColor = '#000000';
+        footer.style.borderColor = '#FFD700';
+      } else {
+        header.style.backgroundColor = '';
+        header.style.borderColor = '';
+        footer.style.backgroundColor = '';
+        footer.style.borderColor = '';
+      }
+    }
+
+    // Fitur Pembaca Suara (Text-to-Speech Bahasa Indonesia)
+    function toggleSpeakSlide() {
+      if (!('speechSynthesis' in window)) {
+        showToast('Maaf, browser Anda belum mendukung fitur pembaca suara otomatis.');
+        return;
+      }
+
+      if (isSpeaking) {
+        stopSpeech();
+        return;
+      }
+
+      const activePanel = document.getElementById(`slide-${currentSlide}`);
+      if (!activePanel) return;
+
+      // Ambil teks yang bersih untuk dibacakan
+      const rawText = activePanel.innerText.replace(/\s+/g, ' ').trim();
+      const utterance = new SpeechSynthesisUtterance(rawText);
+      utterance.lang = 'id-ID';
+      utterance.rate = 0.92; // Kecepatan sedikit lebih pelan agar jelas bagi manula
+      utterance.pitch = 1.0;
+
+      utterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('textSpeak').textContent = 'Hentikan Suara';
+        document.getElementById('btnSpeak').classList.replace('bg-amber-600', 'bg-red-600');
+      };
+
+      utterance.onend = () => {
+        stopSpeech();
+      };
+
+      utterance.onerror = () => {
+        stopSpeech();
+      };
+
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      isSpeaking = false;
+      const textSpeak = document.getElementById('textSpeak');
+      const btnSpeak = document.getElementById('btnSpeak');
+      if (textSpeak) textSpeak.textContent = 'Bacakan Halaman Ini';
+      if (btnSpeak) {
+        btnSpeak.classList.remove('bg-red-600');
+        btnSpeak.classList.add('bg-amber-600');
+      }
+    }
+
+    // Interaksi Klik Persil pada Peta SVG (Slide 3)
+    function selectParcel(parcelId) {
+      const data = parcelDatabase[parcelId];
+      if (!data) return;
+
+      // Hapus sorotan sebelumnya
+      document.querySelectorAll('[id^="rect-"]').forEach(el => el.classList.remove('parcel-selected'));
+      const targetRect = document.getElementById(`rect-${parcelId}`);
+      if (targetRect) targetRect.classList.add('parcel-selected');
+
+      const detailCard = document.getElementById('parcelDetailCard');
+      const isUnregistered = data.type === 'unregistered';
+
+      detailCard.innerHTML = `
+        <div class="p-4 rounded-xl ${isUnregistered ? 'bg-red-50 border-2 border-red-300' : 'bg-blue-50 border-2 border-blue-300'}">
+          <span class="inline-block px-3 py-1 rounded-lg ${isUnregistered ? 'bg-red-600 text-white' : 'bg-[#0F2C59] text-white'} font-bold text-sm mb-2">
+            ${data.code}
+          </span>
+          <h3 class="text-scaled-subtitle font-extrabold ${isUnregistered ? 'text-red-900' : 'text-[#0F2C59]'}">
+            ${data.owner}
+          </h3>
+        </div>
+
+        <div class="space-y-3 text-scaled-body">
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="block text-sm font-bold text-slate-500">Luas Bumi SPPT / Estimasi:</span>
+            <span class="font-extrabold text-slate-900 text-2xl">${data.area}</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="block text-sm font-bold text-slate-500">Posisi di Peta Blok:</span>
+            <span class="font-bold text-slate-900">${data.position}</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200">
+            <span class="block text-sm font-bold text-amber-900">Status Indikasi:</span>
+            <span class="font-bold text-slate-800">${data.status}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render & Filter Tabel Slide 5
+    function renderNopTable(items) {
+      const tbody = document.getElementById('nopTableBody');
+      if (!tbody) return;
+
+      if (items.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="p-6 text-center font-bold text-slate-600">
+              Data tidak ditemukan. Silakan hapus kata kunci pencarian.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = items.map((item, idx) => `
+        <tr class="hover:bg-amber-50/70 transition">
+          <td class="p-4 font-bold text-slate-600">${idx + 1}</td>
+          <td class="p-4 font-extrabold text-[#0F2C59]">Blok ${item.blok}</td>
+          <td class="p-4 font-extrabold text-slate-900">${item.nama}</td>
+          <td class="p-4 font-extrabold text-[#D97706]">${item.luas} m²</td>
+          <td class="p-4 font-semibold text-slate-700">${item.ket}</td>
+        </tr>
+      `).join('');
+    }
+
+    function filterNopTable() {
+      const keyword = document.getElementById('searchNop').value.toLowerCase().trim();
+      const filtered = sampleNopList.filter(item =>
+        item.blok.toLowerCase().includes(keyword) ||
+        item.nama.toLowerCase().includes(keyword) ||
+        item.luas.toLowerCase().includes(keyword)
+      );
+      renderNopTable(filtered);
+    }
+
+    // Navigasi Keyboard (Panah Kiri & Panah Kanan)
+    document.addEventListener('keydown', function (e) {
+      if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+      if (e.key === 'ArrowRight') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key === 'Escape') {
+        document.getElementById('menuModal').classList.add('hidden');
+      }
+    });
+
+    // Notifikasi Non-Alert
+    function showToast(msg) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 z-50 px-6 py-4 rounded-2xl bg-[#0F2C59] text-white font-extrabold shadow-xl border-2 border-amber-400';
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+  </script>
+</body>
+</html>
