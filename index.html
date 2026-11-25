@@ -75,6 +75,8 @@
     html {
       scroll-behavior: smooth;
       font-size: 16px; /* Dikendalikan dinamis 80% - 160% oleh JS */
+      width: 100%;
+      overflow-x: hidden;
     }
 
     ::-webkit-scrollbar {
@@ -100,6 +102,9 @@
     body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
@@ -174,7 +179,7 @@
     }
 
     /* ==========================================================================
-       4. HEADER & BILAH KONTROL RAMAH MANULA
+       4. HEADER & BILAH KONTROL RAMAH MANULA (ANTI-TERPOTONG DI TEPI KANAN)
        ========================================================================== */
     .container-wrap {
       width: 100%;
@@ -189,6 +194,7 @@
       position: sticky;
       top: 0;
       z-index: 40;
+      width: 100%;
       background-color: var(--bg-card);
       border-bottom: 4px solid var(--border-strong);
       padding: 12px 0;
@@ -201,12 +207,14 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
+      width: 100%;
     }
 
     .brand-group {
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     .brand-text-box {
@@ -235,6 +243,7 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 8px;
+      max-width: 100%;
     }
 
     .ctrl-btn {
@@ -242,152 +251,15 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 15px;
+      padding: 10px 14px;
       border-radius: 12px;
       font-family: inherit;
-      font-size: 14.5px;
+      font-size: 14px;
       font-weight: 800;
       cursor: pointer;
       border: 2px solid transparent;
       transition: transform 0.15s ease, background-color 0.2s ease;
       user-select: none;
-    }
-
-    .ctrl-btn:hover:not(:disabled) {
-      transform: translateY(-1px);
-    }
-
-    .ctrl-btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    .btn-navy {
-      background-color: var(--brand-navy);
-      color: #FFFFFF;
-      border-color: var(--brand-navy);
-    }
-
-    body.high-contrast .btn-navy {
-      color: #000000;
-    }
-
-    .btn-green {
-      background-color: var(--brand-green);
-      color: #FFFFFF;
-      border-color: #064E3B;
-    }
-
-    .btn-red {
-      background-color: var(--brand-red);
-      color: #FFFFFF;
-      border-color: #7F1D1D;
-    }
-
-    .btn-amber {
-      background-color: #D97706;
-      color: #FFFFFF;
-      border-color: #92400E;
-    }
-
-    .btn-outline {
-      background-color: var(--bg-card);
-      color: var(--brand-navy);
-      border-color: var(--brand-navy);
-    }
-
-    .btn-outline.active-toggle {
-      background-color: var(--brand-navy);
-      color: #FFFFFF;
-    }
-
-    body.high-contrast .btn-outline.active-toggle {
-      color: #000000;
-    }
-
-    /* Kontrol Zoom Minus / Persentase / Plus */
-    .zoom-switcher {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background-color: var(--bg-soft);
-      padding: 4px 6px;
-      border-radius: 12px;
-      border: 2px solid var(--border-color);
-    }
-
-    .zoom-step-btn {
-      width: 38px;
-      height: 36px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 9px;
-      border: 2px solid var(--brand-navy);
-      background-color: var(--brand-navy);
-      color: #FFFFFF;
-      font-family: inherit;
-      font-size: 21px;
-      font-weight: 900;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .zoom-step-btn:disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-    }
-
-    body.high-contrast .zoom-step-btn {
-      color: #000000;
-    }
-
-    .zoom-readout-btn {
-      min-width: 58px;
-      padding: 6px 6px;
-      border: none;
-      border-radius: 8px;
-      background: transparent;
-      color: var(--brand-navy);
-      font-family: inherit;
-      font-size: 14.5px;
-      font-weight: 900;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .zoom-readout-btn:hover {
-      background-color: var(--bg-blue-soft);
-    }
-
-    /* Bilah Progres Halaman */
-    .progress-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .progress-track {
-      flex: 1;
-      height: 11px;
-      background-color: #E2E8F0;
-      border-radius: 999px;
-      overflow: hidden;
-      border: 1px solid var(--border-color);
-    }
-
-    .progress-fill {
-      height: 100%;
-      background-color: #D97706;
-      border-radius: 999px;
-      transition: width 0.3s ease;
-    }
-
-    .page-badge-top {
-      font-size: 14.5px;
-      font-weight: 800;
-      color: var(--brand-navy);
       white-space: nowrap;
     }
 
@@ -488,38 +360,38 @@
     .map-layout-grid {
       display: grid;
       grid-template-columns: 1.65fr 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    @media (max-width: 960px) {
-      .map-layout-grid { grid-template-columns: 1fr; }
-      .brand-text-box { display: none; }
-    }
-
-    .info-box {
+    /* Bilah Progres Halaman */
+    .progress-row {
       display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 18px;
-      border-radius: 16px;
-      background-color: var(--bg-soft);
-      border: 2px solid var(--border-color);
-    }
-
-    .info-box-blue { background-color: var(--bg-blue-soft); border-color: #93C5FD; }
-    .info-box-amber { background-color: var(--bg-amber-soft); border-color: #FCD34D; }
-    .info-box-red { background-color: var(--bg-red-soft); border-color: #FCA5A5; }
-    .info-box-green { background-color: var(--bg-green-soft); border-color: #6EE7B7; }
-
-    .icon-badge-sq {
-      display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      padding: 12px;
-      border-radius: 14px;
-      background-color: var(--brand-navy);
-      color: #FFFFFF;
+      gap: 12px;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .progress-track {
+      flex: 1;
+      min-width: 160px;
+      height: 11px;
+      background-color: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: #D97706;
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .page-badge-top {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--brand-navy);
+      white-space: nowrap;
       flex-shrink: 0;
     }
 
@@ -541,15 +413,85 @@
     }
 
     /* ==========================================================================
-       6. PETA INTERAKTIF & TABEL DATA LENGKAP 46 NOP
+       7. FOOTER NAVIGASI BESAR & MODAL DAFTAR ISI (ANTI-TERPOTONG)
        ========================================================================== */
-    .svg-map-wrapper {
+    .bottom-footer {
       width: 100%;
-      overflow-x: auto;
-      background-color: #1E293B;
-      padding: 12px;
+      background-color: var(--bg-card);
+      border-top: 4px solid var(--border-strong);
+      padding: 14px 0;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .footer-nav-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .nav-big-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 22px;
       border-radius: 16px;
-      border: 3px solid #475569;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      border: 3px solid var(--brand-navy);
+      transition: transform 0.15s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-big-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .nav-big-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .nav-prev {
+      background-color: var(--bg-card);
+      color: var(--brand-navy);
+    }
+
+    .nav-next {
+      background-color: var(--brand-navy);
+      color: #FFFFFF;
+    }
+
+    body.high-contrast .nav-next {
+      color: #000000;
+    }
+
+    .footer-center-info {
+      flex: 1;
+      min-width: 220px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 640px) {
+      .footer-center-info {
+        order: -1;
+        width: 100%;
+        flex-basis: 100%;
+      }
+      .nav-big-btn {
+        flex: 1;
+        padding: 12px 14px;
+        font-size: 1rem;
+      }
     }
 
     .svg-map-canvas {
@@ -878,7 +820,7 @@
         
         <!-- Kiri: Daftar Isi & Identitas -->
         <div class="brand-group">
-          <button type="button" id="btnOpenToc" class="ctrl-btn btn-navy" onclick="openToc()" aria-label="Buka Daftar Isi Slide">
+          <button type="button" id="btnOpenToc" class="ctrl-btn btn-navy" aria-label="Buka Daftar Isi Slide">
             <svg class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -894,7 +836,7 @@
         <!-- Kanan: Layar Penuh, Auto-Fit, Bacakan, Zoom (-/100%/+), Kontras -->
         <div class="controls-group">
           
-          <button type="button" id="btnFullscreen" class="ctrl-btn btn-green" onclick="toggleFullscreen()" aria-pressed="false" title="Tekan F untuk Layar Penuh">
+          <button type="button" id="btnFullscreen" class="ctrl-btn btn-green" aria-pressed="false" title="Tekan F untuk Layar Penuh">
             <svg id="iconFsEnter" class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4h4M4 4l5 5m11-1V4h-4m4 0l-5 5M4 16v4h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
             </svg>
@@ -904,14 +846,14 @@
             <span id="textFullscreen">LAYAR PENUH</span>
           </button>
 
-          <button type="button" id="btnAutoFit" class="ctrl-btn btn-outline" onclick="toggleAutoFit()" aria-pressed="false" title="Sesuaikan skala 95% agar muat nyaman di layar">
+          <button type="button" id="btnAutoFit" class="ctrl-btn btn-outline" aria-pressed="false" title="Sesuaikan skala 95% agar muat nyaman di layar">
             <svg class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
             </svg>
             <span>Auto-Fit</span>
           </button>
 
-          <button type="button" id="btnSpeak" class="ctrl-btn btn-amber" onclick="toggleSpeech()" aria-label="Bacakan isi halaman ini">
+          <button type="button" id="btnSpeak" class="ctrl-btn btn-amber" aria-label="Bacakan isi halaman ini">
             <svg class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H3v6h3l5 4V5zm4.5 3.5a5 5 0 010 7m2.8-9.8a9 9 0 010 12.6" />
             </svg>
@@ -919,12 +861,12 @@
           </button>
 
           <div class="zoom-switcher" role="group" aria-label="Pengaturan Zoom Ukuran Tulisan">
-            <button type="button" id="btnZoomOut" class="zoom-step-btn" onclick="changeZoom(-10)" title="Perkecil Tulisan (Tekan -)" aria-label="Perkecil ukuran tulisan">−</button>
-            <button type="button" id="zoomPercentDisplay" class="zoom-readout-btn" onclick="resetZoom()" title="Klik untuk kembalikan ukuran tulisan ke 100%" aria-label="Ukuran tulisan saat ini 100%, klik untuk reset">100%</button>
-            <button type="button" id="btnZoomIn" class="zoom-step-btn" onclick="changeZoom(10)" title="Perbesar Tulisan (Tekan +)" aria-label="Perbesar ukuran tulisan">+</button>
+            <button type="button" id="btnZoomOut" class="zoom-step-btn" title="Perkecil Tulisan (Tekan -)" aria-label="Perkecil ukuran tulisan">−</button>
+            <button type="button" id="zoomPercentDisplay" class="zoom-readout-btn" title="Klik untuk kembalikan ukuran tulisan ke 100%" aria-label="Ukuran tulisan saat ini 100%, klik untuk reset">100%</button>
+            <button type="button" id="btnZoomIn" class="zoom-step-btn" title="Perbesar Tulisan (Tekan +)" aria-label="Perbesar ukuran tulisan">+</button>
           </div>
 
-          <button type="button" id="btnContrast" class="ctrl-btn btn-outline" onclick="toggleContrast()" aria-pressed="false">
+          <button type="button" id="btnContrast" class="ctrl-btn btn-outline" aria-pressed="false">
             <svg class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="4" />
               <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
@@ -946,7 +888,7 @@
   </header>
 
   <!-- TOMBOL KELUAR LAYAR PENUH MENGAMBANG (POJOK KANAN ATAS SAAT FULLSCREEN AKTIF) -->
-  <button type="button" id="floatingExitFullscreen" class="floating-exit-btn" onclick="toggleFullscreen()" aria-label="Keluar dari Mode Layar Penuh">
+  <button type="button" id="floatingExitFullscreen" class="floating-exit-btn" aria-label="Keluar dari Mode Layar Penuh">
     <span>✕ KELUAR LAYAR PENUH</span>
   </button>
 
@@ -1007,10 +949,10 @@
               <strong>Petunjuk Tampilan Penuh:</strong> Klik tombol hijau <strong>"LAYAR PENUH"</strong> di bagian atas (atau tekan huruf <strong>F</strong>) agar seluruh halaman tampil penuh dan lega tanpa terpotong.
             </p>
             <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-              <button type="button" class="ctrl-btn btn-green" style="padding: 14px 20px; font-size: 16.5px;" onclick="toggleFullscreen()">
+              <button type="button" id="btnHeroFullscreen" class="ctrl-btn btn-green" style="padding: 14px 20px; font-size: 16.5px;">
                 ⛶ Buka Layar Penuh
               </button>
-              <button type="button" class="ctrl-btn btn-navy" style="padding: 14px 22px; font-size: 16.5px;" onclick="goToSlide(2)">
+              <button type="button" id="btnHeroStart" class="ctrl-btn btn-navy" style="padding: 14px 22px; font-size: 16.5px;">
                 Mulai Membaca →
               </button>
             </div>
@@ -1113,21 +1055,21 @@
                 <text x="777" y="35" fill="#F8FAFC" font-size="14" font-weight="bold" text-anchor="middle">JALAN AKSES KAWASAN TRANS TV — JL. PIERRE TENDEAN KAPT (UTARA)</text>
 
                 <!-- KOLOM KIRI -->
-                <g class="parcel-shape" onclick="selectParcel('317104000400401700')">
+                <g class="parcel-shape" data-parcel-id="317104000400401700">
                   <rect id="rect-317104000400401700" x="15" y="125" width="115" height="210" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="72" y="210" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400401700</text>
                   <text x="72" y="228" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">PT KODEL</text>
                   <text x="72" y="246" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 250 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400401690')">
+                <g class="parcel-shape" data-parcel-id="317104000400401690">
                   <rect id="rect-317104000400401690" x="130" y="125" width="130" height="210" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="195" y="210" fill="#78350F" font-size="10.5" font-weight="bold" text-anchor="middle">317104000400401690</text>
                   <text x="195" y="228" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">ABDULLAH GOFAR</text>
                   <text x="195" y="246" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 153 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400401710')">
+                <g class="parcel-shape" data-parcel-id="317104000400401710">
                   <rect id="rect-317104000400401710" x="45" y="355" width="190" height="280" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="140" y="475" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401710</text>
                   <text x="140" y="495" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">HAJAH SAILAH, NY</text>
@@ -1135,14 +1077,14 @@
                 </g>
 
                 <!-- KOLOM TENGAH-KIRI -->
-                <g class="parcel-shape" onclick="selectParcel('317104000400401630')">
+                <g class="parcel-shape" data-parcel-id="317104000400401630">
                   <rect id="rect-317104000400401630" x="260" y="60" width="180" height="62" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="350" y="81" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400401630</text>
                   <text x="350" y="97" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">ABDUL FATAH</text>
                   <text x="350" y="113" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 120 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400401640')">
+                <g class="parcel-shape" data-parcel-id="317104000400401640">
                   <rect id="rect-317104000400401640" x="260" y="122" width="180" height="62" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="350" y="143" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400401640</text>
                   <text x="350" y="159" fill="#1E293B" font-size="10.5" font-weight="bold" text-anchor="middle">ABDULLAH BIN ALI , H.</text>
@@ -1150,20 +1092,20 @@
                 </g>
 
                 <!-- BIDANG TANPA NOP BARAT (41,25 m2) -->
-                <g class="parcel-shape" onclick="selectParcel('TANPA_NOP_1')">
+                <g class="parcel-shape" data-parcel-id="TANPA_NOP_1">
                   <rect id="rect-TANPA_NOP_1" x="260" y="184" width="180" height="36" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
                   <rect x="275" y="190" width="150" height="24" fill="#991B1B" rx="4" />
                   <text x="350" y="207" fill="#FFFFFF" font-size="11.5" font-weight="bold" text-anchor="middle">TANPA NOP #1 (41,25 m²)</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400401650')">
+                <g class="parcel-shape" data-parcel-id="317104000400401650">
                   <rect id="rect-317104000400401650" x="260" y="220" width="180" height="135" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="350" y="272" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401650</text>
                   <text x="350" y="291" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">TJARWALI</text>
                   <text x="350" y="310" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 134 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400401660')">
+                <g class="parcel-shape" data-parcel-id="317104000400401660">
                   <rect id="rect-317104000400401660" x="235" y="375" width="185" height="260" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="327" y="485" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401660</text>
                   <text x="327" y="505" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">MISKA</text>
@@ -1171,28 +1113,28 @@
                 </g>
 
                 <!-- KOLOM TENGAH -->
-                <g class="parcel-shape" onclick="selectParcel('317104000400403000')">
+                <g class="parcel-shape" data-parcel-id="317104000400403000">
                   <rect id="rect-317104000400403000" x="440" y="60" width="175" height="140" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="527" y="115" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400403000</text>
                   <text x="527" y="134" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">AHMAD YUSUP, H.</text>
                   <text x="527" y="153" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 260 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400402990')">
+                <g class="parcel-shape" data-parcel-id="317104000400402990">
                   <rect id="rect-317104000400402990" x="440" y="200" width="175" height="130" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="527" y="250" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400402990</text>
                   <text x="527" y="269" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">MISKA</text>
                   <text x="527" y="288" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 140 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400402970')">
+                <g class="parcel-shape" data-parcel-id="317104000400402970">
                   <rect id="rect-317104000400402970" x="420" y="330" width="195" height="135" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="517" y="382" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402970</text>
                   <text x="517" y="401" fill="#1E293B" font-size="11.5" font-weight="bold" text-anchor="middle">AHMAD YUSUP, H.</text>
                   <text x="517" y="420" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 170 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400402860')">
+                <g class="parcel-shape" data-parcel-id="317104000400402860">
                   <rect id="rect-317104000400402860" x="420" y="465" width="195" height="170" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="517" y="535" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402860</text>
                   <text x="517" y="555" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">ROHMAT GOFAR</text>
@@ -1200,7 +1142,7 @@
                 </g>
 
                 <!-- KOLOM KANAN -->
-                <g class="parcel-shape" onclick="selectParcel('317104000400402960')">
+                <g class="parcel-shape" data-parcel-id="317104000400402960">
                   <rect id="rect-317104000400402960" x="625" y="70" width="265" height="170" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="757" y="138" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">317104000400402960</text>
                   <text x="757" y="159" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">ABDULLAH H BIN SARBINI</text>
@@ -1208,7 +1150,7 @@
                 </g>
 
                 <!-- BIDANG TANPA NOP TIMUR (47,22 m2) -->
-                <g class="parcel-shape" onclick="selectParcel('TANPA_NOP_2')">
+                <g class="parcel-shape" data-parcel-id="TANPA_NOP_2">
                   <rect id="rect-TANPA_NOP_2" x="890" y="70" width="54" height="170" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
                   <rect x="895" y="106" width="44" height="98" fill="#991B1B" rx="4" />
                   <text x="917" y="138" fill="#FFFFFF" font-size="10.5" font-weight="bold" text-anchor="middle">TANPA</text>
@@ -1217,7 +1159,7 @@
                   <text x="917" y="184" fill="#FDE047" font-size="10.5" font-weight="bold" text-anchor="middle">m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400402950')">
+                <g class="parcel-shape" data-parcel-id="317104000400402950">
                   <rect id="rect-317104000400402950" x="944" y="70" width="196" height="170" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="1042" y="138" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402950</text>
                   <text x="1042" y="159" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">KARIM BIN SAID</text>
@@ -1225,28 +1167,28 @@
                 </g>
 
                 <!-- Baris Tengah Kanan -->
-                <g class="parcel-shape" onclick="selectParcel('317104000400402910')">
+                <g class="parcel-shape" data-parcel-id="317104000400402910">
                   <rect id="rect-317104000400402910" x="625" y="240" width="140" height="110" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="695" y="279" fill="#78350F" font-size="10" font-weight="bold" text-anchor="middle">317104000400402910</text>
                   <text x="695" y="297" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">SARNADI</text>
                   <text x="695" y="314" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 90 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400402920')">
+                <g class="parcel-shape" data-parcel-id="317104000400402920">
                   <rect id="rect-317104000400402920" x="765" y="240" width="130" height="110" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="830" y="279" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402920</text>
                   <text x="830" y="297" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">MAS,UD, R</text>
                   <text x="830" y="314" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 70 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400402930')">
+                <g class="parcel-shape" data-parcel-id="317104000400402930">
                   <rect id="rect-317104000400402930" x="895" y="240" width="115" height="110" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="952" y="279" fill="#78350F" font-size="9" font-weight="bold" text-anchor="middle">317104000400402930</text>
                   <text x="952" y="297" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">MISKA</text>
                   <text x="952" y="314" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 40 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400402940')">
+                <g class="parcel-shape" data-parcel-id="317104000400402940">
                   <rect id="rect-317104000400402940" x="1010" y="240" width="130" height="110" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="1075" y="279" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402940</text>
                   <text x="1075" y="297" fill="#1E293B" font-size="10.5" font-weight="bold" text-anchor="middle">DJAMILLAH, H.</text>
@@ -1254,20 +1196,20 @@
                 </g>
 
                 <!-- Baris Bawah Kanan -->
-                <g class="parcel-shape" onclick="selectParcel('317104000400402900')">
+                <g class="parcel-shape" data-parcel-id="317104000400402900">
                   <rect id="rect-317104000400402900" x="625" y="350" width="515" height="120" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="882" y="400" fill="#78350F" font-size="13.5" font-weight="bold" text-anchor="middle">317104000400402900 • MUHAMAD NASHOHA (ALM)</text>
                   <text x="882" y="424" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Luas Bumi: 430 m² • Luas Bangunan: 134 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400402880')">
+                <g class="parcel-shape" data-parcel-id="317104000400402880">
                   <rect id="rect-317104000400402880" x="625" y="470" width="375" height="165" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="812" y="535" fill="#78350F" font-size="12.5" font-weight="bold" text-anchor="middle">317104000400402880</text>
                   <text x="812" y="556" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">SRI WOERJANINGSIH DRA.</text>
                   <text x="812" y="577" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 437 m² (Tanah Kosong)</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('317104000400402890')">
+                <g class="parcel-shape" data-parcel-id="317104000400402890">
                   <rect id="rect-317104000400402890" x="1000" y="470" width="140" height="165" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
                   <text x="1070" y="535" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402890</text>
                   <text x="1070" y="555" fill="#1E293B" font-size="10" font-weight="bold" text-anchor="middle">SRI WOERJANINGSIH</text>
@@ -1301,8 +1243,8 @@
               </div>
 
               <div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px;">
-                <button type="button" class="ctrl-btn btn-red" style="font-size: 14px;" onclick="selectParcel('TANPA_NOP_1')">Bidang Merah #1</button>
-                <button type="button" class="ctrl-btn btn-red" style="font-size: 14px;" onclick="selectParcel('TANPA_NOP_2')">Bidang Merah #2</button>
+                <button type="button" id="btnParcelRed1" class="ctrl-btn btn-red" style="font-size: 14px;">Bidang Merah #1</button>
+                <button type="button" id="btnParcelRed2" class="ctrl-btn btn-red" style="font-size: 14px;">Bidang Merah #2</button>
               </div>
             </div>
           </div>
@@ -1374,8 +1316,8 @@
           </p>
 
           <div class="search-box-wrap">
-            <input type="text" id="nopSearchInput" class="search-input" placeholder="Cari 18 digit NOP (misal: 317104000400402990) atau Nama WP (misal: MISKA)..." oninput="filterNopTable()" aria-label="Cari 18 digit NOP atau Nama Wajib Pajak" />
-            <button type="button" id="btnResetSearch" class="ctrl-btn btn-outline" style="padding: 14px 20px;" onclick="resetNopSearch()">Reset Pencarian (46)</button>
+            <input type="text" id="nopSearchInput" class="search-input" placeholder="Cari 18 digit NOP (misal: 317104000400402990) atau Nama WP (misal: MISKA)..." aria-label="Cari 18 digit NOP atau Nama Wajib Pajak" />
+            <button type="button" id="btnResetSearch" class="ctrl-btn btn-outline" style="padding: 14px 20px;">Reset Pencarian (46)</button>
           </div>
 
           <div id="filterCountInfo" class="text-small" style="font-weight: 800; color: var(--brand-navy); margin-bottom: 10px;">
@@ -1494,7 +1436,7 @@
               Rabu, 25 November 2026
             </p>
             <div style="margin-top: 18px;">
-              <button type="button" class="ctrl-btn btn-navy" style="padding: 14px 24px; font-size: 16.5px;" onclick="goToSlide(1)">
+              <button type="button" id="btnBackToFirst" class="ctrl-btn btn-navy" style="padding: 14px 24px; font-size: 16.5px;">
                 ↺ Kembali ke Halaman Pertama
               </button>
             </div>
@@ -1509,7 +1451,7 @@
   <footer class="bottom-footer" id="bottomFooter">
     <div class="container-wrap">
       <div class="footer-nav-row">
-        <button type="button" id="btnPrev" class="nav-big-btn nav-prev" onclick="prevSlide()">
+        <button type="button" id="btnPrev" class="nav-big-btn nav-prev">
           <span>← SEBELUMNYA</span>
         </button>
 
@@ -1518,7 +1460,7 @@
           <div style="font-size: 13px; font-weight: 600; opacity: 0.85;">Gunakan tombol panah ← / → atau klik tombol di samping</div>
         </div>
 
-        <button type="button" id="btnNext" class="nav-big-btn nav-next" onclick="nextSlide()">
+        <button type="button" id="btnNext" class="nav-big-btn nav-next">
           <span>SELANJUTNYA →</span>
         </button>
       </div>
@@ -1530,7 +1472,7 @@
     <div class="modal-dialog" id="menuModalDialog">
       <div class="modal-header">
         <h2 id="menuModalTitle" class="text-subtitle" style="color: var(--brand-navy); margin: 0;">Daftar Isi Presentasi</h2>
-        <button type="button" id="btnCloseToc" class="ctrl-btn btn-red" onclick="closeToc()">✕ Tutup</button>
+        <button type="button" id="btnCloseToc" class="ctrl-btn btn-red">✕ Tutup</button>
       </div>
       <div id="slideMenuList" class="menu-list">
         <!-- Diisi otomatis oleh JavaScript -->
@@ -1684,13 +1626,13 @@
         if (btnNext) btnNext.disabled = (currentSlide >= totalSlides);
 
         var menuButtons = document.querySelectorAll('.menu-item-btn');
-        menuButtons.forEach(function (btn, idx) {
-          if (idx + 1 === currentSlide) {
-            btn.classList.add('current');
+        for (var j = 0; j < menuButtons.length; j++) {
+          if (j + 1 === currentSlide) {
+            menuButtons[j].classList.add('current');
           } else {
-            btn.classList.remove('current');
+            menuButtons[j].classList.remove('current');
           }
-        });
+        }
       }
 
       function goToSlide(slideNumber) {
@@ -1715,21 +1657,31 @@
       }
 
       // ==========================================================================
-      // 5. MODAL DAFTAR ISI (TOC)
+      // 5. MODAL DAFTAR ISI (TOC) DENGAN LISTENER MURNI
       // ==========================================================================
       function buildSlideMenu() {
         var listEl = document.getElementById('slideMenuList');
         if (!listEl) return;
 
-        var html = '';
+        listEl.innerHTML = '';
         for (var i = 1; i <= totalSlides; i++) {
-          var panel = document.getElementById('slide-' + i);
-          var title = panel ? panel.getAttribute('data-title') : ('Halaman ' + i);
-          html += '<button type="button" class="menu-item-btn" data-slide-target="' + i + '" onclick="goToSlide(' + i + '); closeToc();">' +
-                  '<span>' + title + '</span>' +
-                  '</button>';
+          (function (slideIdx) {
+            var panel = document.getElementById('slide-' + slideIdx);
+            var title = panel ? panel.getAttribute('data-title') : ('Halaman ' + slideIdx);
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'menu-item-btn';
+            btn.setAttribute('data-slide-target', String(slideIdx));
+            var span = document.createElement('span');
+            span.textContent = title;
+            btn.appendChild(span);
+            btn.addEventListener('click', function () {
+              goToSlide(slideIdx);
+              closeToc();
+            });
+            listEl.appendChild(btn);
+          })(i);
         }
-        listEl.innerHTML = html;
       }
 
       function openToc() {
@@ -1795,9 +1747,7 @@
             } else if (docEl.msRequestFullscreen) {
               docEl.msRequestFullscreen();
             }
-          } catch (err) {
-            // Tetap aktif menggunakan mode fallback CSS 100vw x 100vh
-          }
+          } catch (err) {}
           showToast('Mode Layar Penuh Aktif — Tekan ESC atau tombol merah di pojok kanan atas untuk keluar.');
         } else {
           isFullscreenFallback = false;
@@ -1824,7 +1774,6 @@
       // ==========================================================================
       function applyZoom(percent, announce) {
         currentZoom = percent;
-        // Mengubah ukuran dasar html (16px * percent / 100)
         var basePx = (16 * percent) / 100;
         document.documentElement.style.fontSize = basePx + 'px';
 
@@ -1953,9 +1902,9 @@
       // ==========================================================================
       function selectParcel(parcelId) {
         var rects = document.querySelectorAll('.parcel-shape rect');
-        rects.forEach(function (r) {
-          r.classList.remove('parcel-selected');
-        });
+        for (var i = 0; i < rects.length; i++) {
+          rects[i].classList.remove('parcel-selected');
+        }
 
         var targetRect = document.getElementById('rect-' + parcelId);
         if (targetRect) {
@@ -1981,9 +1930,13 @@
           return;
         }
 
-        var item = fullNopList.find(function (row) {
-          return row.nop === parcelId;
-        });
+        var item = null;
+        for (var k = 0; k < fullNopList.length; k++) {
+          if (fullNopList[k].nop === parcelId) {
+            item = fullNopList[k];
+            break;
+          }
+        }
         if (!item) return;
 
         var kavInfo = (item.kav && item.kav !== '-') ? (' • Kav ' + item.kav) : '';
@@ -1994,7 +1947,7 @@
           areaEl.style.color = 'var(--brand-navy)';
         }
         if (posEl) posEl.textContent = item.alamat + kavInfo + ' (RT ' + item.rt + ' / RW ' + item.rw + ')';
-        if (statEl) statEl.textContent = 'PBB Hutang SPPT: ' + item.pbb + ' — Nama OP: ' + item.namaOp;
+        if (statEl) statEl.textContent = 'Jenis: ' + item.jns + ' (' + item.jpb + ') • PBB Hutang SPPT: ' + item.pbb;
       }
 
       function renderNopTable(list) {
@@ -2011,8 +1964,10 @@
           return;
         }
 
-        tbody.innerHTML = list.map(function (item) {
-          return '<tr>' +
+        var rowsHtml = '';
+        for (var i = 0; i < list.length; i++) {
+          var item = list[i];
+          rowsHtml += '<tr>' +
             '<td><strong>' + item.no + '</strong></td>' +
             '<td><span class="badge-status-blue">' + item.nop + '</span></td>' +
             '<td><strong>' + item.nama + '</strong></td>' +
@@ -2025,20 +1980,25 @@
             '<td><strong>' + item.namaOp + '</strong></td>' +
             '<td style="text-align: right; white-space: nowrap; font-weight: 800; color: var(--brand-navy);">' + item.pbb + '</td>' +
           '</tr>';
-        }).join('');
+        }
+        tbody.innerHTML = rowsHtml;
       }
 
       function filterNopTable() {
         var inputEl = document.getElementById('nopSearchInput');
         var query = inputEl ? inputEl.value.toLowerCase().trim() : '';
-        var filtered = fullNopList.filter(function (item) {
-          return item.nop.toLowerCase().indexOf(query) !== -1 ||
-                 item.nama.toLowerCase().indexOf(query) !== -1 ||
-                 item.alamat.toLowerCase().indexOf(query) !== -1 ||
-                 item.jns.toLowerCase().indexOf(query) !== -1 ||
-                 item.jpb.toLowerCase().indexOf(query) !== -1 ||
-                 item.pbb.toLowerCase().indexOf(query) !== -1;
-        });
+        var filtered = [];
+        for (var i = 0; i < fullNopList.length; i++) {
+          var item = fullNopList[i];
+          if (item.nop.toLowerCase().indexOf(query) !== -1 ||
+              item.nama.toLowerCase().indexOf(query) !== -1 ||
+              item.alamat.toLowerCase().indexOf(query) !== -1 ||
+              item.jns.toLowerCase().indexOf(query) !== -1 ||
+              item.jpb.toLowerCase().indexOf(query) !== -1 ||
+              item.pbb.toLowerCase().indexOf(query) !== -1) {
+            filtered.push(item);
+          }
+        }
         renderNopTable(filtered);
       }
 
@@ -2050,33 +2010,60 @@
       }
 
       // ==========================================================================
-      // 9. EKSPOS FUNGSI GLOBAL KE WINDOW (UNTUK ONCLICK & AKSES EKSTERNAL)
+      // 9. PEMASANGAN EVENT LISTENER LANGSUNG PADA SEMUA ELEMEN INTERAKTIF
       // ==========================================================================
-      window.goToSlide = goToSlide;
-      window.nextSlide = nextSlide;
-      window.prevSlide = prevSlide;
-      window.openToc = openToc;
-      window.closeToc = closeToc;
-      window.toggleFullscreen = toggleFullscreen;
-      window.changeZoom = changeZoom;
-      window.resetZoom = resetZoom;
-      window.toggleAutoFit = toggleAutoFit;
-      window.toggleContrast = toggleContrast;
-      window.toggleSpeech = toggleSpeech;
-      window.selectParcel = selectParcel;
-      window.filterNopTable = filterNopTable;
-      window.resetNopSearch = resetNopSearch;
+      function bindEvent(id, eventName, handler) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.addEventListener(eventName, handler);
+        }
+      }
 
-      // ==========================================================================
-      // 10. INISIALISASI DOMCONTENTLOADED & EVENT LISTENERS
-      // ==========================================================================
-      document.addEventListener('DOMContentLoaded', function () {
+      function initApplication() {
         renderNopTable(fullNopList);
         buildSlideMenu();
         applyZoom(100, false);
         updateSlideUI();
 
-        // Tutup modal Daftar Isi jika mengklik latar gelap di luar dialog
+        // Tombol Bilah Atas (Header) & Layar Penuh Mengambang
+        bindEvent('btnOpenToc', 'click', openToc);
+        bindEvent('btnCloseToc', 'click', closeToc);
+        bindEvent('btnFullscreen', 'click', toggleFullscreen);
+        bindEvent('floatingExitFullscreen', 'click', toggleFullscreen);
+        bindEvent('btnAutoFit', 'click', toggleAutoFit);
+        bindEvent('btnSpeak', 'click', toggleSpeech);
+        bindEvent('btnZoomOut', 'click', function () { changeZoom(-STEP_ZOOM); });
+        bindEvent('zoomPercentDisplay', 'click', resetZoom);
+        bindEvent('btnZoomIn', 'click', function () { changeZoom(STEP_ZOOM); });
+        bindEvent('btnContrast', 'click', toggleContrast);
+
+        // Tombol Aksi di dalam Slide
+        bindEvent('btnHeroFullscreen', 'click', toggleFullscreen);
+        bindEvent('btnHeroStart', 'click', function () { goToSlide(2); });
+        bindEvent('btnParcelRed1', 'click', function () { selectParcel('TANPA_NOP_1'); });
+        bindEvent('btnParcelRed2', 'click', function () { selectParcel('TANPA_NOP_2'); });
+        bindEvent('btnBackToFirst', 'click', function () { goToSlide(1); });
+
+        // Pencarian Tabel 46 NOP
+        bindEvent('nopSearchInput', 'input', filterNopTable);
+        bindEvent('btnResetSearch', 'click', resetNopSearch);
+
+        // Tombol Navigasi Bawah (Footer)
+        bindEvent('btnPrev', 'click', prevSlide);
+        bindEvent('btnNext', 'click', nextSlide);
+
+        // Klik pada Persil Peta Vektor SVG
+        var parcelNodes = document.querySelectorAll('.parcel-shape');
+        for (var i = 0; i < parcelNodes.length; i++) {
+          (function (node) {
+            node.addEventListener('click', function () {
+              var pid = node.getAttribute('data-parcel-id');
+              if (pid) selectParcel(pid);
+            });
+          })(parcelNodes[i]);
+        }
+
+        // Tutup modal Daftar Isi jika mengklik area gelap di luar dialog
         var menuModal = document.getElementById('menuModal');
         if (menuModal) {
           menuModal.addEventListener('click', function (e) {
@@ -2129,7 +2116,13 @@
             }
           }
         });
-      });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApplication);
+      } else {
+        initApplication();
+      }
     })();
   </script>
 </body>
