@@ -317,38 +317,60 @@
     .font-switcher {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       background-color: var(--bg-soft);
-      padding: 4px 6px;
+      padding: 4px 8px;
       border-radius: 12px;
       border: 2px solid var(--border-color);
     }
 
-    .font-label {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--text-secondary);
-      padding: 0 6px;
+    .zoom-step-btn {
+      width: 40px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border: 2px solid var(--brand-navy);
+      background-color: var(--brand-navy);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.2s ease;
     }
 
-    .font-opt-btn {
-      padding: 6px 12px;
-      border-radius: 8px;
+    .zoom-step-btn:hover:not(:disabled) {
+      transform: scale(1.05);
+    }
+
+    .zoom-step-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    body.high-contrast .zoom-step-btn {
+      color: #000000;
+    }
+
+    .zoom-readout-btn {
+      min-width: 62px;
+      padding: 6px 8px;
       border: none;
+      border-radius: 8px;
       background: transparent;
-      color: var(--text-primary);
+      color: var(--brand-navy);
       font-family: inherit;
-      font-weight: 800;
+      font-size: 15px;
+      font-weight: 900;
+      text-align: center;
       cursor: pointer;
     }
 
-    .font-opt-btn.active {
-      background-color: var(--brand-navy);
-      color: #FFFFFF;
-    }
-
-    body.high-contrast .font-opt-btn.active {
-      color: #000000;
+    .zoom-readout-btn:hover {
+      background-color: var(--bg-blue-soft);
     }
 
     /* Bilah Progres Halaman */
@@ -935,10 +957,10 @@
           </button>
 
           <div class="font-switcher" role="group" aria-label="Pengaturan Ukuran Huruf">
-            <span class="font-label">Huruf:</span>
-            <button type="button" class="font-opt-btn active" onclick="setFontScale(1, this)">Normal</button>
-            <button type="button" class="font-opt-btn" onclick="setFontScale(1.2, this)">Besar</button>
-            <button type="button" class="font-opt-btn" onclick="setFontScale(1.4, this)">Sangat Besar</button>
+          <div class="font-switcher" role="group" aria-label="Pengaturan Zoom Ukuran Tulisan">
+            <button type="button" id="btnZoomOut" class="zoom-step-btn" onclick="changeTextZoom(-10)" title="Perkecil Tulisan (Tekan -)" aria-label="Perkecil ukuran tulisan">−</button>
+            <button type="button" id="zoomPercentDisplay" class="zoom-readout-btn" onclick="resetTextZoom()" title="Klik untuk kembalikan ukuran tulisan ke 100%" aria-label="Ukuran tulisan saat ini 100%, klik untuk reset">100%</button>
+            <button type="button" id="btnZoomIn" class="zoom-step-btn" onclick="changeTextZoom(10)" title="Perbesar Tulisan (Tekan +)" aria-label="Perbesar ukuran tulisan">+</button>
           </div>
 
           <button type="button" id="btnContrast" class="ctrl-btn btn-outline" onclick="toggleHighContrast()" aria-pressed="false">
@@ -1323,8 +1345,8 @@
                   <th>No.</th>
                   <th>Identitas Bidang</th>
                   <th>Letak & Batas Persil Berdampingan</th>
-                  <th>Status PBB-P2</th>
-                  <th>Keterangan Penggunaan Fisik</th>
+                  <th>Luas Fisik</th>
+                  <th>Status & Keterangan Penggunaan</th>
                 </tr>
               </thead>
               <tbody>
@@ -1334,8 +1356,8 @@
                   <td>
                     Berada di sela memanjang antara <strong>Persil 01640</strong> (Abdullah Bin Ali, H. – 52 m²) dan <strong>Persil 01650</strong> (Tjarwali – 134 m²).
                   </td>
-                  <td><strong>Belum Terdaftar SPPT</strong></td>
-                  <td>Menjadi satu kesatuan area bangunan/akses tertutup di kawasan TRANS TV.</td>
+                  <td><strong>41,25 m²</strong></td>
+                  <td>Belum terdaftar SPPT PBB-P2; menyatu dengan area bangunan/akses tertutup TRANS TV.</td>
                 </tr>
                 <tr>
                   <td><strong>2</strong></td>
@@ -1343,8 +1365,8 @@
                   <td>
                     Berada di sela antara <strong>Persil 02960</strong> (Abdullah H Bin Sabeni – 320 m²) dan <strong>Persil 02950</strong> (Karim Bin Said – 164 m²).
                   </td>
-                  <td><strong>Belum Terdaftar SPPT</strong></td>
-                  <td>Area akses dan parkir kendaraan operasional di kawasan TRANS TV.</td>
+                  <td><strong>47,22 m²</strong></td>
+                  <td>Belum terdaftar SPPT PBB-P2; dimanfaatkan sebagai area akses dan parkir operasional TRANS TV.</td>
                 </tr>
                 <tr>
                   <td colspan="3" style="text-align: right; font-weight: 900; background-color: var(--bg-amber-soft);">TOTAL LUAS GABUNGAN 2 BIDANG TANPA NOP:</td>
@@ -1531,7 +1553,7 @@
         code: 'BIDANG TANPA NOP #1',
         type: 'unregistered',
         owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
-        area: 'Bagian dari total 88,47 m² (2 Bidang)',
+        area: '41,25 m² (Bagian dari total 88,47 m²)',
         position: 'Di sela antara persil 01640 (Abdullah Bin Ali, H.) dan persil 01650 (Tjarwali)',
         status: 'Terindikasi dikuasai/dimanfaatkan TRANS TV, belum memiliki SPPT PBB-P2.'
       },
@@ -1539,7 +1561,7 @@
         code: 'BIDANG TANPA NOP #2',
         type: 'unregistered',
         owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
-        area: 'Bagian dari total 88,47 m² (2 Bidang)',
+        area: '47,22 m² (Bagian dari total 88,47 m²)',
         position: 'Di sela antara persil 02960 (Abdullah H Bin Sabeni) dan persil 02950 (Karim Bin Said)',
         status: 'Terindikasi dikuasai/dimanfaatkan TRANS TV, belum memiliki SPPT PBB-P2.'
       },
@@ -1723,10 +1745,15 @@
     let isSpeaking = false;
     let isFullscreenFallback = false;
     let toastTimer = null;
+    let currentTextZoom = 100;
+    const MIN_TEXT_ZOOM = 80;
+    const MAX_TEXT_ZOOM = 160;
+    const STEP_TEXT_ZOOM = 10;
 
     window.onload = function () {
       renderNopTable(sampleNopList);
       buildSlideMenu();
+      applyTextZoom(100, false);
       updateSlideUI();
     };
 
@@ -1840,30 +1867,30 @@
       }
     }
 
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement && isFullscreenFallback) {
-        isFullscreenFallback = false;
-        applyFullscreenUI(false);
-      }
-    });
-
-    // ==========================================================================
-    // KONTROL AKSESIBILITAS: AUTO-FIT, UKURAN HURUF, KONTRAS, SUARA
-    // ==========================================================================
-    function toggleAutoFit() {
-      const active = document.body.classList.toggle('auto-fit-mode');
-      const btn = document.getElementById('btnAutoFit');
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      btn.classList.toggle('active-toggle', active);
-      if (active) {
-        showToast('Mode Auto-Fit Aktif: Jarak tata letak dipadatkan agar lebih muat di layar.');
-      }
+    function changeTextZoom(delta) {
+      const nextZoom = Math.min(MAX_TEXT_ZOOM, Math.max(MIN_TEXT_ZOOM, currentTextZoom + delta));
+      applyTextZoom(nextZoom, true);
     }
 
-    function setFontScale(scale, btnEl) {
-      document.documentElement.style.setProperty('--font-scale', scale);
-      document.querySelectorAll('.font-opt-btn').forEach(b => b.classList.remove('active'));
-      if (btnEl) btnEl.classList.add('active');
+    function resetTextZoom() {
+      applyTextZoom(100, true);
+    }
+
+    function applyTextZoom(percent, announce) {
+      currentTextZoom = percent;
+      document.documentElement.style.setProperty('--font-scale', (percent / 100).toFixed(2));
+
+      const displayEl = document.getElementById('zoomPercentDisplay');
+      const btnOut = document.getElementById('btnZoomOut');
+      const btnIn = document.getElementById('btnZoomIn');
+
+      if (displayEl) displayEl.textContent = percent + '%';
+      if (btnOut) btnOut.disabled = percent <= MIN_TEXT_ZOOM;
+      if (btnIn) btnIn.disabled = percent >= MAX_TEXT_ZOOM;
+
+      if (announce) {
+        showToast('Ukuran tulisan diatur ke ' + percent + '%');
+      }
     }
 
     function toggleHighContrast() {
@@ -2020,6 +2047,12 @@
         nextSlide();
       } else if (e.key === 'ArrowLeft') {
         prevSlide();
+      } else if (e.key === '+' || e.key === '=') {
+        e.preventDefault();
+        changeTextZoom(STEP_TEXT_ZOOM);
+      } else if (e.key === '-' || e.key === '_') {
+        e.preventDefault();
+        changeTextZoom(-STEP_TEXT_ZOOM);
       } else if (e.key === 'f' || e.key === 'F') {
         e.preventDefault();
         toggleFullScreen();
