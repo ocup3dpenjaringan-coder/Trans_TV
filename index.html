@@ -6,10 +6,10 @@
   <title>Presentasi UPPPD Mampang Prapatan - Kawasan TRANS TV (Ramah Manula)</title>
   <style>
     /* ==========================================================================
-       1. VARIABEL TEMA & SKALA HURUF DINAMIS (100% SELF-CONTAINED OFFLINE CSS)
+       1. VARIABEL TEMA & SKALA TULISAN DINAMIS (100% MANDIRI / OFFLINE-READY)
        ========================================================================== */
     :root {
-      --bg-primary: #F1F5F9;
+      --bg-primary: #FDFBF7;
       --bg-card: #FFFFFF;
       --bg-soft: #F8FAFC;
       --bg-blue-soft: #EFF6FF;
@@ -33,16 +33,15 @@
       --border-color: #CBD5E1;
       --border-strong: #0B3B60;
       --shadow-card: 0 8px 24px rgba(11, 59, 96, 0.08);
-      --font-scale: 1;
     }
 
-    /* Mode Kontras Tinggi (High Contrast Mode) untuk Manula */
+    /* Mode Kontras Tinggi (Hitam-Kuning-Putih Tajam untuk Manula) */
     body.high-contrast {
       --bg-primary: #000000;
       --bg-card: #121212;
-      --bg-soft: #1A1A1A;
-      --bg-blue-soft: #0F172A;
-      --bg-amber-soft: #272006;
+      --bg-soft: #1C1C1C;
+      --bg-blue-soft: #0B192C;
+      --bg-amber-soft: #2B2105;
       --bg-red-soft: #2E0909;
       --bg-green-soft: #052E16;
 
@@ -75,7 +74,7 @@
 
     html {
       scroll-behavior: smooth;
-      font-size: 16px;
+      font-size: 16px; /* Dikendalikan dinamis 80% - 160% oleh JS */
     }
 
     ::-webkit-scrollbar {
@@ -104,7 +103,7 @@
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      font-size: calc(20px * var(--font-scale));
+      font-size: 1.25rem;
       line-height: 1.65;
       min-height: 100vh;
       display: flex;
@@ -113,7 +112,7 @@
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* Mencegah Ikon SVG Membengkak Raksasa Saat Offline */
+    /* Ukuran Ikon SVG Eksplisit Agar Tidak Pernah Membengkak */
     svg.icon-ui {
       width: 22px;
       height: 22px;
@@ -133,7 +132,7 @@
     }
 
     /* ==========================================================================
-       3. MODE LAYAR PENUH (FULL SCREEN) & AUTO-FIT
+       3. MODE LAYAR PENUH (FULL SCREEN API + CSS FALLBACK 100VW X 100VH)
        ========================================================================== */
     body.is-fullscreen-mode {
       position: fixed;
@@ -147,24 +146,15 @@
 
     body.is-fullscreen-mode .container-wrap {
       max-width: 100% !important;
-      padding-left: clamp(1rem, 3vw, 3rem);
-      padding-right: clamp(1rem, 3vw, 3rem);
-    }
-
-    body.auto-fit-mode .main-content {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-    }
-
-    body.auto-fit-mode .card-surface {
-      padding: 1.25rem;
+      padding-left: clamp(1rem, 2.5vw, 2.75rem);
+      padding-right: clamp(1rem, 2.5vw, 2.75rem);
     }
 
     .floating-exit-btn {
       display: none;
       position: fixed;
-      top: 16px;
-      right: 16px;
+      top: 14px;
+      right: 14px;
       z-index: 10000;
       align-items: center;
       gap: 8px;
@@ -173,8 +163,8 @@
       background-color: #DC2626;
       color: #FFFFFF;
       border: 3px solid #FFFFFF;
-      font-weight: 800;
-      font-size: 16px;
+      font-weight: 900;
+      font-size: 15px;
       cursor: pointer;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     }
@@ -188,7 +178,7 @@
        ========================================================================== */
     .container-wrap {
       width: 100%;
-      max-width: 1280px;
+      max-width: 1320px;
       margin-left: auto;
       margin-right: auto;
       padding-left: 1.25rem;
@@ -210,13 +200,13 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
 
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .brand-text-box {
@@ -225,7 +215,7 @@
     }
 
     .brand-sub {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 800;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -234,7 +224,7 @@
     }
 
     .brand-title {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 800;
       color: var(--brand-navy);
       margin: 0;
@@ -252,14 +242,15 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 16px;
+      padding: 10px 15px;
       border-radius: 12px;
       font-family: inherit;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 800;
       cursor: pointer;
       border: 2px solid transparent;
       transition: transform 0.15s ease, background-color 0.2s ease;
+      user-select: none;
     }
 
     .ctrl-btn:hover:not(:disabled) {
@@ -314,36 +305,32 @@
       color: #000000;
     }
 
-    .font-switcher {
+    /* Kontrol Zoom Minus / Persentase / Plus */
+    .zoom-switcher {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       background-color: var(--bg-soft);
-      padding: 4px 8px;
+      padding: 4px 6px;
       border-radius: 12px;
       border: 2px solid var(--border-color);
     }
 
     .zoom-step-btn {
-      width: 40px;
-      height: 38px;
+      width: 38px;
+      height: 36px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
+      border-radius: 9px;
       border: 2px solid var(--brand-navy);
       background-color: var(--brand-navy);
       color: #FFFFFF;
       font-family: inherit;
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 900;
       line-height: 1;
       cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.2s ease;
-    }
-
-    .zoom-step-btn:hover:not(:disabled) {
-      transform: scale(1.05);
     }
 
     .zoom-step-btn:disabled {
@@ -356,14 +343,14 @@
     }
 
     .zoom-readout-btn {
-      min-width: 62px;
-      padding: 6px 8px;
+      min-width: 58px;
+      padding: 6px 6px;
       border: none;
       border-radius: 8px;
       background: transparent;
       color: var(--brand-navy);
       font-family: inherit;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 900;
       text-align: center;
       cursor: pointer;
@@ -383,7 +370,7 @@
 
     .progress-track {
       flex: 1;
-      height: 12px;
+      height: 11px;
       background-color: #E2E8F0;
       border-radius: 999px;
       overflow: hidden;
@@ -398,26 +385,26 @@
     }
 
     .page-badge-top {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 800;
       color: var(--brand-navy);
       white-space: nowrap;
     }
 
     /* ==========================================================================
-       5. KONTEN UTAMA, TIPOGRAFI SKALABEL & KARTU ANTI-TERPOTONG
+       5. TIPOGRAFI SKALABEL (REM) & KARTU ANTI-TERPOTONG
        ========================================================================== */
     .main-content {
       flex: 1;
-      padding-top: 28px;
-      padding-bottom: 32px;
+      padding-top: 24px;
+      padding-bottom: 28px;
       overflow-y: auto;
     }
 
     .slide-panel {
       display: none;
       width: 100%;
-      animation: fadeSlide 0.28s ease-out;
+      animation: fadeSlide 0.25s ease-out;
     }
 
     .slide-panel.active {
@@ -430,7 +417,7 @@
     }
 
     .text-title {
-      font-size: calc(32px * var(--font-scale));
+      font-size: 1.95rem;
       line-height: 1.28;
       font-weight: 800;
       margin: 0 0 14px 0;
@@ -438,26 +425,26 @@
     }
 
     .text-subtitle {
-      font-size: calc(23px * var(--font-scale));
+      font-size: 1.4rem;
       line-height: 1.38;
       font-weight: 800;
       margin: 0 0 10px 0;
     }
 
     .text-body {
-      font-size: calc(20px * var(--font-scale));
+      font-size: 1.22rem;
       line-height: 1.65;
       margin: 0;
     }
 
     .text-small {
-      font-size: calc(17px * var(--font-scale));
+      font-size: 1.02rem;
       line-height: 1.5;
       margin: 0;
     }
 
     .text-kpi {
-      font-size: calc(42px * var(--font-scale));
+      font-size: 2.45rem;
       line-height: 1.15;
       font-weight: 900;
       margin: 8px 0;
@@ -467,28 +454,17 @@
       background-color: var(--bg-card);
       border: 2px solid var(--border-color);
       border-radius: 20px;
-      padding: 28px;
+      padding: 26px;
       box-shadow: var(--shadow-card);
       height: auto;
       min-height: 0;
       overflow: visible;
     }
 
-    .card-accent-top {
-      border-top: 8px solid var(--brand-navy);
-    }
-
-    .card-accent-gold {
-      border-top: 8px solid var(--brand-gold);
-    }
-
-    .card-accent-red {
-      border-top: 8px solid var(--brand-red);
-    }
-
-    .card-accent-green {
-      border-top: 8px solid var(--brand-green);
-    }
+    .card-accent-top { border-top: 8px solid var(--brand-navy); }
+    .card-accent-gold { border-top: 8px solid var(--brand-gold); }
+    .card-accent-red { border-top: 8px solid var(--brand-red); }
+    .card-accent-green { border-top: 8px solid var(--brand-green); }
 
     .pill-badge {
       display: inline-flex;
@@ -500,35 +476,25 @@
       color: var(--brand-gold-dark);
       border: 2px solid var(--brand-gold);
       font-weight: 800;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 20px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
     }
 
     .map-layout-grid {
       display: grid;
       grid-template-columns: 1.65fr 1fr;
-      gap: 22px;
+      gap: 20px;
       align-items: start;
     }
 
     @media (max-width: 960px) {
-      .map-layout-grid {
-        grid-template-columns: 1fr;
-      }
-      .brand-text-box {
-        display: none;
-      }
+      .map-layout-grid { grid-template-columns: 1fr; }
+      .brand-text-box { display: none; }
     }
 
     .info-box {
@@ -541,25 +507,10 @@
       border: 2px solid var(--border-color);
     }
 
-    .info-box-blue {
-      background-color: var(--bg-blue-soft);
-      border-color: #93C5FD;
-    }
-
-    .info-box-amber {
-      background-color: var(--bg-amber-soft);
-      border-color: #FCD34D;
-    }
-
-    .info-box-red {
-      background-color: var(--bg-red-soft);
-      border-color: #FCA5A5;
-    }
-
-    .info-box-green {
-      background-color: var(--bg-green-soft);
-      border-color: #6EE7B7;
-    }
+    .info-box-blue { background-color: var(--bg-blue-soft); border-color: #93C5FD; }
+    .info-box-amber { background-color: var(--bg-amber-soft); border-color: #FCD34D; }
+    .info-box-red { background-color: var(--bg-red-soft); border-color: #FCA5A5; }
+    .info-box-green { background-color: var(--bg-green-soft); border-color: #6EE7B7; }
 
     .icon-badge-sq {
       display: flex;
@@ -577,8 +528,8 @@
     }
 
     .guide-banner {
-      margin-top: 24px;
-      padding: 18px 22px;
+      margin-top: 22px;
+      padding: 18px 20px;
       border-radius: 16px;
       background-color: var(--bg-blue-soft);
       border: 2px solid #93C5FD;
@@ -586,17 +537,17 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
     }
 
     /* ==========================================================================
-       6. PETA INTERAKTIF & TABEL DATA RAMAH MANULA
+       6. PETA INTERAKTIF & TABEL DATA LENGKAP 46 NOP
        ========================================================================== */
     .svg-map-wrapper {
       width: 100%;
       overflow-x: auto;
       background-color: #1E293B;
-      padding: 14px;
+      padding: 12px;
       border-radius: 16px;
       border: 3px solid #475569;
     }
@@ -604,7 +555,7 @@
     .svg-map-canvas {
       width: 100%;
       height: auto;
-      min-width: 640px;
+      min-width: 820px;
       display: block;
     }
 
@@ -614,7 +565,7 @@
     }
 
     .parcel-shape:hover {
-      opacity: 0.85;
+      opacity: 0.86;
     }
 
     .parcel-selected {
@@ -638,12 +589,12 @@
       align-items: center;
       gap: 8px;
       font-weight: 800;
-      font-size: calc(16px * var(--font-scale));
+      font-size: 1rem;
     }
 
     .swatch-yellow {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       background-color: #FEF3C7;
       border: 3px solid #D97706;
       border-radius: 6px;
@@ -651,8 +602,8 @@
     }
 
     .swatch-red {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       background: repeating-linear-gradient(45deg, #DC2626, #DC2626 5px, #FDBA74 5px, #FDBA74 10px);
       border: 3px solid #991B1B;
       border-radius: 6px;
@@ -663,7 +614,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .search-input {
@@ -675,7 +626,7 @@
       background-color: var(--bg-card);
       color: var(--text-primary);
       font-family: inherit;
-      font-size: calc(19px * var(--font-scale));
+      font-size: 1.15rem;
       font-weight: 700;
     }
 
@@ -696,10 +647,11 @@
     table.data-table th {
       background-color: var(--brand-navy);
       color: #FFFFFF;
-      padding: 16px;
+      padding: 14px;
       font-weight: 800;
-      font-size: calc(18px * var(--font-scale));
+      font-size: 1.05rem;
       border-bottom: 3px solid var(--border-strong);
+      white-space: nowrap;
     }
 
     body.high-contrast table.data-table th {
@@ -707,9 +659,9 @@
     }
 
     table.data-table td {
-      padding: 15px 16px;
+      padding: 13px 14px;
       border-bottom: 2px solid var(--border-color);
-      font-size: calc(19px * var(--font-scale));
+      font-size: 1.1rem;
       vertical-align: top;
     }
 
@@ -725,19 +677,19 @@
       color: #991B1B;
       border: 2px solid #DC2626;
       font-weight: 800;
-      font-size: calc(15px * var(--font-scale));
+      font-size: 0.95rem;
     }
 
     .badge-status-blue {
       display: inline-block;
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 8px;
       background-color: #DBEAFE;
       color: #1E40AF;
       border: 2px solid #2563EB;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-weight: 800;
-      font-size: calc(16px * var(--font-scale));
+      font-size: 0.98rem;
       white-space: nowrap;
       letter-spacing: 0.02em;
     }
@@ -746,7 +698,7 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-weight: 900;
       white-space: nowrap;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
 
     /* ==========================================================================
@@ -764,18 +716,18 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 12px;
     }
 
     .nav-big-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      padding: 14px 28px;
+      gap: 10px;
+      padding: 14px 26px;
       border-radius: 16px;
       font-family: inherit;
-      font-size: calc(19px * var(--font-scale));
+      font-size: 1.15rem;
       font-weight: 900;
       cursor: pointer;
       border: 3px solid var(--brand-navy);
@@ -808,7 +760,7 @@
     .footer-center-info {
       text-align: center;
       font-weight: 800;
-      font-size: calc(17px * var(--font-scale));
+      font-size: 1.05rem;
       color: var(--text-secondary);
     }
 
@@ -864,7 +816,7 @@
       background-color: var(--bg-soft);
       color: var(--text-primary);
       font-family: inherit;
-      font-size: calc(18px * var(--font-scale));
+      font-size: 1.12rem;
       font-weight: 800;
       cursor: pointer;
       display: flex;
@@ -887,7 +839,7 @@
       color: #000000;
     }
 
-    /* Toast Notifikasi Ramah Manula (Pengganti alert) */
+    /* Kotak Notifikasi Ramah Pengguna (Pengganti alert) */
     .toast-box {
       display: none;
       position: fixed;
@@ -901,7 +853,7 @@
       padding: 14px 24px;
       border-radius: 16px;
       font-weight: 800;
-      font-size: 17px;
+      font-size: 16px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
       max-width: 90vw;
       text-align: center;
@@ -919,14 +871,14 @@
 </head>
 <body>
 
-  <!-- BAR KONTROL ATAS (100% MANDIRI TANPA CDN EKSTERNAL) -->
+  <!-- BAR KONTROL ATAS -->
   <header class="top-header" id="topHeader">
     <div class="container-wrap">
       <div class="header-row">
         
         <!-- Kiri: Daftar Isi & Identitas -->
         <div class="brand-group">
-          <button type="button" class="ctrl-btn btn-navy" onclick="toggleMenuModal()" aria-label="Buka Daftar Isi Slide">
+          <button type="button" id="btnOpenToc" class="ctrl-btn btn-navy" onclick="openToc()" aria-label="Buka Daftar Isi Slide">
             <svg class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -939,10 +891,10 @@
           </div>
         </div>
 
-        <!-- Kanan: Layar Penuh, Auto-Fit, Bacakan, Ukuran Huruf, Kontras -->
+        <!-- Kanan: Layar Penuh, Auto-Fit, Bacakan, Zoom (-/100%/+), Kontras -->
         <div class="controls-group">
           
-          <button type="button" id="btnFullscreen" class="ctrl-btn btn-green" onclick="toggleFullScreen()" aria-pressed="false" title="Tekan F untuk Layar Penuh">
+          <button type="button" id="btnFullscreen" class="ctrl-btn btn-green" onclick="toggleFullscreen()" aria-pressed="false" title="Tekan F untuk Layar Penuh">
             <svg id="iconFsEnter" class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4h4M4 4l5 5m11-1V4h-4m4 0l-5 5M4 16v4h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
             </svg>
@@ -952,28 +904,27 @@
             <span id="textFullscreen">LAYAR PENUH</span>
           </button>
 
-          <button type="button" id="btnAutoFit" class="ctrl-btn btn-outline" onclick="toggleAutoFit()" aria-pressed="false" title="Padatkan jarak ruang agar lebih muat di layar">
+          <button type="button" id="btnAutoFit" class="ctrl-btn btn-outline" onclick="toggleAutoFit()" aria-pressed="false" title="Sesuaikan skala 95% agar muat nyaman di layar">
             <svg class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
             </svg>
             <span>Auto-Fit</span>
           </button>
 
-          <button type="button" id="btnSpeak" class="ctrl-btn btn-amber" onclick="toggleSpeakSlide()" aria-label="Bacakan isi halaman ini">
+          <button type="button" id="btnSpeak" class="ctrl-btn btn-amber" onclick="toggleSpeech()" aria-label="Bacakan isi halaman ini">
             <svg class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H3v6h3l5 4V5zm4.5 3.5a5 5 0 010 7m2.8-9.8a9 9 0 010 12.6" />
             </svg>
             <span id="textSpeak">Bacakan</span>
           </button>
 
-          <div class="font-switcher" role="group" aria-label="Pengaturan Ukuran Huruf">
-          <div class="font-switcher" role="group" aria-label="Pengaturan Zoom Ukuran Tulisan">
-            <button type="button" id="btnZoomOut" class="zoom-step-btn" onclick="changeTextZoom(-10)" title="Perkecil Tulisan (Tekan -)" aria-label="Perkecil ukuran tulisan">−</button>
-            <button type="button" id="zoomPercentDisplay" class="zoom-readout-btn" onclick="resetTextZoom()" title="Klik untuk kembalikan ukuran tulisan ke 100%" aria-label="Ukuran tulisan saat ini 100%, klik untuk reset">100%</button>
-            <button type="button" id="btnZoomIn" class="zoom-step-btn" onclick="changeTextZoom(10)" title="Perbesar Tulisan (Tekan +)" aria-label="Perbesar ukuran tulisan">+</button>
+          <div class="zoom-switcher" role="group" aria-label="Pengaturan Zoom Ukuran Tulisan">
+            <button type="button" id="btnZoomOut" class="zoom-step-btn" onclick="changeZoom(-10)" title="Perkecil Tulisan (Tekan -)" aria-label="Perkecil ukuran tulisan">−</button>
+            <button type="button" id="zoomPercentDisplay" class="zoom-readout-btn" onclick="resetZoom()" title="Klik untuk kembalikan ukuran tulisan ke 100%" aria-label="Ukuran tulisan saat ini 100%, klik untuk reset">100%</button>
+            <button type="button" id="btnZoomIn" class="zoom-step-btn" onclick="changeZoom(10)" title="Perbesar Tulisan (Tekan +)" aria-label="Perbesar ukuran tulisan">+</button>
           </div>
 
-          <button type="button" id="btnContrast" class="ctrl-btn btn-outline" onclick="toggleHighContrast()" aria-pressed="false">
+          <button type="button" id="btnContrast" class="ctrl-btn btn-outline" onclick="toggleContrast()" aria-pressed="false">
             <svg class="icon-ui" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="4" />
               <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
@@ -995,7 +946,7 @@
   </header>
 
   <!-- TOMBOL KELUAR LAYAR PENUH MENGAMBANG (POJOK KANAN ATAS SAAT FULLSCREEN AKTIF) -->
-  <button type="button" id="floatingExitFullscreen" class="floating-exit-btn" onclick="toggleFullScreen()" aria-label="Keluar dari Mode Layar Penuh">
+  <button type="button" id="floatingExitFullscreen" class="floating-exit-btn" onclick="toggleFullscreen()" aria-label="Keluar dari Mode Layar Penuh">
     <span>✕ KELUAR LAYAR PENUH</span>
   </button>
 
@@ -1056,10 +1007,10 @@
               <strong>Petunjuk Tampilan Penuh:</strong> Klik tombol hijau <strong>"LAYAR PENUH"</strong> di bagian atas (atau tekan huruf <strong>F</strong>) agar seluruh halaman tampil penuh dan lega tanpa terpotong.
             </p>
             <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-              <button type="button" class="ctrl-btn btn-green" style="padding: 14px 20px; font-size: 17px;" onclick="toggleFullScreen()">
+              <button type="button" class="ctrl-btn btn-green" style="padding: 14px 20px; font-size: 16.5px;" onclick="toggleFullscreen()">
                 ⛶ Buka Layar Penuh
               </button>
-              <button type="button" class="ctrl-btn btn-navy" style="padding: 14px 22px; font-size: 17px;" onclick="goToSlide(2)">
+              <button type="button" class="ctrl-btn btn-navy" style="padding: 14px 22px; font-size: 16.5px;" onclick="goToSlide(2)">
                 Mulai Membaca →
               </button>
             </div>
@@ -1077,7 +1028,7 @@
 
           <h2 class="text-title">Ringkasan Temuan Utama di Kawasan TRANS TV</h2>
 
-          <div class="info-box info-box-blue" style="margin-bottom: 24px;">
+          <div class="info-box info-box-blue" style="margin-bottom: 22px;">
             <p class="text-body" style="font-weight: 700;">
               Teridentifikasi <strong>46 NOP PBB perorangan</strong> dan <strong>2 bidang tanpa NOP</strong> yang berada di kawasan TRANS TV, dengan total luas bumi SPPT <strong>9.707 m²</strong>, total luas bangunan SPPT <strong>3.723 m²</strong>, total PBB Hutang SPPT <strong>Rp 1.449.151.410</strong>, serta luas bidang tanpa NOP <strong>88,47 m²</strong>.
             </p>
@@ -1097,7 +1048,7 @@
             <!-- Kartu KPI 2 -->
             <div class="card-surface" style="background-color: var(--bg-green-soft); border-color: var(--brand-green);">
               <p class="text-small" style="font-weight: 800; color: var(--brand-green); text-transform: uppercase;">2. Total Ketetapan PBB Hutang SPPT</p>
-              <p class="text-kpi" style="color: var(--brand-green); font-size: calc(34px * var(--font-scale));">Rp 1.449.151.410</p>
+              <p class="text-kpi" style="color: var(--brand-green); font-size: 2rem;">Rp 1.449.151.410</p>
               <p class="text-body" style="font-weight: 700;">Akumulasi 46 NOP Kawasan TRANS TV</p>
               <p class="text-small" style="margin-top: 8px; color: var(--text-secondary);">
                 Terdiri dari kategori <strong>1. Tanah + Bangunan</strong> (Perumahan, Perkantoran Swasta, Lain-Lain) dan <strong>3. Tanah Kosong</strong> yang seluruhnya berada dalam penguasaan TRANS TV.
@@ -1108,7 +1059,7 @@
             <div class="card-surface" style="background-color: var(--bg-red-soft); border-color: var(--brand-red);">
               <p class="text-small" style="font-weight: 800; color: var(--brand-red); text-transform: uppercase;">3. Bidang Tanah Tanpa NOP</p>
               <p class="text-kpi" style="color: var(--brand-red);">2 Bidang (88,47 m²)</p>
-              <p class="text-body" style="font-weight: 700;">Bidang Merah #1 (41,25 m²) & #2 (47,22 m²)</p>
+              <p class="text-body" style="font-weight: 700;">Bidang Merah Barat (41,25 m²) & Timur (47,22 m²)</p>
               <p class="text-small" style="margin-top: 8px; color: var(--text-secondary);">
                 Bidang sisipan/sela yang belum terdaftar Nomor Objek Pajak dalam basis data PBB-P2 dan berpotensi diterbitkan NOP baru.
               </p>
@@ -1135,8 +1086,8 @@
           </div>
 
           <h2 class="text-title">Peta PBB-P2 di Area Lokasi TRANS TV</h2>
-          <p class="text-body" style="margin-bottom: 16px;">
-            Peta menampilkan sebaran <strong>47 NOP</strong> dan <strong>2 Bidang Tanpa NOP (Bidang Merah)</strong>. Sentuh atau klik kotak persil pada peta untuk melihat <strong>18 digit NOP lengkap</strong>, luas bumi, luas bangunan, serta nilai PBB SPPT.
+          <p class="text-body" style="margin-bottom: 14px;">
+            Peta menampilkan sebaran blok persil di kawasan TRANS TV beserta <strong>2 Bidang Tanpa NOP (Bidang Merah)</strong>. Sentuh atau klik kotak persil pada peta untuk melihat <strong>18 digit NOP lengkap</strong>, nama WP, luas bumi/bangunan, serta nilai PBB SPPT.
           </p>
 
           <div class="legend-bar">
@@ -1145,10 +1096,10 @@
           </div>
 
           <div class="map-layout-grid">
-            <!-- Denah Vektor SVG Persil TRANS TV dengan 18 Digit NOP Penuh -->
+            <!-- Denah Vektor SVG Persil TRANS TV dengan Seluruh 22 Blok Terlihat di Peta -->
             <div class="svg-map-wrapper">
-              <svg viewBox="0 0 1120 620" class="svg-map-canvas" style="min-width: 820px;" role="img" aria-label="Peta PBB-P2 Kawasan TRANS TV dengan 18 digit NOP lengkap">
-                <rect x="0" y="0" width="1120" height="620" fill="#1E293B" rx="8" />
+              <svg viewBox="0 0 1160 660" class="svg-map-canvas" role="img" aria-label="Peta PBB-P2 Kawasan TRANS TV dengan 18 digit NOP lengkap">
+                <rect x="0" y="0" width="1160" height="660" fill="#1E293B" rx="8" />
 
                 <defs>
                   <pattern id="redHatch" width="12" height="12" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
@@ -1158,160 +1109,169 @@
                 </defs>
 
                 <!-- Jalan Akses Utara -->
-                <rect x="380" y="15" width="715" height="32" fill="#475569" rx="4" />
-                <text x="737" y="36" fill="#F8FAFC" font-size="14" font-weight="bold" text-anchor="middle">JALAN AKSES KAWASAN TRANS TV — JL. PIERRE TENDEAN KAPT (UTARA)</text>
+                <rect x="415" y="14" width="725" height="32" fill="#475569" rx="4" />
+                <text x="777" y="35" fill="#F8FAFC" font-size="14" font-weight="bold" text-anchor="middle">JALAN AKSES KAWASAN TRANS TV — JL. PIERRE TENDEAN KAPT (UTARA)</text>
 
                 <!-- KOLOM KIRI -->
                 <g class="parcel-shape" onclick="selectParcel('317104000400401700')">
-                  <rect id="rect-317104000400401700" x="15" y="120" width="105" height="195" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="67" y="195" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400401700</text>
-                  <text x="67" y="213" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">PT KODEL</text>
-                  <text x="67" y="231" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 250 m²</text>
+                  <rect id="rect-317104000400401700" x="15" y="125" width="115" height="210" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="72" y="210" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400401700</text>
+                  <text x="72" y="228" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">PT KODEL</text>
+                  <text x="72" y="246" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 250 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400401690')">
-                  <rect id="rect-317104000400401690" x="120" y="120" width="125" height="195" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="182" y="195" fill="#78350F" font-size="10.5" font-weight="bold" text-anchor="middle">317104000400401690</text>
-                  <text x="182" y="213" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">ABDULLAH GOFAR</text>
-                  <text x="182" y="231" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 153 m²</text>
+                  <rect id="rect-317104000400401690" x="130" y="125" width="130" height="210" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="195" y="210" fill="#78350F" font-size="10.5" font-weight="bold" text-anchor="middle">317104000400401690</text>
+                  <text x="195" y="228" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">ABDULLAH GOFAR</text>
+                  <text x="195" y="246" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 153 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400401710')">
-                  <rect id="rect-317104000400401710" x="45" y="330" width="175" height="265" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="132" y="440" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401710</text>
-                  <text x="132" y="460" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">HAJAH SAILAH, NY</text>
-                  <text x="132" y="479" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 300 m²</text>
+                  <rect id="rect-317104000400401710" x="45" y="355" width="190" height="280" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="140" y="475" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401710</text>
+                  <text x="140" y="495" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">HAJAH SAILAH, NY</text>
+                  <text x="140" y="515" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 300 m²</text>
                 </g>
 
                 <!-- KOLOM TENGAH-KIRI -->
                 <g class="parcel-shape" onclick="selectParcel('317104000400401630')">
-                  <rect id="rect-317104000400401630" x="245" y="60" width="175" height="60" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="332" y="80" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400401630</text>
-                  <text x="332" y="96" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">ABDUL FATAH</text>
-                  <text x="332" y="111" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 120 m²</text>
+                  <rect id="rect-317104000400401630" x="260" y="60" width="180" height="62" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="350" y="81" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400401630</text>
+                  <text x="350" y="97" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">ABDUL FATAH</text>
+                  <text x="350" y="113" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 120 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400401640')">
-                  <rect id="rect-317104000400401640" x="245" y="120" width="175" height="60" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="332" y="140" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400401640</text>
-                  <text x="332" y="156" fill="#1E293B" font-size="10.5" font-weight="bold" text-anchor="middle">ABDULLAH BIN ALI , H.</text>
-                  <text x="332" y="171" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 52 m²</text>
+                  <rect id="rect-317104000400401640" x="260" y="122" width="180" height="62" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="350" y="143" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400401640</text>
+                  <text x="350" y="159" fill="#1E293B" font-size="10.5" font-weight="bold" text-anchor="middle">ABDULLAH BIN ALI , H.</text>
+                  <text x="350" y="175" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 52 m²</text>
                 </g>
 
-                <!-- BIDANG TANPA NOP 1 (MERAH HORIZONTAL) -->
+                <!-- BIDANG TANPA NOP BARAT (41,25 m2) -->
                 <g class="parcel-shape" onclick="selectParcel('TANPA_NOP_1')">
-                  <rect id="rect-TANPA_NOP_1" x="245" y="180" width="175" height="36" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
-                  <rect x="262" y="186" width="141" height="24" fill="#991B1B" rx="4" />
-                  <text x="332" y="203" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle">TANPA NOP #1</text>
+                  <rect id="rect-TANPA_NOP_1" x="260" y="184" width="180" height="36" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
+                  <rect x="275" y="190" width="150" height="24" fill="#991B1B" rx="4" />
+                  <text x="350" y="207" fill="#FFFFFF" font-size="11.5" font-weight="bold" text-anchor="middle">TANPA NOP #1 (41,25 m²)</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400401650')">
-                  <rect id="rect-317104000400401650" x="245" y="216" width="175" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="332" y="264" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401650</text>
-                  <text x="332" y="283" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">TJARWALI</text>
-                  <text x="332" y="301" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 134 m²</text>
+                  <rect id="rect-317104000400401650" x="260" y="220" width="180" height="135" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="350" y="272" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401650</text>
+                  <text x="350" y="291" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">TJARWALI</text>
+                  <text x="350" y="310" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 134 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400401660')">
-                  <rect id="rect-317104000400401660" x="220" y="365" width="175" height="230" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="307" y="462" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401660</text>
-                  <text x="307" y="482" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">MISKA</text>
-                  <text x="307" y="501" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 300 m²</text>
+                  <rect id="rect-317104000400401660" x="235" y="375" width="185" height="260" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="327" y="485" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401660</text>
+                  <text x="327" y="505" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">MISKA</text>
+                  <text x="327" y="525" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 300 m²</text>
                 </g>
 
                 <!-- KOLOM TENGAH -->
                 <g class="parcel-shape" onclick="selectParcel('317104000400403000')">
-                  <rect id="rect-317104000400403000" x="420" y="60" width="165" height="135" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="502" y="112" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400403000</text>
-                  <text x="502" y="131" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">AHMAD YUSUP, H.</text>
-                  <text x="502" y="149" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 260 m²</text>
+                  <rect id="rect-317104000400403000" x="440" y="60" width="175" height="140" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="527" y="115" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400403000</text>
+                  <text x="527" y="134" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">AHMAD YUSUP, H.</text>
+                  <text x="527" y="153" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 260 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400402990')">
-                  <rect id="rect-317104000400402990" x="420" y="195" width="165" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="502" y="242" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400402990</text>
-                  <text x="502" y="261" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">MISKA</text>
-                  <text x="502" y="279" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 140 m²</text>
+                  <rect id="rect-317104000400402990" x="440" y="200" width="175" height="130" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="527" y="250" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400402990</text>
+                  <text x="527" y="269" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">MISKA</text>
+                  <text x="527" y="288" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 140 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400402970')">
-                  <rect id="rect-317104000400402970" x="405" y="320" width="180" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="495" y="368" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402970</text>
-                  <text x="495" y="387" fill="#1E293B" font-size="11.5" font-weight="bold" text-anchor="middle">AHMAD YUSUP, H.</text>
-                  <text x="495" y="405" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 170 m²</text>
+                  <rect id="rect-317104000400402970" x="420" y="330" width="195" height="135" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="517" y="382" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402970</text>
+                  <text x="517" y="401" fill="#1E293B" font-size="11.5" font-weight="bold" text-anchor="middle">AHMAD YUSUP, H.</text>
+                  <text x="517" y="420" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 170 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400402860')">
-                  <rect id="rect-317104000400402860" x="395" y="445" width="190" height="150" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="490" y="505" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402860</text>
-                  <text x="490" y="525" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">ROHMAT GOFAR</text>
-                  <text x="490" y="544" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 500 m²</text>
+                  <rect id="rect-317104000400402860" x="420" y="465" width="195" height="170" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="517" y="535" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402860</text>
+                  <text x="517" y="555" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">ROHMAT GOFAR</text>
+                  <text x="517" y="575" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 500 m²</text>
                 </g>
 
                 <!-- KOLOM KANAN -->
                 <g class="parcel-shape" onclick="selectParcel('317104000400402960')">
-                  <rect id="rect-317104000400402960" x="595" y="70" width="255" height="165" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="722" y="135" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">317104000400402960</text>
-                  <text x="722" y="156" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">ABDULLAH H BIN SARBINI</text>
-                  <text x="722" y="176" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Bumi: 300 m²</text>
+                  <rect id="rect-317104000400402960" x="625" y="70" width="265" height="170" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="757" y="138" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">317104000400402960</text>
+                  <text x="757" y="159" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">ABDULLAH H BIN SARBINI</text>
+                  <text x="757" y="179" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Bumi: 300 m²</text>
                 </g>
 
-                <!-- BIDANG TANPA NOP 2 (MERAH VERTIKAL) -->
+                <!-- BIDANG TANPA NOP TIMUR (47,22 m2) -->
                 <g class="parcel-shape" onclick="selectParcel('TANPA_NOP_2')">
-                  <rect id="rect-TANPA_NOP_2" x="850" y="70" width="52" height="165" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
-                  <rect x="855" y="108" width="42" height="90" fill="#991B1B" rx="4" />
-                  <text x="876" y="142" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle">TANPA</text>
-                  <text x="876" y="157" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle">NOP</text>
-                  <text x="876" y="174" fill="#FDE047" font-size="12" font-weight="bold" text-anchor="middle">#2</text>
+                  <rect id="rect-TANPA_NOP_2" x="890" y="70" width="54" height="170" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
+                  <rect x="895" y="106" width="44" height="98" fill="#991B1B" rx="4" />
+                  <text x="917" y="138" fill="#FFFFFF" font-size="10.5" font-weight="bold" text-anchor="middle">TANPA</text>
+                  <text x="917" y="153" fill="#FFFFFF" font-size="10.5" font-weight="bold" text-anchor="middle">NOP #2</text>
+                  <text x="917" y="170" fill="#FDE047" font-size="10.5" font-weight="bold" text-anchor="middle">47,22</text>
+                  <text x="917" y="184" fill="#FDE047" font-size="10.5" font-weight="bold" text-anchor="middle">m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400402950')">
-                  <rect id="rect-317104000400402950" x="902" y="70" width="193" height="165" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="998" y="135" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402950</text>
-                  <text x="998" y="156" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">KARIM BIN SAID</text>
-                  <text x="998" y="176" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 184 m²</text>
+                  <rect id="rect-317104000400402950" x="944" y="70" width="196" height="170" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="1042" y="138" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402950</text>
+                  <text x="1042" y="159" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">KARIM BIN SAID</text>
+                  <text x="1042" y="179" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 184 m²</text>
                 </g>
 
                 <!-- Baris Tengah Kanan -->
                 <g class="parcel-shape" onclick="selectParcel('317104000400402910')">
-                  <rect id="rect-317104000400402910" x="595" y="235" width="135" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="662" y="272" fill="#78350F" font-size="10" font-weight="bold" text-anchor="middle">317104000400402910</text>
-                  <text x="662" y="290" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">SARNADI</text>
-                  <text x="662" y="307" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 90 m²</text>
+                  <rect id="rect-317104000400402910" x="625" y="240" width="140" height="110" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="695" y="279" fill="#78350F" font-size="10" font-weight="bold" text-anchor="middle">317104000400402910</text>
+                  <text x="695" y="297" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">SARNADI</text>
+                  <text x="695" y="314" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 90 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400402920')">
-                  <rect id="rect-317104000400402920" x="730" y="235" width="125" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="792" y="272" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402920</text>
-                  <text x="792" y="290" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">MAS,UD, R</text>
-                  <text x="792" y="307" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 70 m²</text>
+                  <rect id="rect-317104000400402920" x="765" y="240" width="130" height="110" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="830" y="279" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402920</text>
+                  <text x="830" y="297" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">MAS,UD, R</text>
+                  <text x="830" y="314" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 70 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400402930')">
-                  <rect id="rect-317104000400402930" x="855" y="235" width="115" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="912" y="272" fill="#78350F" font-size="9" font-weight="bold" text-anchor="middle">317104000400402930</text>
-                  <text x="912" y="290" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">MISKA</text>
-                  <text x="912" y="307" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 40 m²</text>
+                  <rect id="rect-317104000400402930" x="895" y="240" width="115" height="110" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="952" y="279" fill="#78350F" font-size="9" font-weight="bold" text-anchor="middle">317104000400402930</text>
+                  <text x="952" y="297" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">MISKA</text>
+                  <text x="952" y="314" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 40 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400402940')">
-                  <rect id="rect-317104000400402940" x="970" y="235" width="125" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="1032" y="272" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402940</text>
-                  <text x="1032" y="290" fill="#1E293B" font-size="10.5" font-weight="bold" text-anchor="middle">DJAMILLAH, H.</text>
-                  <text x="1032" y="307" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 80 m²</text>
+                  <rect id="rect-317104000400402940" x="1010" y="240" width="130" height="110" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="1075" y="279" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402940</text>
+                  <text x="1075" y="297" fill="#1E293B" font-size="10.5" font-weight="bold" text-anchor="middle">DJAMILLAH, H.</text>
+                  <text x="1075" y="314" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 80 m²</text>
                 </g>
 
                 <!-- Baris Bawah Kanan -->
                 <g class="parcel-shape" onclick="selectParcel('317104000400402900')">
-                  <rect id="rect-317104000400402900" x="595" y="340" width="500" height="115" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="845" y="384" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">317104000400402900 • MUHAMAD NASHOHA (ALM)</text>
-                  <text x="845" y="408" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Luas Bumi: 430 m² • Luas Bangunan: 134 m²</text>
+                  <rect id="rect-317104000400402900" x="625" y="350" width="515" height="120" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="882" y="400" fill="#78350F" font-size="13.5" font-weight="bold" text-anchor="middle">317104000400402900 • MUHAMAD NASHOHA (ALM)</text>
+                  <text x="882" y="424" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Luas Bumi: 430 m² • Luas Bangunan: 134 m²</text>
                 </g>
 
                 <g class="parcel-shape" onclick="selectParcel('317104000400402880')">
-                  <rect id="rect-317104000400402880" x="595" y="455" width="500" height="140" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="845" y="512" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">317104000400402880 • SRI WOERJANINGSIH DRA.</text>
-                  <text x="845" y="536" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Luas Bumi: 437 m² • Jenis: 3. Tanah Kosong</text>
+                  <rect id="rect-317104000400402880" x="625" y="470" width="375" height="165" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="812" y="535" fill="#78350F" font-size="12.5" font-weight="bold" text-anchor="middle">317104000400402880</text>
+                  <text x="812" y="556" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">SRI WOERJANINGSIH DRA.</text>
+                  <text x="812" y="577" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 437 m² (Tanah Kosong)</text>
+                </g>
+
+                <g class="parcel-shape" onclick="selectParcel('317104000400402890')">
+                  <rect id="rect-317104000400402890" x="1000" y="470" width="140" height="165" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="1070" y="535" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402890</text>
+                  <text x="1070" y="555" fill="#1E293B" font-size="10" font-weight="bold" text-anchor="middle">SRI WOERJANINGSIH</text>
+                  <text x="1070" y="575" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 107 m²</text>
                 </g>
               </svg>
             </div>
@@ -1319,7 +1279,7 @@
             <!-- Panel Detail Persil Terpilih -->
             <div class="card-surface" id="parcelDetailBox" style="background-color: var(--bg-blue-soft); border-color: var(--brand-navy);">
               <p class="text-small" style="font-weight: 800; color: var(--brand-gold); text-transform: uppercase;">Detail Bidang Tanah Terpilih</p>
-              <h3 id="detailCode" class="text-subtitle nop-full-code" style="color: var(--brand-navy); margin-top: 6px;">BIDANG TANPA NOP #1</h3>
+              <h3 id="detailCode" class="text-subtitle nop-full-code" style="color: var(--brand-navy); margin-top: 6px;">BIDANG TANPA NOP #1 (BARAT)</h3>
               
               <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 12px;">
                 <div>
@@ -1357,7 +1317,7 @@
           </div>
 
           <h2 class="text-title">Rekapitulasi Bidang Tanpa NOP di Kawasan TRANS TV</h2>
-          <p class="text-body" style="margin-bottom: 20px;">
+          <p class="text-body" style="margin-bottom: 18px;">
             Ditemukan <strong>2 bidang tanah tanpa Nomor Objek Pajak (NOP)</strong> dengan total luas <strong>88,47 m²</strong> yang berada di dalam lingkungan penguasaan fisik PT TELEVISI TRANSFORMASI IND. (TRANS TV).
           </p>
 
@@ -1386,7 +1346,7 @@
                   <td><strong>2</strong></td>
                   <td><span class="badge-status-red">BIDANG TANPA NOP #2</span><br><span class="text-small">(Sisi Timur-Utara)</span></td>
                   <td>
-                    Berada di sela antara NOP <span class="nop-full-code">317104000400402960</span> (ABDULLAH H BIN SARBINI – 300 m²) dan NOP <span class="nop-full-code">317104000400402950</span> (KARIM BIN SAID – 184 m²).
+                    Berada di sela antara NOP <span class="nop-full-code">317104000400402960</span> (ABDULLAH H BIN SARBINI – 300 m²) / <span class="nop-full-code">317104000400402930</span> (MISKA – 40 m²) dan NOP <span class="nop-full-code">317104000400402950</span> (KARIM BIN SAID – 184 m²).
                   </td>
                   <td><strong>47,22 m²</strong></td>
                   <td>Belum terdaftar SPPT PBB-P2; dimanfaatkan sebagai area akses dan parkir operasional TRANS TV.</td>
@@ -1415,11 +1375,11 @@
 
           <div class="search-box-wrap">
             <input type="text" id="nopSearchInput" class="search-input" placeholder="Cari 18 digit NOP (misal: 317104000400402990) atau Nama WP (misal: MISKA)..." oninput="filterNopTable()" aria-label="Cari 18 digit NOP atau Nama Wajib Pajak" />
-            <button type="button" class="ctrl-btn btn-outline" style="padding: 14px 20px;" onclick="resetNopSearch()">Tampilkan Semua (46)</button>
+            <button type="button" id="btnResetSearch" class="ctrl-btn btn-outline" style="padding: 14px 20px;" onclick="resetNopSearch()">Reset Pencarian (46)</button>
           </div>
 
           <div id="filterCountInfo" class="text-small" style="font-weight: 800; color: var(--brand-navy); margin-bottom: 10px;">
-            Menampilkan 46 dari 46 NOP lengkap.
+            Menampilkan 46 dari 46 NOP (18 digit lengkap).
           </div>
 
           <div class="table-responsive">
@@ -1429,10 +1389,12 @@
                   <th>No.</th>
                   <th>NOP (18 Digit Penuh)</th>
                   <th>Nama WP SPPT</th>
-                  <th>Alamat OP (Kav / RT / RW)</th>
+                  <th>Alamat OP</th>
+                  <th>Kav / RT / RW</th>
                   <th style="text-align: right;">L. Bumi (m²)</th>
                   <th style="text-align: right;">L. Bgn (m²)</th>
-                  <th>Jenis Tanah & JPB</th>
+                  <th>Jns Tanah</th>
+                  <th>JPB</th>
                   <th>Nama OP</th>
                   <th style="text-align: right;">PBB Hutang SPPT</th>
                 </tr>
@@ -1442,10 +1404,10 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <td colspan="4" style="text-align: right; font-weight: 900; background-color: var(--bg-amber-soft);">TOTAL KESELURUHAN (46 NOP):</td>
+                  <td colspan="5" style="text-align: right; font-weight: 900; background-color: var(--bg-amber-soft);">TOTAL KESELURUHAN (46 NOP):</td>
                   <td style="text-align: right; font-weight: 900; background-color: var(--bg-amber-soft); white-space: nowrap;">9.707 m²</td>
                   <td style="text-align: right; font-weight: 900; background-color: var(--bg-amber-soft); white-space: nowrap;">3.723 m²</td>
-                  <td colspan="2" style="background-color: var(--bg-amber-soft); font-weight: 800;">PT TELEVISI TRANSFORMASI IND.</td>
+                  <td colspan="3" style="background-color: var(--bg-amber-soft); font-weight: 800;">PT TELEVISI TRANSFORMASI IND.</td>
                   <td style="text-align: right; font-weight: 900; color: var(--brand-navy); background-color: var(--bg-amber-soft); white-space: nowrap;">Rp 1.449.151.410</td>
                 </tr>
               </tfoot>
@@ -1463,12 +1425,12 @@
 
           <h2 class="text-title">Bidang Tanah TRANS TV Berdasarkan Peta BHUMI ATR/BPN</h2>
           <p class="text-body" style="margin-bottom: 20px;">
-            Penyelarasan antara <strong>Peta Blok PBB-P2 (UPPPD Mampang Prapatan)</strong> dengan <strong>Peta Bidang Tanah BHUMI ATR/BPN</strong> menunjukkan bahwa 46 bidang terdaftar dan 2 bidang tanpa NOP tersebut telah menyatu dalam penguasaan fisik <strong>PT TELEVISI TRANSFORMASI IND. (TRANS TV)</strong>.
+            Penyelarasan antara <strong>Peta Blok SISMIOP / PBB-P2 (UPPPD Mampang Prapatan)</strong> dengan <strong>Peta Bidang Tanah BHUMI ATR/BPN</strong> menunjukkan bahwa 46 bidang terdaftar dan 2 bidang tanpa NOP tersebut telah menyatu dalam penguasaan fisik <strong>PT TELEVISI TRANSFORMASI IND. (TRANS TV)</strong>.
           </p>
 
           <div class="grid-2">
             <div class="card-surface" style="background-color: var(--bg-blue-soft); border-color: var(--brand-navy);">
-              <h3 class="text-subtitle" style="color: var(--brand-navy);">1. Kondisi Pada Basis Data PBB-P2</h3>
+              <h3 class="text-subtitle" style="color: var(--brand-navy);">1. Kondisi Pada Basis Data SISMIOP / PBB-P2</h3>
               <ul class="text-body" style="padding-left: 24px; margin: 12px 0 0 0; display: flex; flex-direction: column; gap: 10px;">
                 <li>Terpecah menjadi <strong>46 NOP 18 digit</strong> (<span class="nop-full-code">317104000400401540</span> s.d. <span class="nop-full-code">317104000400405340</span>) dengan total luas bumi <strong>9.707 m²</strong> dan bangunan <strong>3.723 m²</strong>.</li>
                 <li>Total ketetapan PBB Hutang SPPT mencapai <strong>Rp 1.449.151.410</strong> yang masih atas nama wajib pajak lama.</li>
@@ -1497,7 +1459,7 @@
 
           <h2 class="text-title">Rekomendasi Tindak Lanjut & Penutup</h2>
 
-          <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px;">
+          <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 26px;">
             <div class="info-box info-box-blue">
               <div class="icon-badge-sq"><strong>1</strong></div>
               <div>
@@ -1532,7 +1494,7 @@
               Rabu, 25 November 2026
             </p>
             <div style="margin-top: 18px;">
-              <button type="button" class="ctrl-btn btn-navy" style="padding: 14px 24px; font-size: 17px;" onclick="goToSlide(1)">
+              <button type="button" class="ctrl-btn btn-navy" style="padding: 14px 24px; font-size: 16.5px;" onclick="goToSlide(1)">
                 ↺ Kembali ke Halaman Pertama
               </button>
             </div>
@@ -1564,11 +1526,11 @@
   </footer>
 
   <!-- MODAL DAFTAR ISI SLIDE -->
-  <div id="menuModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="menuModalTitle" onclick="closeMenuOnBackdrop(event)">
-    <div class="modal-dialog">
+  <div id="menuModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="menuModalTitle">
+    <div class="modal-dialog" id="menuModalDialog">
       <div class="modal-header">
         <h2 id="menuModalTitle" class="text-subtitle" style="color: var(--brand-navy); margin: 0;">Daftar Isi Presentasi</h2>
-        <button type="button" class="ctrl-btn btn-red" onclick="toggleMenuModal()">✕ Tutup</button>
+        <button type="button" id="btnCloseToc" class="ctrl-btn btn-red" onclick="closeToc()">✕ Tutup</button>
       </div>
       <div id="slideMenuList" class="menu-list">
         <!-- Diisi otomatis oleh JavaScript -->
@@ -1576,441 +1538,599 @@
     </div>
   </div>
 
-  <!-- KOTAK NOTIFIKASI NON-ALERT -->
+  <!-- KOTAK NOTIFIKASI RAMAH PENGGUNA (PENGGANTI ALERT) -->
   <div id="toastBox" class="toast-box" role="status" aria-live="polite"></div>
 
   <script>
-    // ==========================================================================
-    // BASIS DATA LENGKAP 46 NOP (18 DIGIT PENUH) SESUAI DOKUMEN PPT TRANS TV
-    // ==========================================================================
-    const fullNopList = [
-      { no: 1, nop: '317104000400402070', nama: 'ABDUL SALAH MADRIS', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 363, bgn: 117, jns: '1. TANAH + BANGUNAN', jpb: '01. PERUMAHAN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 36.427.050' },
-      { no: 2, nop: '317104000400401630', nama: 'ABDUL FATAH', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 120, bgn: 90, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 18.274.680' },
-      { no: 3, nop: '317104000400401640', nama: 'ABDULLAH BIN ALI , H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 52, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 7.958.628' },
-      { no: 4, nop: '317104000400401650', nama: 'TJARWALI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 134, bgn: 120, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 20.590.686' },
-      { no: 5, nop: '317104000400401660', nama: 'MISKA', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 150, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.701.550' },
-      { no: 6, nop: '317104000400401670', nama: 'KAYAT', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 140, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 21.306.300' },
-      { no: 7, nop: '317104000400401680', nama: 'AGUS', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 200, bgn: 150, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 30.742.650' },
-      { no: 8, nop: '317104000400401690', nama: 'ABDULLAH GOFAR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 153, bgn: 130, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 23.478.357' },
-      { no: 9, nop: '317104000400401700', nama: 'PT KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 250, bgn: 50, jns: '3. TANAH KOSONG', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 37.577.250' },
-      { no: 10, nop: '317104000400401710', nama: 'HAJAH SAILAH, NY', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 60, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.050.940' },
-      { no: 11, nop: '317104000400401730', nama: 'KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 68, jns: '3. TANAH KOSONG', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.121.500' },
-      { no: 12, nop: '317104000400401890', nama: 'MARWAN BIN MARDJUKI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 161, bgn: 60, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 24.209.829' },
-      { no: 13, nop: '317104000400401900', nama: 'MUHAMMAD NUR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 100, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 15.048.150' },
-      { no: 14, nop: '317104000400401910', nama: 'MUKTI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 285, bgn: 84, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 42.876.801' },
-      { no: 15, nop: '317104000400401920', nama: 'ABDUL KARIM NASEH, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 140, bgn: 100, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 21.397.260' },
-      { no: 16, nop: '317104000400401930', nama: 'MASNUN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 90, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 13.568.010' },
-      { no: 17, nop: '317104000400401940', nama: 'ENDRIWATY CHIZAR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 72, bgn: 54, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 11.016.000' },
-      { no: 18, nop: '317104000400401950', nama: 'YASIN M', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 58, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 8.821.362' },
-      { no: 19, nop: '317104000400401960', nama: 'ASMUNAH', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 90, bgn: 56, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 13.664.610' },
-      { no: 20, nop: '317104000400401990', nama: 'ROHMAT WARDI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 90, bgn: 48, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 13.681.314' },
-      { no: 21, nop: '317104000400402000', nama: 'MOHAMMAD ZEN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 60, bgn: 40, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 9.059.340' },
-      { no: 22, nop: '317104000400402010', nama: 'ASUROH, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 70, bgn: 40, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 10.615.230' },
-      { no: 23, nop: '317104000400402030', nama: 'ABDUL RAHIM', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 136, bgn: 70, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 20.662.464' },
-      { no: 24, nop: '317104000400402040', nama: 'DJAIHABUN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 110, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 16.818.630' },
-      { no: 25, nop: '317104000400402050', nama: 'TOMO', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 57, bgn: 57, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 8.731.773' },
-      { no: 26, nop: '317104000400402060', nama: 'SIMIN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 95, bgn: 85, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 14.516.955' },
-      { no: 27, nop: '317104000400402080', nama: 'AHYANA BIN ANWAR / TATANG ARIS', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 187, bgn: 70, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 28.291.503' },
-      { no: 28, nop: '317104000400402860', nama: 'ROHMAT GOFAR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 500, bgn: 100, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 75.249.300' },
-      { no: 29, nop: '317104000400402900', nama: 'MUHAMAD NASHOHA (ALM)', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 430, bgn: 134, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 64.932.702' },
-      { no: 30, nop: '317104000400402910', nama: 'SARNADI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 90, bgn: 65, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 13.758.630' },
-      { no: 31, nop: '317104000400402920', nama: 'MAS,UD, R', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 70, bgn: 70, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 10.723.230' },
-      { no: 32, nop: '317104000400402960', nama: 'ABDULLAH H BIN SARBINI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 100, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.331.500' },
-      { no: 33, nop: '317104000400402970', nama: 'AHMAD YUSUP, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 170, bgn: 90, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 25.839.450' },
-      { no: 34, nop: '317104000400402990', nama: 'MISKA', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 140, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 21.306.300' },
-      { no: 35, nop: '317104000400403000', nama: 'AHMAD YUSUP, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 260, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 39.256.980' },
-      { no: 36, nop: '317104000400405340', nama: 'DJAMALUDIN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '002', rw: '002', bumi: 220, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 33.033.030' },
-      { no: 37, nop: '317104000400401540', nama: 'SUGIHARTO WIJOYO', alamat: 'JL PIERRE TENDEAN', kav: '-', rt: '002', rw: '002', bumi: 1246, bgn: 450, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 188.434.494' },
-      { no: 38, nop: '317104000400401720', nama: 'PT KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 210, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 31.593.690' },
-      { no: 39, nop: '317104000400401750', nama: 'TAFSIR, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 360, bgn: 150, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 54.534.240' },
-      { no: 40, nop: '317104000400402930', nama: 'MISKA', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 40, bgn: 30, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 6.091.560' },
-      { no: 41, nop: '317104000400402940', nama: 'DJAMILLAH, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 80, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 12.330.960' },
-      { no: 42, nop: '317104000400402950', nama: 'KARIM BIN SAID', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 184, bgn: 135, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 28.138.356' },
-      { no: 43, nop: '317104000400401740', nama: 'KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 400, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 59.655.600' },
-      { no: 44, nop: '317104000400402780', nama: 'PT KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 350, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 52.356.150' },
-      { no: 45, nop: '317104000400402880', nama: 'SRI WOERJANINGSIH DRA.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 437, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 65.370.393' },
-      { no: 46, nop: '317104000400402890', nama: 'SRI WOERJANINGSIH DRA.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 107, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 16.006.023' }
-    ];
+    (function () {
+      'use strict';
 
-    const specialParcels = {
-      'TANPA_NOP_1': {
-        code: 'BIDANG TANPA NOP #1',
-        type: 'unregistered',
-        owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
-        area: 'Luas Fisik: 41,25 m² (Bagian dari total 88,47 m²)',
-        position: 'JL PIERRE TENDEAN KAPT — Di sela antara NOP 317104000400401640 dan 317104000400401650',
-        status: 'Belum terbit SPPT PBB-P2; terindikasi dikuasai/dimanfaatkan TRANS TV.'
-      },
-      'TANPA_NOP_2': {
-        code: 'BIDANG TANPA NOP #2',
-        type: 'unregistered',
-        owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
-        area: 'Luas Fisik: 47,22 m² (Bagian dari total 88,47 m²)',
-        position: 'JL PIERRE TENDEAN KAPT — Di sela antara NOP 317104000400402960 dan 317104000400402950',
-        status: 'Belum terbit SPPT PBB-P2; dimanfaatkan sebagai area akses/parkir TRANS TV.'
+      // ==========================================================================
+      // 1. BASIS DATA LENGKAP 46 NOP (18 DIGIT PENUH) SESUAI DOKUMEN PPT TRANS TV
+      // ==========================================================================
+      var fullNopList = [
+        { no: 1, nop: '317104000400402070', nama: 'ABDUL SALAH MADRIS', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 363, bgn: 117, jns: '1. TANAH + BANGUNAN', jpb: '01. PERUMAHAN', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 36.427.050' },
+        { no: 2, nop: '317104000400401630', nama: 'ABDUL FATAH', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 120, bgn: 90, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 18.274.680' },
+        { no: 3, nop: '317104000400401640', nama: 'ABDULLAH BIN ALI , H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 52, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 7.958.628' },
+        { no: 4, nop: '317104000400401650', nama: 'TJARWALI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 134, bgn: 120, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 20.590.686' },
+        { no: 5, nop: '317104000400401660', nama: 'MISKA', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 150, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.701.550' },
+        { no: 6, nop: '317104000400401670', nama: 'KAYAT', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 140, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 21.306.300' },
+        { no: 7, nop: '317104000400401680', nama: 'AGUS', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 200, bgn: 150, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 30.742.650' },
+        { no: 8, nop: '317104000400401690', nama: 'ABDULLAH GOFAR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 153, bgn: 130, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 23.478.357' },
+        { no: 9, nop: '317104000400401700', nama: 'PT KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 250, bgn: 50, jns: '3. TANAH KOSONG', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 37.577.250' },
+        { no: 10, nop: '317104000400401710', nama: 'HAJAH SAILAH, NY', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 60, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.050.940' },
+        { no: 11, nop: '317104000400401730', nama: 'KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 68, jns: '3. TANAH KOSONG', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.121.500' },
+        { no: 12, nop: '317104000400401890', nama: 'MARWAN BIN MARDJUKI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 161, bgn: 60, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 24.209.829' },
+        { no: 13, nop: '317104000400401900', nama: 'MUHAMMAD NUR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 100, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 15.048.150' },
+        { no: 14, nop: '317104000400401910', nama: 'MUKTI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 285, bgn: 84, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 42.876.801' },
+        { no: 15, nop: '317104000400401920', nama: 'ABDUL KARIM NASEH, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 140, bgn: 100, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 21.397.260' },
+        { no: 16, nop: '317104000400401930', nama: 'MASNUN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 90, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 13.568.010' },
+        { no: 17, nop: '317104000400401940', nama: 'ENDRIWATY CHIZAR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 72, bgn: 54, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 11.016.000' },
+        { no: 18, nop: '317104000400401950', nama: 'YASIN M', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 58, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 8.821.362' },
+        { no: 19, nop: '317104000400401960', nama: 'ASMUNAH', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 90, bgn: 56, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 13.664.610' },
+        { no: 20, nop: '317104000400401990', nama: 'ROHMAT WARDI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 90, bgn: 48, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 13.681.314' },
+        { no: 21, nop: '317104000400402000', nama: 'MOHAMMAD ZEN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 60, bgn: 40, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 9.059.340' },
+        { no: 22, nop: '317104000400402010', nama: 'ASUROH, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 70, bgn: 40, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 10.615.230' },
+        { no: 23, nop: '317104000400402030', nama: 'ABDUL RAHIM', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 136, bgn: 70, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 20.662.464' },
+        { no: 24, nop: '317104000400402040', nama: 'DJAIHABUN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 110, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 16.818.630' },
+        { no: 25, nop: '317104000400402050', nama: 'TOMO', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 57, bgn: 57, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 8.731.773' },
+        { no: 26, nop: '317104000400402060', nama: 'SIMIN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 95, bgn: 85, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 14.516.955' },
+        { no: 27, nop: '317104000400402080', nama: 'AHYANA BIN ANWAR / TATANG ARIS', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 187, bgn: 70, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 28.291.503' },
+        { no: 28, nop: '317104000400402860', nama: 'ROHMAT GOFAR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 500, bgn: 100, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 75.249.300' },
+        { no: 29, nop: '317104000400402900', nama: 'MUHAMAD NASHOHA (ALM)', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 430, bgn: 134, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 64.932.702' },
+        { no: 30, nop: '317104000400402910', nama: 'SARNADI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 90, bgn: 65, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 13.758.630' },
+        { no: 31, nop: '317104000400402920', nama: 'MAS,UD, R', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 70, bgn: 70, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 10.723.230' },
+        { no: 32, nop: '317104000400402960', nama: 'ABDULLAH H BIN SARBINI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 100, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.331.500' },
+        { no: 33, nop: '317104000400402970', nama: 'AHMAD YUSUP, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 170, bgn: 90, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 25.839.450' },
+        { no: 34, nop: '317104000400402990', nama: 'MISKA', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 140, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 21.306.300' },
+        { no: 35, nop: '317104000400403000', nama: 'AHMAD YUSUP, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 260, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 39.256.980' },
+        { no: 36, nop: '317104000400405340', nama: 'DJAMALUDIN', alamat: 'JL PIERRE TENDEAN', kav: '69', rt: '002', rw: '002', bumi: 220, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 33.033.030' },
+        { no: 37, nop: '317104000400401540', nama: 'SUGIHARTO WIJOYO', alamat: 'JL PIERRE TENDEAN', kav: '-', rt: '002', rw: '002', bumi: 1246, bgn: 450, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 188.434.494' },
+        { no: 38, nop: '317104000400401720', nama: 'PT KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 210, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 31.593.690' },
+        { no: 39, nop: '317104000400401750', nama: 'TAFSIR, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 360, bgn: 150, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND', pbb: 'Rp 54.534.240' },
+        { no: 40, nop: '317104000400402930', nama: 'MISKA', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 40, bgn: 30, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 6.091.560' },
+        { no: 41, nop: '317104000400402940', nama: 'DJAMILLAH, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 80, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 12.330.960' },
+        { no: 42, nop: '317104000400402950', nama: 'KARIM BIN SAID', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 184, bgn: 135, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 28.138.356' },
+        { no: 43, nop: '317104000400401740', nama: 'KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 400, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 59.655.600' },
+        { no: 44, nop: '317104000400402780', nama: 'PT KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 350, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 52.356.150' },
+        { no: 45, nop: '317104000400402880', nama: 'SRI WOERJANINGSIH DRA.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 437, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 65.370.393' },
+        { no: 46, nop: '317104000400402890', nama: 'SRI WOERJANINGSIH DRA.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 107, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 16.006.023' }
+      ];
+
+      var specialParcels = {
+        'TANPA_NOP_1': {
+          code: 'BIDANG TANPA NOP #1 (BARAT)',
+          owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
+          area: 'Luas Fisik: 41,25 m² (Bagian dari total 88,47 m²)',
+          position: 'JL PIERRE TENDEAN KAPT — Di sela antara NOP 317104000400401640 dan 317104000400401650',
+          status: 'Belum terbit SPPT PBB-P2; terindikasi dikuasai/dimanfaatkan TRANS TV.'
+        },
+        'TANPA_NOP_2': {
+          code: 'BIDANG TANPA NOP #2 (TIMUR)',
+          owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
+          area: 'Luas Fisik: 47,22 m² (Bagian dari total 88,47 m²)',
+          position: 'JL PIERRE TENDEAN KAPT — Di sela antara NOP 317104000400402960 / 317104000400402930 dan 317104000400402950',
+          status: 'Belum terbit SPPT PBB-P2; dimanfaatkan sebagai area akses/parkir TRANS TV.'
+        }
+      };
+
+      // ==========================================================================
+      // 2. STATE APLIKASI
+      // ==========================================================================
+      var currentSlide = 1;
+      var totalSlides = 7;
+      var isSpeaking = false;
+      var isFullscreenFallback = false;
+      var toastTimer = null;
+      var currentZoom = 100;
+      var MIN_ZOOM = 80;
+      var MAX_ZOOM = 160;
+      var STEP_ZOOM = 10;
+
+      // ==========================================================================
+      // 3. FUNGSI NOTIFIKASI & UTILITAS SCROLL
+      // ==========================================================================
+      function showToast(msg) {
+        var box = document.getElementById('toastBox');
+        if (!box) return;
+        box.textContent = msg;
+        box.classList.add('show');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          box.classList.remove('show');
+        }, 4200);
       }
-    };
 
-    let currentSlide = 1;
-    const totalSlides = 7;
-    let isSpeaking = false;
-    let isFullscreenFallback = false;
-    let toastTimer = null;
-    let currentTextZoom = 100;
-    const MIN_TEXT_ZOOM = 80;
-    const MAX_TEXT_ZOOM = 160;
-    const STEP_TEXT_ZOOM = 10;
-
-    window.onload = function () {
-      renderNopTable(fullNopList);
-      buildSlideMenu();
-      applyTextZoom(100, false);
-      updateSlideUI();
-    };
-
-    // ==========================================================================
-    // NAVIGASI SLIDE & AUTO-SCROLL ANTI-CLIPPING
-    // ==========================================================================
-    function goToSlide(slideNumber) {
-      if (slideNumber < 1 || slideNumber > totalSlides) return;
-      stopSpeech();
-      currentSlide = slideNumber;
-      updateSlideUI();
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      document.body.scrollTo({ top: 0, behavior: 'smooth' });
-      const mainArea = document.getElementById('mainContentArea');
-      if (mainArea) {
-        mainArea.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-
-    function nextSlide() {
-      if (currentSlide < totalSlides) goToSlide(currentSlide + 1);
-    }
-
-    function prevSlide() {
-      if (currentSlide > 1) goToSlide(currentSlide - 1);
-    }
-
-    function updateSlideUI() {
-      for (let i = 1; i <= totalSlides; i++) {
-        const panel = document.getElementById('slide-' + i);
-        if (panel) {
-          panel.classList.toggle('active', i === currentSlide);
+      function scrollTopSmooth() {
+        try {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          document.body.scrollTo({ top: 0, behavior: 'smooth' });
+          var mainArea = document.getElementById('mainContentArea');
+          if (mainArea) mainArea.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (e) {
+          window.scrollTo(0, 0);
         }
       }
 
-      const activePanel = document.getElementById('slide-' + currentSlide);
-      const slideTitle = activePanel ? activePanel.getAttribute('data-title') : '';
-
-      const pct = (currentSlide / totalSlides) * 100;
-      document.getElementById('progressBar').style.width = pct + '%';
-      document.getElementById('topPageIndicator').textContent = 'Halaman ' + currentSlide + ' dari ' + totalSlides;
-      document.getElementById('bottomPageIndicator').textContent = 'Halaman ' + currentSlide + ' dari ' + totalSlides + ' — ' + slideTitle;
-
-      document.getElementById('btnPrev').disabled = currentSlide === 1;
-      document.getElementById('btnNext').disabled = currentSlide === totalSlides;
-
-      const menuButtons = document.querySelectorAll('.menu-item-btn');
-      menuButtons.forEach((btn, idx) => {
-        btn.classList.toggle('current', idx + 1 === currentSlide);
-      });
-    }
-
-    // ==========================================================================
-    // LAYAR PENUH (FULL SCREEN API + FALLBACK 100VW X 100VH)
-    // ==========================================================================
-    function toggleFullScreen() {
-      const isNativeFS = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
-      const isActive = isNativeFS || isFullscreenFallback;
-
-      if (!isActive) {
-        isFullscreenFallback = true;
-        applyFullscreenUI(true);
-
-        const docEl = document.documentElement;
-        if (docEl.requestFullscreen) {
-          docEl.requestFullscreen().catch(() => {});
-        } else if (docEl.webkitRequestFullscreen) {
-          docEl.webkitRequestFullscreen();
-        }
-        showToast('Mode Layar Penuh Aktif — Tekan ESC atau tombol merah di kanan atas untuk keluar.');
-      } else {
-        isFullscreenFallback = false;
-        applyFullscreenUI(false);
-
-        if (isNativeFS) {
-          if (document.exitFullscreen) {
-            document.exitFullscreen().catch(() => {});
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
+      // ==========================================================================
+      // 4. NAVIGASI SLIDE (1 - 7)
+      // ==========================================================================
+      function updateSlideUI() {
+        for (var i = 1; i <= totalSlides; i++) {
+          var panel = document.getElementById('slide-' + i);
+          if (panel) {
+            if (i === currentSlide) {
+              panel.classList.add('active');
+            } else {
+              panel.classList.remove('active');
+            }
           }
         }
-      }
-    }
 
-    function applyFullscreenUI(active) {
-      const btn = document.getElementById('btnFullscreen');
-      const textEl = document.getElementById('textFullscreen');
-      const iconEnter = document.getElementById('iconFsEnter');
-      const iconExit = document.getElementById('iconFsExit');
-      const floatingBtn = document.getElementById('floatingExitFullscreen');
+        var activePanel = document.getElementById('slide-' + currentSlide);
+        var slideTitle = activePanel ? activePanel.getAttribute('data-title') : '';
 
-      if (active) {
-        document.body.classList.add('is-fullscreen-mode');
-        btn.setAttribute('aria-pressed', 'true');
-        btn.classList.remove('btn-green');
-        btn.classList.add('btn-red');
-        textEl.textContent = 'KELUAR LAYAR PENUH';
-        iconEnter.style.display = 'none';
-        iconExit.style.display = 'inline-block';
-        floatingBtn.classList.add('visible');
-      } else {
-        document.body.classList.remove('is-fullscreen-mode');
-        btn.setAttribute('aria-pressed', 'false');
-        btn.classList.remove('btn-red');
-        btn.classList.add('btn-green');
-    function toggleAutoFit() {
-      const active = document.body.classList.toggle('auto-fit-mode');
-      const btn = document.getElementById('btnAutoFit');
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      btn.classList.toggle('active-toggle', active);
-    }
+        var pct = (currentSlide / totalSlides) * 100;
+        var progressBar = document.getElementById('progressBar');
+        var topInd = document.getElementById('topPageIndicator');
+        var botInd = document.getElementById('bottomPageIndicator');
+        var btnPrev = document.getElementById('btnPrev');
+        var btnNext = document.getElementById('btnNext');
 
-    function changeTextZoom(delta) {
-      const nextZoom = Math.min(MAX_TEXT_ZOOM, Math.max(MIN_TEXT_ZOOM, currentTextZoom + delta));
-      applyTextZoom(nextZoom, true);
-    }
+        if (progressBar) progressBar.style.width = pct + '%';
+        if (topInd) topInd.textContent = 'Halaman ' + currentSlide + ' dari ' + totalSlides;
+        if (botInd) botInd.textContent = 'Halaman ' + currentSlide + ' dari ' + totalSlides + ' — ' + slideTitle;
+        if (btnPrev) btnPrev.disabled = (currentSlide <= 1);
+        if (btnNext) btnNext.disabled = (currentSlide >= totalSlides);
 
-    function resetTextZoom() {
-      applyTextZoom(100, true);
-    }
-
-    function applyTextZoom(percent, announce) {
-      currentTextZoom = percent;
-      document.documentElement.style.setProperty('--font-scale', (percent / 100).toFixed(2));
-
-      const displayEl = document.getElementById('zoomPercentDisplay');
-      const btnOut = document.getElementById('btnZoomOut');
-      const btnIn = document.getElementById('btnZoomIn');
-
-      if (displayEl) displayEl.textContent = percent + '%';
-      if (btnOut) btnOut.disabled = percent <= MIN_TEXT_ZOOM;
-      if (btnIn) btnIn.disabled = percent >= MAX_TEXT_ZOOM;
-
-      if (announce) {
-        showToast('Ukuran tulisan diatur ke ' + percent + '%');
-      }
-    }
-
-    function toggleHighContrast() {
-      const active = document.body.classList.toggle('high-contrast');
-      const btn = document.getElementById('btnContrast');
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      btn.classList.toggle('active-toggle', active);
-    }
-
-    function toggleSpeakSlide() {
-      if (!('speechSynthesis' in window)) {
-        showToast('Browser Anda tidak mendukung fitur pembaca suara otomatis.');
-        return;
+        var menuButtons = document.querySelectorAll('.menu-item-btn');
+        menuButtons.forEach(function (btn, idx) {
+          if (idx + 1 === currentSlide) {
+            btn.classList.add('current');
+          } else {
+            btn.classList.remove('current');
+          }
+        });
       }
 
-      if (isSpeaking) {
+      function goToSlide(slideNumber) {
+        var target = parseInt(slideNumber, 10);
+        if (isNaN(target) || target < 1 || target > totalSlides) return;
         stopSpeech();
-        return;
+        currentSlide = target;
+        updateSlideUI();
+        scrollTopSmooth();
       }
 
-      const activePanel = document.getElementById('slide-' + currentSlide);
-      if (!activePanel) return;
-
-      const textToRead = activePanel.innerText.replace(/\s+/g, ' ').trim();
-      const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.lang = 'id-ID';
-      utterance.rate = 0.92;
-
-      utterance.onend = () => {
-        isSpeaking = false;
-        document.getElementById('textSpeak').textContent = 'Bacakan';
-      };
-
-      utterance.onerror = () => {
-        isSpeaking = false;
-        document.getElementById('textSpeak').textContent = 'Bacakan';
-      };
-
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(utterance);
-      isSpeaking = true;
-      document.getElementById('textSpeak').textContent = 'Hentikan';
-      showToast('Membacakan isi halaman ' + currentSlide + '...');
-    }
-
-    function stopSpeech() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-      isSpeaking = false;
-      const lbl = document.getElementById('textSpeak');
-      if (lbl) lbl.textContent = 'Bacakan';
-    }
-
-    // ==========================================================================
-    // INTERAKSI PETA PERSIL (18 DIGIT NOP PENUH) & TABEL 46 NOP LENGKAP
-    // ==========================================================================
-    function selectParcel(parcelId) {
-      document.querySelectorAll('.parcel-shape rect').forEach(r => r.classList.remove('parcel-selected'));
-      const targetRect = document.getElementById('rect-' + parcelId);
-      if (targetRect) targetRect.classList.add('parcel-selected');
-
-      const areaEl = document.getElementById('detailArea');
-
-      if (specialParcels[parcelId]) {
-        const sp = specialParcels[parcelId];
-        document.getElementById('detailCode').textContent = sp.code;
-        document.getElementById('detailOwner').textContent = sp.owner;
-        document.getElementById('detailArea').textContent = sp.area;
-        document.getElementById('detailPosition').textContent = sp.position;
-        document.getElementById('detailStatus').textContent = sp.status;
-        areaEl.style.color = 'var(--brand-red)';
-        return;
+      function nextSlide() {
+        if (currentSlide < totalSlides) {
+          goToSlide(currentSlide + 1);
+        }
       }
 
-      const item = fullNopList.find(row => row.nop === parcelId);
-      if (!item) return;
-
-      const kavInfo = item.kav && item.kav !== '-' ? ' • Kav ' + item.kav : '';
-      document.getElementById('detailCode').textContent = item.nop;
-      document.getElementById('detailOwner').textContent = item.nama;
-      document.getElementById('detailArea').textContent = 'Luas Bumi: ' + item.bumi + ' m² • Luas Bangunan: ' + item.bgn + ' m²';
-      document.getElementById('detailPosition').textContent = item.alamat + kavInfo + ' (RT ' + item.rt + ' / RW ' + item.rw + ')';
-      document.getElementById('detailStatus').textContent = 'PBB Hutang SPPT: ' + item.pbb + ' — Nama OP: ' + item.namaOp;
-      areaEl.style.color = 'var(--brand-navy)';
-    }
-
-    function renderNopTable(list) {
-      const tbody = document.getElementById('nopTableBody');
-      const countEl = document.getElementById('filterCountInfo');
-      if (!tbody) return;
-
-      if (countEl) {
-        countEl.textContent = 'Menampilkan ' + list.length + ' dari ' + fullNopList.length + ' NOP (18 digit lengkap).';
+      function prevSlide() {
+        if (currentSlide > 1) {
+          goToSlide(currentSlide - 1);
+        }
       }
 
-      if (list.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; font-weight:800; padding:24px;">Data tidak ditemukan. Silakan coba kata kunci 18 digit NOP atau Nama Wajib Pajak lainnya.</td></tr>';
-        return;
+      // ==========================================================================
+      // 5. MODAL DAFTAR ISI (TOC)
+      // ==========================================================================
+      function buildSlideMenu() {
+        var listEl = document.getElementById('slideMenuList');
+        if (!listEl) return;
+
+        var html = '';
+        for (var i = 1; i <= totalSlides; i++) {
+          var panel = document.getElementById('slide-' + i);
+          var title = panel ? panel.getAttribute('data-title') : ('Halaman ' + i);
+          html += '<button type="button" class="menu-item-btn" data-slide-target="' + i + '" onclick="goToSlide(' + i + '); closeToc();">' +
+                  '<span>' + title + '</span>' +
+                  '</button>';
+        }
+        listEl.innerHTML = html;
       }
 
-      tbody.innerHTML = list.map((item) => {
-        const kavBadge = item.kav && item.kav !== '-' ? ' • Kav ' + item.kav : '';
-        return `
-          <tr>
-            <td><strong>${item.no}</strong></td>
-            <td><span class="badge-status-blue">${item.nop}</span></td>
-            <td><strong>${item.nama}</strong></td>
-            <td>
-              <div style="font-weight: 700;">${item.alamat}</div>
-              <div class="text-small" style="color: var(--text-muted);">RT ${item.rt} / RW ${item.rw}${kavBadge}</div>
-            </td>
-            <td style="text-align: right; white-space: nowrap;"><strong>${item.bumi} m²</strong></td>
-            <td style="text-align: right; white-space: nowrap;"><strong>${item.bgn} m²</strong></td>
-            <td>
-              <div style="font-weight: 700;">${item.jns}</div>
-              <div class="text-small" style="color: var(--text-muted);">${item.jpb}</div>
-            </td>
-            <td><strong>${item.namaOp}</strong></td>
-            <td style="text-align: right; white-space: nowrap; font-weight: 800; color: var(--brand-navy);">${item.pbb}</td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    function filterNopTable() {
-      const query = document.getElementById('nopSearchInput').value.toLowerCase().trim();
-      const filtered = fullNopList.filter(item =>
-        item.nop.toLowerCase().includes(query) ||
-        item.nama.toLowerCase().includes(query) ||
-        item.alamat.toLowerCase().includes(query) ||
-        item.jns.toLowerCase().includes(query) ||
-        item.jpb.toLowerCase().includes(query) ||
-        item.pbb.toLowerCase().includes(query)
-      );
-      renderNopTable(filtered);
-    }
-
-    function resetNopSearch() {
-      document.getElementById('nopSearchInput').value = '';
-      renderNopTable(fullNopList);
-    }
-
-    // ==========================================================================
-    // MODAL DAFTAR ISI & PINTASAN KEYBOARD
-    // ==========================================================================
-    function buildSlideMenu() {
-      const listEl = document.getElementById('slideMenuList');
-      if (!listEl) return;
-
-      let html = '';
-      for (let i = 1; i <= totalSlides; i++) {
-        const panel = document.getElementById('slide-' + i);
-        const title = panel ? panel.getAttribute('data-title') : 'Halaman ' + i;
-        html += `<button type="button" class="menu-item-btn" onclick="goToSlide(${i}); toggleMenuModal();">
-          <span>${title}</span>
-        </button>`;
+      function openToc() {
+        var modal = document.getElementById('menuModal');
+        if (modal) modal.classList.add('open');
       }
-      listEl.innerHTML = html;
-    }
 
-    function toggleMenuModal() {
-      const modal = document.getElementById('menuModal');
-      modal.classList.toggle('open');
-    }
-
-    function closeMenuOnBackdrop(e) {
-      if (e.target && e.target.id === 'menuModal') {
-        toggleMenuModal();
+      function closeToc() {
+        var modal = document.getElementById('menuModal');
+        if (modal) modal.classList.remove('open');
       }
-    }
 
-    function showToast(msg) {
-      const box = document.getElementById('toastBox');
-      if (!box) return;
-      box.textContent = msg;
-      box.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => {
-        box.classList.remove('show');
-      }, 4200);
-    }
+      // ==========================================================================
+      // 6. LAYAR PENUH (FULLSCREEN API + CSS FALLBACK 100VW X 100VH)
+      // ==========================================================================
+      function applyFullscreenUI(active) {
+        var btn = document.getElementById('btnFullscreen');
+        var textEl = document.getElementById('textFullscreen');
+        var iconEnter = document.getElementById('iconFsEnter');
+        var iconExit = document.getElementById('iconFsExit');
+        var floatingBtn = document.getElementById('floatingExitFullscreen');
 
-    document.addEventListener('keydown', function (e) {
-      if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
-      if (e.key === 'ArrowRight') {
-        nextSlide();
-      } else if (e.key === 'ArrowLeft') {
-        prevSlide();
-      } else if (e.key === '+' || e.key === '=') {
-        e.preventDefault();
-        changeTextZoom(STEP_TEXT_ZOOM);
-      } else if (e.key === '-' || e.key === '_') {
-        e.preventDefault();
-        changeTextZoom(-STEP_TEXT_ZOOM);
-      } else if (e.key === 'f' || e.key === 'F') {
-        e.preventDefault();
-        toggleFullScreen();
-      } else if (e.key === 'Escape') {
-        document.getElementById('menuModal').classList.remove('open');
-        if (isFullscreenFallback || document.fullscreenElement) {
+        if (active) {
+          document.body.classList.add('is-fullscreen-mode');
+          if (btn) {
+            btn.setAttribute('aria-pressed', 'true');
+            btn.classList.remove('btn-green');
+            btn.classList.add('btn-red');
+          }
+          if (textEl) textEl.textContent = 'KELUAR LAYAR PENUH';
+          if (iconEnter) iconEnter.style.display = 'none';
+          if (iconExit) iconExit.style.display = 'inline-block';
+          if (floatingBtn) floatingBtn.classList.add('visible');
+        } else {
+          document.body.classList.remove('is-fullscreen-mode');
+          if (btn) {
+            btn.setAttribute('aria-pressed', 'false');
+            btn.classList.remove('btn-red');
+            btn.classList.add('btn-green');
+          }
+          if (textEl) textEl.textContent = 'LAYAR PENUH';
+          if (iconEnter) iconEnter.style.display = 'inline-block';
+          if (iconExit) iconExit.style.display = 'none';
+          if (floatingBtn) floatingBtn.classList.remove('visible');
+        }
+      }
+
+      function toggleFullscreen() {
+        var nativeFsEl = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+        var isActive = Boolean(nativeFsEl) || isFullscreenFallback;
+
+        if (!isActive) {
+          isFullscreenFallback = true;
+          applyFullscreenUI(true);
+
+          var docEl = document.documentElement;
+          try {
+            if (docEl.requestFullscreen) {
+              var p = docEl.requestFullscreen();
+              if (p && p.catch) p.catch(function () {});
+            } else if (docEl.webkitRequestFullscreen) {
+              docEl.webkitRequestFullscreen();
+            } else if (docEl.msRequestFullscreen) {
+              docEl.msRequestFullscreen();
+            }
+          } catch (err) {
+            // Tetap aktif menggunakan mode fallback CSS 100vw x 100vh
+          }
+          showToast('Mode Layar Penuh Aktif — Tekan ESC atau tombol merah di pojok kanan atas untuk keluar.');
+        } else {
           isFullscreenFallback = false;
           applyFullscreenUI(false);
-          if (document.fullscreenElement && document.exitFullscreen) {
-            document.exitFullscreen().catch(() => {});
+
+          if (nativeFsEl) {
+            try {
+              if (document.exitFullscreen) {
+                var ep = document.exitFullscreen();
+                if (ep && ep.catch) ep.catch(function () {});
+              } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+              } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+              }
+            } catch (err) {}
           }
+          showToast('Keluar dari Mode Layar Penuh.');
         }
       }
-    });
+
+      // ==========================================================================
+      // 7. ZOOM TULISAN (- / 100% / +), AUTO-FIT, KONTRAS & BACAKAN (TTS)
+      // ==========================================================================
+      function applyZoom(percent, announce) {
+        currentZoom = percent;
+        // Mengubah ukuran dasar html (16px * percent / 100)
+        var basePx = (16 * percent) / 100;
+        document.documentElement.style.fontSize = basePx + 'px';
+
+        var displayEl = document.getElementById('zoomPercentDisplay');
+        var btnOut = document.getElementById('btnZoomOut');
+        var btnIn = document.getElementById('btnZoomIn');
+
+        if (displayEl) {
+          displayEl.textContent = percent + '%';
+          displayEl.setAttribute('aria-label', 'Ukuran tulisan saat ini ' + percent + '%, klik untuk reset');
+        }
+        if (btnOut) btnOut.disabled = (percent <= MIN_ZOOM);
+        if (btnIn) btnIn.disabled = (percent >= MAX_ZOOM);
+
+        if (announce) {
+          showToast('Ukuran tulisan diatur ke ' + percent + '%');
+        }
+      }
+
+      function changeZoom(delta) {
+        var next = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, currentZoom + delta));
+        applyZoom(next, true);
+      }
+
+      function resetZoom() {
+        applyZoom(100, true);
+      }
+
+      function toggleAutoFit() {
+        var btn = document.getElementById('btnAutoFit');
+        var isCurrentlyAutoFit = btn && btn.classList.contains('active-toggle');
+
+        if (!isCurrentlyAutoFit) {
+          if (btn) {
+            btn.classList.add('active-toggle');
+            btn.setAttribute('aria-pressed', 'true');
+          }
+          applyZoom(95, false);
+          scrollTopSmooth();
+          showToast('Auto-Fit Aktif: Skala tulisan disesuaikan ke 95% agar muat nyaman di layar.');
+        } else {
+          if (btn) {
+            btn.classList.remove('active-toggle');
+            btn.setAttribute('aria-pressed', 'false');
+          }
+          applyZoom(100, false);
+          showToast('Auto-Fit Nonaktif: Ukuran tulisan kembali ke 100%.');
+        }
+      }
+
+      function toggleContrast() {
+        var active = document.body.classList.toggle('high-contrast');
+        var btn = document.getElementById('btnContrast');
+        if (btn) {
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+          if (active) {
+            btn.classList.add('active-toggle');
+          } else {
+            btn.classList.remove('active-toggle');
+          }
+        }
+        showToast(active ? 'Mode Kontras Tinggi Aktif.' : 'Mode Kontras Standar Aktif.');
+      }
+
+      function stopSpeech() {
+        try {
+          if ('speechSynthesis' in window && window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+          }
+        } catch (e) {}
+        isSpeaking = false;
+        var lbl = document.getElementById('textSpeak');
+        if (lbl) lbl.textContent = 'Bacakan';
+      }
+
+      function toggleSpeech() {
+        if (!('speechSynthesis' in window) || !window.speechSynthesis) {
+          showToast('Maaf, browser Anda tidak mendukung fitur pembaca suara otomatis.');
+          return;
+        }
+
+        if (isSpeaking) {
+          stopSpeech();
+          showToast('Pembacaan suara dihentikan.');
+          return;
+        }
+
+        var activePanel = document.getElementById('slide-' + currentSlide);
+        if (!activePanel) return;
+
+        var textToRead = (activePanel.innerText || activePanel.textContent || '').replace(/\s+/g, ' ').trim();
+        if (!textToRead) return;
+
+        try {
+          window.speechSynthesis.cancel();
+          var utterance = new SpeechSynthesisUtterance(textToRead);
+          utterance.lang = 'id-ID';
+          utterance.rate = 0.92;
+
+          utterance.onend = function () {
+            isSpeaking = false;
+            var lbl = document.getElementById('textSpeak');
+            if (lbl) lbl.textContent = 'Bacakan';
+          };
+
+          utterance.onerror = function () {
+            isSpeaking = false;
+            var lbl = document.getElementById('textSpeak');
+            if (lbl) lbl.textContent = 'Bacakan';
+            showToast('Tidak dapat memutar suara pada perangkat ini.');
+          };
+
+          window.speechSynthesis.speak(utterance);
+          isSpeaking = true;
+          var lbl = document.getElementById('textSpeak');
+          if (lbl) lbl.textContent = 'Hentikan';
+          showToast('Membacakan isi halaman ' + currentSlide + '...');
+        } catch (err) {
+          isSpeaking = false;
+          showToast('Fitur suara tidak tersedia pada browser ini.');
+        }
+      }
+
+      // ==========================================================================
+      // 8. INTERAKSI PETA PERSIL & PENCARIAN TABEL 46 NOP
+      // ==========================================================================
+      function selectParcel(parcelId) {
+        var rects = document.querySelectorAll('.parcel-shape rect');
+        rects.forEach(function (r) {
+          r.classList.remove('parcel-selected');
+        });
+
+        var targetRect = document.getElementById('rect-' + parcelId);
+        if (targetRect) {
+          targetRect.classList.add('parcel-selected');
+        }
+
+        var codeEl = document.getElementById('detailCode');
+        var ownerEl = document.getElementById('detailOwner');
+        var areaEl = document.getElementById('detailArea');
+        var posEl = document.getElementById('detailPosition');
+        var statEl = document.getElementById('detailStatus');
+
+        if (specialParcels[parcelId]) {
+          var sp = specialParcels[parcelId];
+          if (codeEl) codeEl.textContent = sp.code;
+          if (ownerEl) ownerEl.textContent = sp.owner;
+          if (areaEl) {
+            areaEl.textContent = sp.area;
+            areaEl.style.color = 'var(--brand-red)';
+          }
+          if (posEl) posEl.textContent = sp.position;
+          if (statEl) statEl.textContent = sp.status;
+          return;
+        }
+
+        var item = fullNopList.find(function (row) {
+          return row.nop === parcelId;
+        });
+        if (!item) return;
+
+        var kavInfo = (item.kav && item.kav !== '-') ? (' • Kav ' + item.kav) : '';
+        if (codeEl) codeEl.textContent = item.nop;
+        if (ownerEl) ownerEl.textContent = item.nama;
+        if (areaEl) {
+          areaEl.textContent = 'Luas Bumi: ' + item.bumi + ' m² • Luas Bangunan: ' + item.bgn + ' m²';
+          areaEl.style.color = 'var(--brand-navy)';
+        }
+        if (posEl) posEl.textContent = item.alamat + kavInfo + ' (RT ' + item.rt + ' / RW ' + item.rw + ')';
+        if (statEl) statEl.textContent = 'PBB Hutang SPPT: ' + item.pbb + ' — Nama OP: ' + item.namaOp;
+      }
+
+      function renderNopTable(list) {
+        var tbody = document.getElementById('nopTableBody');
+        var countEl = document.getElementById('filterCountInfo');
+        if (!tbody) return;
+
+        if (countEl) {
+          countEl.textContent = 'Menampilkan ' + list.length + ' dari ' + fullNopList.length + ' NOP (18 digit lengkap).';
+        }
+
+        if (list.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="11" style="text-align:center; font-weight:800; padding:24px;">Data tidak ditemukan. Silakan coba kata kunci 18 digit NOP atau Nama Wajib Pajak lainnya.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = list.map(function (item) {
+          return '<tr>' +
+            '<td><strong>' + item.no + '</strong></td>' +
+            '<td><span class="badge-status-blue">' + item.nop + '</span></td>' +
+            '<td><strong>' + item.nama + '</strong></td>' +
+            '<td>' + item.alamat + '</td>' +
+            '<td style="white-space: nowrap;">Kav: ' + item.kav + '<br><span class="text-small" style="color: var(--text-muted);">RT ' + item.rt + ' / RW ' + item.rw + '</span></td>' +
+            '<td style="text-align: right; white-space: nowrap;"><strong>' + item.bumi + ' m²</strong></td>' +
+            '<td style="text-align: right; white-space: nowrap;"><strong>' + item.bgn + ' m²</strong></td>' +
+            '<td>' + item.jns + '</td>' +
+            '<td>' + item.jpb + '</td>' +
+            '<td><strong>' + item.namaOp + '</strong></td>' +
+            '<td style="text-align: right; white-space: nowrap; font-weight: 800; color: var(--brand-navy);">' + item.pbb + '</td>' +
+          '</tr>';
+        }).join('');
+      }
+
+      function filterNopTable() {
+        var inputEl = document.getElementById('nopSearchInput');
+        var query = inputEl ? inputEl.value.toLowerCase().trim() : '';
+        var filtered = fullNopList.filter(function (item) {
+          return item.nop.toLowerCase().indexOf(query) !== -1 ||
+                 item.nama.toLowerCase().indexOf(query) !== -1 ||
+                 item.alamat.toLowerCase().indexOf(query) !== -1 ||
+                 item.jns.toLowerCase().indexOf(query) !== -1 ||
+                 item.jpb.toLowerCase().indexOf(query) !== -1 ||
+                 item.pbb.toLowerCase().indexOf(query) !== -1;
+        });
+        renderNopTable(filtered);
+      }
+
+      function resetNopSearch() {
+        var inputEl = document.getElementById('nopSearchInput');
+        if (inputEl) inputEl.value = '';
+        renderNopTable(fullNopList);
+        showToast('Pencarian direset: Menampilkan seluruh 46 NOP.');
+      }
+
+      // ==========================================================================
+      // 9. EKSPOS FUNGSI GLOBAL KE WINDOW (UNTUK ONCLICK & AKSES EKSTERNAL)
+      // ==========================================================================
+      window.goToSlide = goToSlide;
+      window.nextSlide = nextSlide;
+      window.prevSlide = prevSlide;
+      window.openToc = openToc;
+      window.closeToc = closeToc;
+      window.toggleFullscreen = toggleFullscreen;
+      window.changeZoom = changeZoom;
+      window.resetZoom = resetZoom;
+      window.toggleAutoFit = toggleAutoFit;
+      window.toggleContrast = toggleContrast;
+      window.toggleSpeech = toggleSpeech;
+      window.selectParcel = selectParcel;
+      window.filterNopTable = filterNopTable;
+      window.resetNopSearch = resetNopSearch;
+
+      // ==========================================================================
+      // 10. INISIALISASI DOMCONTENTLOADED & EVENT LISTENERS
+      // ==========================================================================
+      document.addEventListener('DOMContentLoaded', function () {
+        renderNopTable(fullNopList);
+        buildSlideMenu();
+        applyZoom(100, false);
+        updateSlideUI();
+
+        // Tutup modal Daftar Isi jika mengklik latar gelap di luar dialog
+        var menuModal = document.getElementById('menuModal');
+        if (menuModal) {
+          menuModal.addEventListener('click', function (e) {
+            if (e.target === menuModal) {
+              closeToc();
+            }
+          });
+        }
+
+        // Sinkronisasi status tombol jika user keluar fullscreen via tombol ESC bawaan browser
+        function handleNativeFullscreenChange() {
+          var nativeFsEl = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+          if (!nativeFsEl && isFullscreenFallback) {
+            isFullscreenFallback = false;
+            applyFullscreenUI(false);
+          }
+        }
+        document.addEventListener('fullscreenchange', handleNativeFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleNativeFullscreenChange);
+
+        // Pintasan Keyboard Ramah Manula
+        document.addEventListener('keydown', function (e) {
+          if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+
+          if (e.key === 'ArrowRight') {
+            nextSlide();
+          } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+          } else if (e.key === '+' || e.key === '=') {
+            e.preventDefault();
+            changeZoom(STEP_ZOOM);
+          } else if (e.key === '-' || e.key === '_') {
+            e.preventDefault();
+            changeZoom(-STEP_ZOOM);
+          } else if (e.key === 'f' || e.key === 'F') {
+            e.preventDefault();
+            toggleFullscreen();
+          } else if (e.key === 'Escape') {
+            closeToc();
+            if (isFullscreenFallback || document.fullscreenElement || document.webkitFullscreenElement) {
+              isFullscreenFallback = false;
+              applyFullscreenUI(false);
+              try {
+                if (document.fullscreenElement && document.exitFullscreen) {
+                  document.exitFullscreen().catch(function () {});
+                } else if (document.webkitExitFullscreen) {
+                  document.webkitExitFullscreen();
+                }
+              } catch (err) {}
+            }
+          }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
