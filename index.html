@@ -730,13 +730,23 @@
 
     .badge-status-blue {
       display: inline-block;
-      padding: 4px 12px;
+      padding: 6px 12px;
       border-radius: 8px;
       background-color: #DBEAFE;
       color: #1E40AF;
       border: 2px solid #2563EB;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-weight: 800;
-      font-size: calc(15px * var(--font-scale));
+      font-size: calc(16px * var(--font-scale));
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .nop-full-code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-weight: 900;
+      white-space: nowrap;
+      letter-spacing: 0.03em;
     }
 
     /* ==========================================================================
@@ -1069,38 +1079,48 @@
 
           <div class="info-box info-box-blue" style="margin-bottom: 24px;">
             <p class="text-body" style="font-weight: 700;">
-              Teridentifikasi <strong>46 NOP PBB perorangan</strong> dan <strong>2 bidang tanpa NOP</strong> yang berada di kawasan TRANS TV, dengan total luas bumi SPPT <strong>9.707 m²</strong> dan luas bidang tanpa NOP <strong>88,47 m²</strong>.
+              Teridentifikasi <strong>46 NOP PBB perorangan</strong> dan <strong>2 bidang tanpa NOP</strong> yang berada di kawasan TRANS TV, dengan total luas bumi SPPT <strong>9.707 m²</strong>, total luas bangunan SPPT <strong>3.723 m²</strong>, total PBB Hutang SPPT <strong>Rp 1.449.151.410</strong>, serta luas bidang tanpa NOP <strong>88,47 m²</strong>.
             </p>
           </div>
 
-          <div class="grid-3">
+          <div class="grid-2">
             <!-- Kartu KPI 1 -->
             <div class="card-surface" style="background-color: var(--bg-amber-soft); border-color: var(--brand-gold);">
-              <p class="text-small" style="font-weight: 800; color: var(--brand-gold-dark); text-transform: uppercase;">1. Objek Pajak Perorangan</p>
+              <p class="text-small" style="font-weight: 800; color: var(--brand-gold-dark); text-transform: uppercase;">1. Objek Pajak Terdaftar (46 NOP)</p>
               <p class="text-kpi" style="color: var(--brand-navy);">46 NOP</p>
-              <p class="text-body" style="font-weight: 700;">Total Luas Bumi SPPT: <strong>9.707 m²</strong></p>
+              <p class="text-body" style="font-weight: 700;">Luas Bumi: <strong>9.707 m²</strong> • Luas Bangunan: <strong>3.723 m²</strong></p>
               <p class="text-small" style="margin-top: 8px; color: var(--text-secondary);">
-                Masih tercatat atas nama wajib pajak perorangan, namun fisik bidang tanah terindikasi telah dikuasai dan/atau dimiliki oleh TRANS TV.
+                Seluruh 18 digit NOP (awalan <span class="nop-full-code">3171040004004...</span>) masih tercatat atas nama wajib pajak lama di Jl. Pierre Tendean Kapt, namun nama objek pajak lapangan tercatat <strong>PT TELEVISI TRANSFORMASI IND.</strong>
               </p>
             </div>
 
             <!-- Kartu KPI 2 -->
-            <div class="card-surface" style="background-color: var(--bg-red-soft); border-color: var(--brand-red);">
-              <p class="text-small" style="font-weight: 800; color: var(--brand-red); text-transform: uppercase;">2. Bidang Tanah Tanpa NOP</p>
-              <p class="text-kpi" style="color: var(--brand-red);">2 Bidang</p>
-              <p class="text-body" style="font-weight: 700;">Total Luas Fisik: <strong>88,47 m²</strong></p>
+            <div class="card-surface" style="background-color: var(--bg-green-soft); border-color: var(--brand-green);">
+              <p class="text-small" style="font-weight: 800; color: var(--brand-green); text-transform: uppercase;">2. Total Ketetapan PBB Hutang SPPT</p>
+              <p class="text-kpi" style="color: var(--brand-green); font-size: calc(34px * var(--font-scale));">Rp 1.449.151.410</p>
+              <p class="text-body" style="font-weight: 700;">Akumulasi 46 NOP Kawasan TRANS TV</p>
               <p class="text-small" style="margin-top: 8px; color: var(--text-secondary);">
-                Bidang sisipan/sela yang belum terdaftar nomor objek pajak (NOP) dalam basis data PBB-P2 dan berpotensi menjadi objek pajak baru.
+                Terdiri dari kategori <strong>1. Tanah + Bangunan</strong> (Perumahan, Perkantoran Swasta, Lain-Lain) dan <strong>3. Tanah Kosong</strong> yang seluruhnya berada dalam penguasaan TRANS TV.
               </p>
             </div>
 
             <!-- Kartu KPI 3 -->
-            <div class="card-surface" style="background-color: var(--bg-green-soft); border-color: var(--brand-green);">
-              <p class="text-small" style="font-weight: 800; color: var(--brand-green); text-transform: uppercase;">3. Akumulasi Cakupan Peta</p>
-              <p class="text-kpi" style="color: var(--brand-green);">9.795,47 m²</p>
-              <p class="text-body" style="font-weight: 700;">47 NOP Peta + 2 Bidang Merah</p>
+            <div class="card-surface" style="background-color: var(--bg-red-soft); border-color: var(--brand-red);">
+              <p class="text-small" style="font-weight: 800; color: var(--brand-red); text-transform: uppercase;">3. Bidang Tanah Tanpa NOP</p>
+              <p class="text-kpi" style="color: var(--brand-red);">2 Bidang (88,47 m²)</p>
+              <p class="text-body" style="font-weight: 700;">Bidang Merah #1 (41,25 m²) & #2 (47,22 m²)</p>
               <p class="text-small" style="margin-top: 8px; color: var(--text-secondary);">
-                Gabungan 46 NOP perorangan (9.707 m²), 1 NOP badan pembanding batas (PT Kodel), dan 2 bidang tanpa NOP (88,47 m²).
+                Bidang sisipan/sela yang belum terdaftar Nomor Objek Pajak dalam basis data PBB-P2 dan berpotensi diterbitkan NOP baru.
+              </p>
+            </div>
+
+            <!-- Kartu KPI 4 -->
+            <div class="card-surface" style="background-color: var(--bg-blue-soft); border-color: var(--brand-navy);">
+              <p class="text-small" style="font-weight: 800; color: var(--brand-navy); text-transform: uppercase;">4. Total Cakupan Fisik Kawasan</p>
+              <p class="text-kpi" style="color: var(--brand-navy);">9.795,47 m²</p>
+              <p class="text-body" style="font-weight: 700;">46 NOP SPPT + 2 Bidang Tanpa NOP</p>
+              <p class="text-small" style="margin-top: 8px; color: var(--text-secondary);">
+                Gabungan 9.707 m² luas bumi terdaftar pada 46 SPPT PBB-P2 dan 88,47 m² luas fisik dari 2 bidang merah tanpa NOP.
               </p>
             </div>
           </div>
@@ -1111,24 +1131,24 @@
       <section id="slide-3" class="slide-panel" data-title="3. Peta PBB-P2 Kawasan TRANS TV (Interaktif)">
         <div class="card-surface card-accent-top">
           <div class="pill-badge">
-            <span class="text-small">PEMETAAN SPASIAL • KLIK PERSIL UNTUK MELIHAT RINCIAN</span>
+            <span class="text-small">PEMETAAN SPASIAL • KLIK PERSIL UNTUK MELIHAT 18 DIGIT NOP PENUH</span>
           </div>
 
           <h2 class="text-title">Peta PBB-P2 di Area Lokasi TRANS TV</h2>
           <p class="text-body" style="margin-bottom: 16px;">
-            Peta menampilkan sebaran <strong>47 NOP</strong> dan <strong>2 Bidang Tanpa NOP (Bidang Merah)</strong>. Silakan sentuh atau klik kotak persil pada peta di bawah untuk melihat rincian pemilik dan luas bumi.
+            Peta menampilkan sebaran <strong>47 NOP</strong> dan <strong>2 Bidang Tanpa NOP (Bidang Merah)</strong>. Sentuh atau klik kotak persil pada peta untuk melihat <strong>18 digit NOP lengkap</strong>, luas bumi, luas bangunan, serta nilai PBB SPPT.
           </p>
 
           <div class="legend-bar">
-            <span class="legend-item"><span class="swatch-yellow"></span> Persil Terdaftar NOP PBB-P2</span>
+            <span class="legend-item"><span class="swatch-yellow"></span> Persil Terdaftar NOP PBB-P2 (18 Digit Penuh)</span>
             <span class="legend-item"><span class="swatch-red"></span> 2 Bidang Tanpa NOP (Total 88,47 m²)</span>
           </div>
 
           <div class="map-layout-grid">
-            <!-- Denah Vektor SVG Persil TRANS TV -->
+            <!-- Denah Vektor SVG Persil TRANS TV dengan 18 Digit NOP Penuh -->
             <div class="svg-map-wrapper">
-              <svg viewBox="0 0 920 560" class="svg-map-canvas" role="img" aria-label="Peta PBB-P2 Kawasan TRANS TV">
-                <rect x="0" y="0" width="920" height="560" fill="#1E293B" rx="8" />
+              <svg viewBox="0 0 1120 620" class="svg-map-canvas" style="min-width: 820px;" role="img" aria-label="Peta PBB-P2 Kawasan TRANS TV dengan 18 digit NOP lengkap">
+                <rect x="0" y="0" width="1120" height="620" fill="#1E293B" rx="8" />
 
                 <defs>
                   <pattern id="redHatch" width="12" height="12" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
@@ -1138,157 +1158,160 @@
                 </defs>
 
                 <!-- Jalan Akses Utara -->
-                <rect x="330" y="15" width="570" height="32" fill="#475569" rx="4" />
-                <text x="615" y="36" fill="#F8FAFC" font-size="14" font-weight="bold" text-anchor="middle">JALAN AKSES KAWASAN TRANS TV (UTARA)</text>
+                <rect x="380" y="15" width="715" height="32" fill="#475569" rx="4" />
+                <text x="737" y="36" fill="#F8FAFC" font-size="14" font-weight="bold" text-anchor="middle">JALAN AKSES KAWASAN TRANS TV — JL. PIERRE TENDEAN KAPT (UTARA)</text>
 
-                <!-- KOLOM KIRI (01700, 01690, 01710) -->
-                <g class="parcel-shape" onclick="selectParcel('01700')">
-                  <rect id="rect-01700" x="20" y="110" width="65" height="185" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="52" y="195" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">01700</text>
-                  <text x="52" y="213" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">250 m²</text>
+                <!-- KOLOM KIRI -->
+                <g class="parcel-shape" onclick="selectParcel('317104000400401700')">
+                  <rect id="rect-317104000400401700" x="15" y="120" width="105" height="195" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="67" y="195" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400401700</text>
+                  <text x="67" y="213" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">PT KODEL</text>
+                  <text x="67" y="231" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 250 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('01690')">
-                  <rect id="rect-01690" x="85" y="110" width="105" height="185" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="137" y="185" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">01690</text>
-                  <text x="137" y="203" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Abdoullah Gofar</text>
-                  <text x="137" y="220" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">155 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400401690')">
+                  <rect id="rect-317104000400401690" x="120" y="120" width="125" height="195" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="182" y="195" fill="#78350F" font-size="10.5" font-weight="bold" text-anchor="middle">317104000400401690</text>
+                  <text x="182" y="213" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">ABDULLAH GOFAR</text>
+                  <text x="182" y="231" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 153 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('01710')">
-                  <rect id="rect-01710" x="45" y="305" width="135" height="235" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="112" y="405" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">01710</text>
-                  <text x="112" y="425" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Hajah Sailah, Ny</text>
-                  <text x="112" y="443" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">300 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400401710')">
+                  <rect id="rect-317104000400401710" x="45" y="330" width="175" height="265" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="132" y="440" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401710</text>
+                  <text x="132" y="460" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">HAJAH SAILAH, NY</text>
+                  <text x="132" y="479" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 300 m²</text>
                 </g>
 
-                <!-- KOLOM TENGAH-KIRI (01630, 01640, TANPA NOP 1, 01650, 01660) -->
-                <g class="parcel-shape" onclick="selectParcel('01630')">
-                  <rect id="rect-01630" x="195" y="55" width="145" height="55" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="267" y="78" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">01630 • Abdul Fatah</text>
-                  <text x="267" y="96" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">120 m²</text>
+                <!-- KOLOM TENGAH-KIRI -->
+                <g class="parcel-shape" onclick="selectParcel('317104000400401630')">
+                  <rect id="rect-317104000400401630" x="245" y="60" width="175" height="60" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="332" y="80" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400401630</text>
+                  <text x="332" y="96" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">ABDUL FATAH</text>
+                  <text x="332" y="111" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 120 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('01640')">
-                  <rect id="rect-01640" x="195" y="110" width="145" height="55" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="267" y="133" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">01640 • Abdullah Bin Ali, H.</text>
-                  <text x="267" y="151" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">52 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400401640')">
+                  <rect id="rect-317104000400401640" x="245" y="120" width="175" height="60" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="332" y="140" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400401640</text>
+                  <text x="332" y="156" fill="#1E293B" font-size="10.5" font-weight="bold" text-anchor="middle">ABDULLAH BIN ALI , H.</text>
+                  <text x="332" y="171" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 52 m²</text>
                 </g>
 
                 <!-- BIDANG TANPA NOP 1 (MERAH HORIZONTAL) -->
                 <g class="parcel-shape" onclick="selectParcel('TANPA_NOP_1')">
-                  <rect id="rect-TANPA_NOP_1" x="195" y="165" width="145" height="34" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
-                  <rect x="205" y="170" width="125" height="24" fill="#991B1B" rx="4" />
-                  <text x="267" y="187" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle">TANPA NOP #1</text>
+                  <rect id="rect-TANPA_NOP_1" x="245" y="180" width="175" height="36" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
+                  <rect x="262" y="186" width="141" height="24" fill="#991B1B" rx="4" />
+                  <text x="332" y="203" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle">TANPA NOP #1</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('01650')">
-                  <rect id="rect-01650" x="195" y="199" width="145" height="115" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="267" y="245" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">01650</text>
-                  <text x="267" y="264" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Tjarwali</text>
-                  <text x="267" y="282" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">134 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400401650')">
+                  <rect id="rect-317104000400401650" x="245" y="216" width="175" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="332" y="264" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401650</text>
+                  <text x="332" y="283" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">TJARWALI</text>
+                  <text x="332" y="301" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 134 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('01660')">
-                  <rect id="rect-01660" x="180" y="340" width="145" height="200" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="252" y="430" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">01660</text>
-                  <text x="252" y="449" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Miska</text>
-                  <text x="252" y="467" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">300 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400401660')">
+                  <rect id="rect-317104000400401660" x="220" y="365" width="175" height="230" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="307" y="462" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400401660</text>
+                  <text x="307" y="482" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">MISKA</text>
+                  <text x="307" y="501" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 300 m²</text>
                 </g>
 
-                <!-- KOLOM TENGAH (03000, 02990, 02970, 02860) -->
-                <g class="parcel-shape" onclick="selectParcel('03000')">
-                  <rect id="rect-03000" x="340" y="55" width="135" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="407" y="105" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">03000</text>
-                  <text x="407" y="124" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Ahmad Yusuf, H.</text>
-                  <text x="407" y="142" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">260 m²</text>
+                <!-- KOLOM TENGAH -->
+                <g class="parcel-shape" onclick="selectParcel('317104000400403000')">
+                  <rect id="rect-317104000400403000" x="420" y="60" width="165" height="135" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="502" y="112" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400403000</text>
+                  <text x="502" y="131" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">AHMAD YUSUP, H.</text>
+                  <text x="502" y="149" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 260 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('02990')">
-                  <rect id="rect-02990" x="340" y="180" width="135" height="115" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="407" y="228" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">02990</text>
-                  <text x="407" y="247" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Miska</text>
-                  <text x="407" y="265" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">140 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402990')">
+                  <rect id="rect-317104000400402990" x="420" y="195" width="165" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="502" y="242" fill="#78350F" font-size="11.5" font-weight="bold" text-anchor="middle">317104000400402990</text>
+                  <text x="502" y="261" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">MISKA</text>
+                  <text x="502" y="279" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 140 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('02970')">
-                  <rect id="rect-02970" x="330" y="295" width="145" height="115" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="402" y="340" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">02970</text>
-                  <text x="402" y="359" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Ahmad Yusuf, H.</text>
-                  <text x="402" y="377" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">378 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402970')">
+                  <rect id="rect-317104000400402970" x="405" y="320" width="180" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="495" y="368" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402970</text>
+                  <text x="495" y="387" fill="#1E293B" font-size="11.5" font-weight="bold" text-anchor="middle">AHMAD YUSUP, H.</text>
+                  <text x="495" y="405" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 170 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('02860')">
-                  <rect id="rect-02860" x="325" y="410" width="155" height="130" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="402" y="465" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">02860</text>
-                  <text x="402" y="484" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Rohmat Gofar</text>
-                  <text x="402" y="502" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">500 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402860')">
+                  <rect id="rect-317104000400402860" x="395" y="445" width="190" height="150" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="490" y="505" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402860</text>
+                  <text x="490" y="525" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">ROHMAT GOFAR</text>
+                  <text x="490" y="544" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 500 m²</text>
                 </g>
 
-                <!-- KOLOM KANAN (02960, TANPA NOP 2, 02950, 02910, 02920, 02930, 02940, 02900, 02980) -->
-                <g class="parcel-shape" onclick="selectParcel('02960')">
-                  <rect id="rect-02960" x="485" y="65" width="225" height="150" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="597" y="128" fill="#78350F" font-size="15" font-weight="bold" text-anchor="middle">02960</text>
-                  <text x="597" y="148" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">Abdullah H Bin Sabeni</text>
-                  <text x="597" y="168" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">320 m²</text>
+                <!-- KOLOM KANAN -->
+                <g class="parcel-shape" onclick="selectParcel('317104000400402960')">
+                  <rect id="rect-317104000400402960" x="595" y="70" width="255" height="165" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="722" y="135" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">317104000400402960</text>
+                  <text x="722" y="156" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">ABDULLAH H BIN SARBINI</text>
+                  <text x="722" y="176" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Bumi: 300 m²</text>
                 </g>
 
                 <!-- BIDANG TANPA NOP 2 (MERAH VERTIKAL) -->
                 <g class="parcel-shape" onclick="selectParcel('TANPA_NOP_2')">
-                  <rect id="rect-TANPA_NOP_2" x="710" y="65" width="46" height="150" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
-                  <rect x="714" y="95" width="38" height="90" fill="#991B1B" rx="4" />
-                  <text x="733" y="130" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle">TANPA</text>
-                  <text x="733" y="145" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle">NOP</text>
-                  <text x="733" y="162" fill="#FDE047" font-size="12" font-weight="bold" text-anchor="middle">#2</text>
+                  <rect id="rect-TANPA_NOP_2" x="850" y="70" width="52" height="165" fill="url(#redHatch)" stroke="#FFFFFF" stroke-width="3" />
+                  <rect x="855" y="108" width="42" height="90" fill="#991B1B" rx="4" />
+                  <text x="876" y="142" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle">TANPA</text>
+                  <text x="876" y="157" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle">NOP</text>
+                  <text x="876" y="174" fill="#FDE047" font-size="12" font-weight="bold" text-anchor="middle">#2</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('02950')">
-                  <rect id="rect-02950" x="756" y="65" width="134" height="150" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="823" y="128" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">02950</text>
-                  <text x="823" y="148" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Karim Bin Said</text>
-                  <text x="823" y="168" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">164 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402950')">
+                  <rect id="rect-317104000400402950" x="902" y="70" width="193" height="165" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="998" y="135" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">317104000400402950</text>
+                  <text x="998" y="156" fill="#1E293B" font-size="12" font-weight="bold" text-anchor="middle">KARIM BIN SAID</text>
+                  <text x="998" y="176" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">Bumi: 184 m²</text>
                 </g>
 
                 <!-- Baris Tengah Kanan -->
-                <g class="parcel-shape" onclick="selectParcel('02910')">
-                  <rect id="rect-02910" x="485" y="215" width="110" height="95" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="540" y="252" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">02910</text>
-                  <text x="540" y="270" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Sarnadi</text>
-                  <text x="540" y="287" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">80 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402910')">
+                  <rect id="rect-317104000400402910" x="595" y="235" width="135" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="662" y="272" fill="#78350F" font-size="10" font-weight="bold" text-anchor="middle">317104000400402910</text>
+                  <text x="662" y="290" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">SARNADI</text>
+                  <text x="662" y="307" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 90 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('02920')">
-                  <rect id="rect-02920" x="595" y="215" width="100" height="95" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="645" y="252" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">02920</text>
-                  <text x="645" y="270" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Mas'ud, R</text>
-                  <text x="645" y="287" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">70 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402920')">
+                  <rect id="rect-317104000400402920" x="730" y="235" width="125" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="792" y="272" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402920</text>
+                  <text x="792" y="290" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">MAS,UD, R</text>
+                  <text x="792" y="307" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 70 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('02930')">
-                  <rect id="rect-02930" x="695" y="215" width="65" height="95" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="727" y="255" fill="#78350F" font-size="12" font-weight="bold" text-anchor="middle">02930</text>
-                  <text x="727" y="273" fill="#1E293B" font-size="10" font-weight="bold" text-anchor="middle">Miska</text>
-                  <text x="727" y="288" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">41 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402930')">
+                  <rect id="rect-317104000400402930" x="855" y="235" width="115" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="912" y="272" fill="#78350F" font-size="9" font-weight="bold" text-anchor="middle">317104000400402930</text>
+                  <text x="912" y="290" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">MISKA</text>
+                  <text x="912" y="307" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 40 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('02940')">
-                  <rect id="rect-02940" x="760" y="215" width="130" height="95" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="825" y="252" fill="#78350F" font-size="13" font-weight="bold" text-anchor="middle">02940</text>
-                  <text x="825" y="270" fill="#1E293B" font-size="11" font-weight="bold" text-anchor="middle">Sjaifullah, H.</text>
-                  <text x="825" y="287" fill="#92400E" font-size="12" font-weight="bold" text-anchor="middle">80 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402940')">
+                  <rect id="rect-317104000400402940" x="970" y="235" width="125" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="1032" y="272" fill="#78350F" font-size="9.5" font-weight="bold" text-anchor="middle">317104000400402940</text>
+                  <text x="1032" y="290" fill="#1E293B" font-size="10.5" font-weight="bold" text-anchor="middle">DJAMILLAH, H.</text>
+                  <text x="1032" y="307" fill="#92400E" font-size="11" font-weight="bold" text-anchor="middle">Bumi: 80 m²</text>
                 </g>
 
                 <!-- Baris Bawah Kanan -->
-                <g class="parcel-shape" onclick="selectParcel('02900')">
-                  <rect id="rect-02900" x="485" y="310" width="405" height="105" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="687" y="352" fill="#78350F" font-size="15" font-weight="bold" text-anchor="middle">02900 • Muhamad Nashoha (Alm)</text>
-                  <text x="687" y="376" fill="#92400E" font-size="14" font-weight="bold" text-anchor="middle">Luas Bumi: 410 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402900')">
+                  <rect id="rect-317104000400402900" x="595" y="340" width="500" height="115" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="845" y="384" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">317104000400402900 • MUHAMAD NASHOHA (ALM)</text>
+                  <text x="845" y="408" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Luas Bumi: 430 m² • Luas Bangunan: 134 m²</text>
                 </g>
 
-                <g class="parcel-shape" onclick="selectParcel('02980')">
-                  <rect id="rect-02980" x="485" y="415" width="405" height="125" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
-                  <text x="687" y="468" fill="#78350F" font-size="15" font-weight="bold" text-anchor="middle">02980 • Sri Woerjaningsih Dra</text>
-                  <text x="687" y="492" fill="#92400E" font-size="14" font-weight="bold" text-anchor="middle">Luas Bumi: 437 m²</text>
+                <g class="parcel-shape" onclick="selectParcel('317104000400402880')">
+                  <rect id="rect-317104000400402880" x="595" y="455" width="500" height="140" fill="#FEF3C7" stroke="#EAB308" stroke-width="3" />
+                  <text x="845" y="512" fill="#78350F" font-size="14" font-weight="bold" text-anchor="middle">317104000400402880 • SRI WOERJANINGSIH DRA.</text>
+                  <text x="845" y="536" fill="#92400E" font-size="13" font-weight="bold" text-anchor="middle">Luas Bumi: 437 m² • Jenis: 3. Tanah Kosong</text>
                 </g>
               </svg>
             </div>
@@ -1296,7 +1319,7 @@
             <!-- Panel Detail Persil Terpilih -->
             <div class="card-surface" id="parcelDetailBox" style="background-color: var(--bg-blue-soft); border-color: var(--brand-navy);">
               <p class="text-small" style="font-weight: 800; color: var(--brand-gold); text-transform: uppercase;">Detail Bidang Tanah Terpilih</p>
-              <h3 id="detailCode" class="text-subtitle" style="color: var(--brand-navy); margin-top: 6px;">BIDANG TANPA NOP #1</h3>
+              <h3 id="detailCode" class="text-subtitle nop-full-code" style="color: var(--brand-navy); margin-top: 6px;">BIDANG TANPA NOP #1</h3>
               
               <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 12px;">
                 <div>
@@ -1304,16 +1327,16 @@
                   <p id="detailOwner" class="text-body" style="font-weight: 800;">Belum Terdaftar Wajib Pajak (Tanpa NOP)</p>
                 </div>
                 <div>
-                  <p class="text-small" style="font-weight: 700; color: var(--text-muted);">Luas Bumi:</p>
-                  <p id="detailArea" class="text-body" style="font-weight: 800; color: var(--brand-red);">Bagian dari total 88,47 m² (2 Bidang)</p>
+                  <p class="text-small" style="font-weight: 700; color: var(--text-muted);">Luas Bumi & Luas Bangunan:</p>
+                  <p id="detailArea" class="text-body" style="font-weight: 800; color: var(--brand-red);">Luas Fisik: 41,25 m² (Bagian dari total 88,47 m²)</p>
                 </div>
                 <div>
-                  <p class="text-small" style="font-weight: 700; color: var(--text-muted);">Posisi / Batas Persil:</p>
-                  <p id="detailPosition" class="text-body">Di sela antara persil 01640 (Abdullah Bin Ali, H.) dan persil 01650 (Tjarwali).</p>
+                  <p class="text-small" style="font-weight: 700; color: var(--text-muted);">Alamat OP / Posisi Persil:</p>
+                  <p id="detailPosition" class="text-body">JL PIERRE TENDEAN KAPT — Di sela antara NOP 317104000400401640 dan 317104000400401650.</p>
                 </div>
                 <div>
-                  <p class="text-small" style="font-weight: 700; color: var(--text-muted);">Status Identifikasi:</p>
-                  <p id="detailStatus" class="text-body" style="font-weight: 700;">Terindikasi dikuasai/dimanfaatkan TRANS TV, belum memiliki SPPT PBB-P2.</p>
+                  <p class="text-small" style="font-weight: 700; color: var(--text-muted);">Ketetapan PBB Hutang SPPT / Status:</p>
+                  <p id="detailStatus" class="text-body" style="font-weight: 700;">Belum terbit SPPT PBB-P2; terindikasi dikuasai/dimanfaatkan TRANS TV.</p>
                 </div>
               </div>
 
@@ -1335,7 +1358,7 @@
 
           <h2 class="text-title">Rekapitulasi Bidang Tanpa NOP di Kawasan TRANS TV</h2>
           <p class="text-body" style="margin-bottom: 20px;">
-            Ditemukan <strong>2 bidang tanah tanpa Nomor Objek Pajak (NOP)</strong> dengan total luas <strong>88,47 m²</strong> yang berada di dalam lingkungan penguasaan fisik TRANS TV.
+            Ditemukan <strong>2 bidang tanah tanpa Nomor Objek Pajak (NOP)</strong> dengan total luas <strong>88,47 m²</strong> yang berada di dalam lingkungan penguasaan fisik PT TELEVISI TRANSFORMASI IND. (TRANS TV).
           </p>
 
           <div class="table-responsive">
@@ -1344,7 +1367,7 @@
                 <tr>
                   <th>No.</th>
                   <th>Identitas Bidang</th>
-                  <th>Letak & Batas Persil Berdampingan</th>
+                  <th>Letak & Batas NOP Berdampingan (18 Digit Penuh)</th>
                   <th>Luas Fisik</th>
                   <th>Status & Keterangan Penggunaan</th>
                 </tr>
@@ -1354,7 +1377,7 @@
                   <td><strong>1</strong></td>
                   <td><span class="badge-status-red">BIDANG TANPA NOP #1</span><br><span class="text-small">(Sisi Barat-Tengah)</span></td>
                   <td>
-                    Berada di sela memanjang antara <strong>Persil 01640</strong> (Abdullah Bin Ali, H. – 52 m²) dan <strong>Persil 01650</strong> (Tjarwali – 134 m²).
+                    Berada di sela memanjang antara NOP <span class="nop-full-code">317104000400401640</span> (ABDULLAH BIN ALI , H. – 52 m²) dan NOP <span class="nop-full-code">317104000400401650</span> (TJARWALI – 134 m²).
                   </td>
                   <td><strong>41,25 m²</strong></td>
                   <td>Belum terdaftar SPPT PBB-P2; menyatu dengan area bangunan/akses tertutup TRANS TV.</td>
@@ -1363,7 +1386,7 @@
                   <td><strong>2</strong></td>
                   <td><span class="badge-status-red">BIDANG TANPA NOP #2</span><br><span class="text-small">(Sisi Timur-Utara)</span></td>
                   <td>
-                    Berada di sela antara <strong>Persil 02960</strong> (Abdullah H Bin Sabeni – 320 m²) dan <strong>Persil 02950</strong> (Karim Bin Said – 164 m²).
+                    Berada di sela antara NOP <span class="nop-full-code">317104000400402960</span> (ABDULLAH H BIN SARBINI – 300 m²) dan NOP <span class="nop-full-code">317104000400402950</span> (KARIM BIN SAID – 184 m²).
                   </td>
                   <td><strong>47,22 m²</strong></td>
                   <td>Belum terdaftar SPPT PBB-P2; dimanfaatkan sebagai area akses dan parkir operasional TRANS TV.</td>
@@ -1378,21 +1401,25 @@
         </div>
       </section>
 
-      <!-- ==================== SLIDE 5: DAFTAR & PENCARIAN NOP PERORANGAN ==================== -->
-      <section id="slide-5" class="slide-panel" data-title="5. Daftar & Pencarian NOP Perorangan">
+      <!-- ==================== SLIDE 5: DAFTAR LENGKAP 46 NOP (18 DIGIT PENUH) ==================== -->
+      <section id="slide-5" class="slide-panel" data-title="5. Daftar Lengkap 46 NOP (18 Digit Penuh)">
         <div class="card-surface card-accent-top">
           <div class="pill-badge">
-            <span class="text-small">BASIS DATA SPPT • 46 NOP PERORANGAN (TOTAL 9.707 m²)</span>
+            <span class="text-small">BASIS DATA LENGKAP SPPT • 46 NOP (18 DIGIT PENUH) • TOTAL Rp 1.449.151.410</span>
           </div>
 
-          <h2 class="text-title">Daftar & Pencarian NOP Perorangan Kawasan TRANS TV</h2>
+          <h2 class="text-title">Daftar Lengkap 46 NOP Kawasan TRANS TV (18 Digit Penuh)</h2>
           <p class="text-body" style="margin-bottom: 16px;">
-            Ketik <strong>Nomor Blok/Persil</strong> (misal: <code>02860</code>) atau <strong>Nama Wajib Pajak</strong> (misal: <code>Miska</code> atau <code>Ahmad Yusuf</code>) untuk menyaring data secara langsung.
+            Seluruh <strong>46 data objek pajak</strong> beserta <strong>18 digit NOP lengkap</strong>, alamat lokasi (Kav/RT/RW), luas bumi (<strong>9.707 m²</strong>), luas bangunan (<strong>3.723 m²</strong>), jenis tanah/JPB, dan ketetapan <strong>PBB Hutang SPPT (Rp 1.449.151.410)</strong>. Gunakan kotak pencarian di bawah untuk menyaring data.
           </p>
 
           <div class="search-box-wrap">
-            <input type="text" id="nopSearchInput" class="search-input" placeholder="Cari Nomor Blok atau Nama Wajib Pajak..." oninput="filterNopTable()" aria-label="Cari Nomor Blok atau Nama Wajib Pajak" />
-            <button type="button" class="ctrl-btn btn-outline" style="padding: 14px 20px;" onclick="resetNopSearch()">Tampilkan Semua</button>
+            <input type="text" id="nopSearchInput" class="search-input" placeholder="Cari 18 digit NOP (misal: 317104000400402990) atau Nama WP (misal: MISKA)..." oninput="filterNopTable()" aria-label="Cari 18 digit NOP atau Nama Wajib Pajak" />
+            <button type="button" class="ctrl-btn btn-outline" style="padding: 14px 20px;" onclick="resetNopSearch()">Tampilkan Semua (46)</button>
+          </div>
+
+          <div id="filterCountInfo" class="text-small" style="font-weight: 800; color: var(--brand-navy); margin-bottom: 10px;">
+            Menampilkan 46 dari 46 NOP lengkap.
           </div>
 
           <div class="table-responsive">
@@ -1400,21 +1427,29 @@
               <thead>
                 <tr>
                   <th>No.</th>
-                  <th>Nomor Urut / Blok</th>
-                  <th>Nama Wajib Pajak (SPPT)</th>
-                  <th>Luas Bumi (m²)</th>
-                  <th>Keterangan Indikasi</th>
+                  <th>NOP (18 Digit Penuh)</th>
+                  <th>Nama WP SPPT</th>
+                  <th>Alamat OP (Kav / RT / RW)</th>
+                  <th style="text-align: right;">L. Bumi (m²)</th>
+                  <th style="text-align: right;">L. Bgn (m²)</th>
+                  <th>Jenis Tanah & JPB</th>
+                  <th>Nama OP</th>
+                  <th style="text-align: right;">PBB Hutang SPPT</th>
                 </tr>
               </thead>
               <tbody id="nopTableBody">
-                <!-- Diisi otomatis oleh JavaScript -->
+                <!-- Diisi otomatis oleh JavaScript dengan seluruh 46 NOP lengkap -->
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4" style="text-align: right; font-weight: 900; background-color: var(--bg-amber-soft);">TOTAL KESELURUHAN (46 NOP):</td>
+                  <td style="text-align: right; font-weight: 900; background-color: var(--bg-amber-soft); white-space: nowrap;">9.707 m²</td>
+                  <td style="text-align: right; font-weight: 900; background-color: var(--bg-amber-soft); white-space: nowrap;">3.723 m²</td>
+                  <td colspan="2" style="background-color: var(--bg-amber-soft); font-weight: 800;">PT TELEVISI TRANSFORMASI IND.</td>
+                  <td style="text-align: right; font-weight: 900; color: var(--brand-navy); background-color: var(--bg-amber-soft); white-space: nowrap;">Rp 1.449.151.410</td>
+                </tr>
+              </tfoot>
             </table>
-          </div>
-
-          <div class="info-box info-box-amber" style="margin-top: 18px; justify-content: space-between; flex-wrap: wrap;">
-            <span class="text-small" style="font-weight: 700;">Menampilkan rincian persil utama hasil pembacaan peta blok PBB-P2 kawasan TRANS TV.</span>
-            <span class="text-body" style="font-weight: 900; color: var(--brand-navy);">Akumulasi Seluruh 46 NOP Perorangan = 9.707 m²</span>
           </div>
         </div>
       </section>
@@ -1428,24 +1463,24 @@
 
           <h2 class="text-title">Bidang Tanah TRANS TV Berdasarkan Peta BHUMI ATR/BPN</h2>
           <p class="text-body" style="margin-bottom: 20px;">
-            Penyelarasan antara <strong>Peta Blok PBB-P2 (UPPPD Mampang Prapatan)</strong> dengan <strong>Peta Bidang Tanah BHUMI ATR/BPN</strong> menunjukkan indikasi kuat adanya penyatuan penguasaan lahan oleh korporasi TRANS TV.
+            Penyelarasan antara <strong>Peta Blok PBB-P2 (UPPPD Mampang Prapatan)</strong> dengan <strong>Peta Bidang Tanah BHUMI ATR/BPN</strong> menunjukkan bahwa 46 bidang terdaftar dan 2 bidang tanpa NOP tersebut telah menyatu dalam penguasaan fisik <strong>PT TELEVISI TRANSFORMASI IND. (TRANS TV)</strong>.
           </p>
 
           <div class="grid-2">
             <div class="card-surface" style="background-color: var(--bg-blue-soft); border-color: var(--brand-navy);">
-              <h3 class="text-subtitle" style="color: var(--brand-navy);">1. Kondisi Pada Peta PBB-P2</h3>
+              <h3 class="text-subtitle" style="color: var(--brand-navy);">1. Kondisi Pada Basis Data PBB-P2</h3>
               <ul class="text-body" style="padding-left: 24px; margin: 12px 0 0 0; display: flex; flex-direction: column; gap: 10px;">
-                <li>Terpecah menjadi <strong>46 NOP perorangan</strong> dengan luas beragam (mulai 41 m² hingga 500 m², total <strong>9.707 m²</strong>).</li>
+                <li>Terpecah menjadi <strong>46 NOP 18 digit</strong> (<span class="nop-full-code">317104000400401540</span> s.d. <span class="nop-full-code">317104000400405340</span>) dengan total luas bumi <strong>9.707 m²</strong> dan bangunan <strong>3.723 m²</strong>.</li>
+                <li>Total ketetapan PBB Hutang SPPT mencapai <strong>Rp 1.449.151.410</strong> yang masih atas nama wajib pajak lama.</li>
                 <li>Terdapat <strong>2 bidang sela tanpa NOP</strong> seluas <strong>88,47 m²</strong> yang belum diterbitkan SPPT-nya.</li>
-                <li>Tagihan SPPT masih terbit atas nama pemilik lama (perorangan).</li>
               </ul>
             </div>
 
             <div class="card-surface" style="background-color: var(--bg-green-soft); border-color: var(--brand-green);">
               <h3 class="text-subtitle" style="color: var(--brand-green);">2. Temuan Pada Peta BHUMI ATR/BPN</h3>
               <ul class="text-body" style="padding-left: 24px; margin: 12px 0 0 0; display: flex; flex-direction: column; gap: 10px;">
-                <li>Bidang-bidang tanah tersebut telah terpetakan sebagai <strong>bidang hak atas nama badan hukum (TRANS TV)</strong> pada aplikasi BHUMI ATR/BPN.</li>
-                <li>Batas fisik di lapangan telah menyatu menjadi kompleks gedung studio, perkantoran, dan fasilitas operasional TRANS TV.</li>
+                <li>Bidang-bidang tanah tersebut telah terpetakan sebagai <strong>bidang hak atas nama PT TELEVISI TRANSFORMASI IND.</strong> pada aplikasi BHUMI ATR/BPN.</li>
+                <li>Batas fisik di lapangan telah menyatu menjadi kompleks gedung studio, perkantoran, dan fasilitas operasional TRANS TV di Jl. Pierre Tendean Kapt.</li>
                 <li>Diperlukan pemutakhiran subjek pajak (mutasi balik nama) dan penggabungan NOP.</li>
               </ul>
             </div>
@@ -1466,8 +1501,8 @@
             <div class="info-box info-box-blue">
               <div class="icon-badge-sq"><strong>1</strong></div>
               <div>
-                <h3 class="text-subtitle" style="color: var(--brand-navy);">Penelitian Lapangan & Konfirmasi Wajib Pajak</h3>
-                <p class="text-body">Melakukan klarifikasi dan verifikasi alas hak atas <strong>46 NOP perorangan (9.707 m²)</strong> kepada manajemen TRANS TV untuk proses pemutakhiran data subjek/objek PBB-P2.</p>
+                <h3 class="text-subtitle" style="color: var(--brand-navy);">Penelitian Lapangan & Mutasi Subjek 46 NOP</h3>
+                <p class="text-body">Melakukan klarifikasi dan verifikasi alas hak atas <strong>46 NOP penuh (9.707 m² bumi / 3.723 m² bangunan / Rp 1.449.151.410 PBB Hutang SPPT)</strong> kepada PT TELEVISI TRANSFORMASI IND. untuk pemutakhiran data wajib pajak PBB-P2.</p>
               </div>
             </div>
 
@@ -1475,15 +1510,15 @@
               <div class="icon-badge-sq" style="background-color: var(--brand-red);"><strong>2</strong></div>
               <div>
                 <h3 class="text-subtitle" style="color: var(--brand-red);">Pendaftaran Objek Pajak Baru (2 Bidang Tanpa NOP)</h3>
-                <p class="text-body">Menerbitkan NOP baru untuk <strong>2 bidang tanah tanpa NOP seluas 88,47 m²</strong> agar seluruh luas fisik yang dikuasai tercatat sah dalam ketetapan PBB-P2.</p>
+                <p class="text-body">Menerbitkan 18 digit NOP baru untuk <strong>2 bidang tanah tanpa NOP seluas 88,47 m²</strong> agar seluruh luas fisik yang dikuasai tercatat sah dalam ketetapan PBB-P2.</p>
               </div>
             </div>
 
             <div class="info-box info-box-amber">
               <div class="icon-badge-sq" style="background-color: #D97706;"><strong>3</strong></div>
               <div>
-                <h3 class="text-subtitle" style="color: var(--brand-gold-dark);">Penyesuaian NJOP & Penggabungan NOP</h3>
-                <p class="text-body">Menyelaraskan klasifikasi NJOP bumi dan bangunan sesuai peruntukan komersial kawasan penyiaran serta memproses penggabungan NOP sesuai sertifikat BPN.</p>
+                <h3 class="text-subtitle" style="color: var(--brand-gold-dark);">Penyesuaian JPB/NJOP & Penggabungan NOP</h3>
+                <p class="text-body">Menyelaraskan klasifikasi Jenis Penggunaan Bangunan (JPB) dan NJOP bumi/bangunan sesuai peruntukan komersial kawasan penyiaran serta memproses penggabungan NOP sesuai sertifikat BPN.</p>
               </div>
             </div>
           </div>
@@ -1546,199 +1581,75 @@
 
   <script>
     // ==========================================================================
-    // DATA PERSIL PETA PBB-P2 & TABEL NOP PERORANGAN KAWASAN TRANS TV
+    // BASIS DATA LENGKAP 46 NOP (18 DIGIT PENUH) SESUAI DOKUMEN PPT TRANS TV
     // ==========================================================================
-    const parcelDatabase = {
+    const fullNopList = [
+      { no: 1, nop: '317104000400402070', nama: 'ABDUL SALAH MADRIS', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 363, bgn: 117, jns: '1. TANAH + BANGUNAN', jpb: '01. PERUMAHAN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 36.427.050' },
+      { no: 2, nop: '317104000400401630', nama: 'ABDUL FATAH', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 120, bgn: 90, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 18.274.680' },
+      { no: 3, nop: '317104000400401640', nama: 'ABDULLAH BIN ALI , H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 52, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 7.958.628' },
+      { no: 4, nop: '317104000400401650', nama: 'TJARWALI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 134, bgn: 120, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 20.590.686' },
+      { no: 5, nop: '317104000400401660', nama: 'MISKA', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 150, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.701.550' },
+      { no: 6, nop: '317104000400401670', nama: 'KAYAT', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 140, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 21.306.300' },
+      { no: 7, nop: '317104000400401680', nama: 'AGUS', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 200, bgn: 150, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 30.742.650' },
+      { no: 8, nop: '317104000400401690', nama: 'ABDULLAH GOFAR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 153, bgn: 130, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 23.478.357' },
+      { no: 9, nop: '317104000400401700', nama: 'PT KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 250, bgn: 50, jns: '3. TANAH KOSONG', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 37.577.250' },
+      { no: 10, nop: '317104000400401710', nama: 'HAJAH SAILAH, NY', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 60, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.050.940' },
+      { no: 11, nop: '317104000400401730', nama: 'KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 68, jns: '3. TANAH KOSONG', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.121.500' },
+      { no: 12, nop: '317104000400401890', nama: 'MARWAN BIN MARDJUKI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 161, bgn: 60, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 24.209.829' },
+      { no: 13, nop: '317104000400401900', nama: 'MUHAMMAD NUR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 100, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 15.048.150' },
+      { no: 14, nop: '317104000400401910', nama: 'MUKTI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 285, bgn: 84, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 42.876.801' },
+      { no: 15, nop: '317104000400401920', nama: 'ABDUL KARIM NASEH, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 140, bgn: 100, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 21.397.260' },
+      { no: 16, nop: '317104000400401930', nama: 'MASNUN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 90, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 13.568.010' },
+      { no: 17, nop: '317104000400401940', nama: 'ENDRIWATY CHIZAR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 72, bgn: 54, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 11.016.000' },
+      { no: 18, nop: '317104000400401950', nama: 'YASIN M', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 58, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 8.821.362' },
+      { no: 19, nop: '317104000400401960', nama: 'ASMUNAH', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 90, bgn: 56, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 13.664.610' },
+      { no: 20, nop: '317104000400401990', nama: 'ROHMAT WARDI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 90, bgn: 48, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 13.681.314' },
+      { no: 21, nop: '317104000400402000', nama: 'MOHAMMAD ZEN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 60, bgn: 40, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 9.059.340' },
+      { no: 22, nop: '317104000400402010', nama: 'ASUROH, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 70, bgn: 40, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 10.615.230' },
+      { no: 23, nop: '317104000400402030', nama: 'ABDUL RAHIM', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 136, bgn: 70, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 20.662.464' },
+      { no: 24, nop: '317104000400402040', nama: 'DJAIHABUN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 110, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 16.818.630' },
+      { no: 25, nop: '317104000400402050', nama: 'TOMO', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 57, bgn: 57, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 8.731.773' },
+      { no: 26, nop: '317104000400402060', nama: 'SIMIN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 95, bgn: 85, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 14.516.955' },
+      { no: 27, nop: '317104000400402080', nama: 'AHYANA BIN ANWAR / TATANG ARIS', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '003', rw: '002', bumi: 187, bgn: 70, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 28.291.503' },
+      { no: 28, nop: '317104000400402860', nama: 'ROHMAT GOFAR', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 500, bgn: 100, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 75.249.300' },
+      { no: 29, nop: '317104000400402900', nama: 'MUHAMAD NASHOHA (ALM)', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 430, bgn: 134, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 64.932.702' },
+      { no: 30, nop: '317104000400402910', nama: 'SARNADI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 90, bgn: 65, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 13.758.630' },
+      { no: 31, nop: '317104000400402920', nama: 'MAS,UD, R', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 70, bgn: 70, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 10.723.230' },
+      { no: 32, nop: '317104000400402960', nama: 'ABDULLAH H BIN SARBINI', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 300, bgn: 100, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 45.331.500' },
+      { no: 33, nop: '317104000400402970', nama: 'AHMAD YUSUP, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 170, bgn: 90, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 25.839.450' },
+      { no: 34, nop: '317104000400402990', nama: 'MISKA', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 140, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 21.306.300' },
+      { no: 35, nop: '317104000400403000', nama: 'AHMAD YUSUP, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 260, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 39.256.980' },
+      { no: 36, nop: '317104000400405340', nama: 'DJAMALUDIN', alamat: 'JL PIERRE TENDEAN KAPT', kav: '69', rt: '002', rw: '002', bumi: 220, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '02. PERKANTORAN SWASTA', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 33.033.030' },
+      { no: 37, nop: '317104000400401540', nama: 'SUGIHARTO WIJOYO', alamat: 'JL PIERRE TENDEAN', kav: '-', rt: '002', rw: '002', bumi: 1246, bgn: 450, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 188.434.494' },
+      { no: 38, nop: '317104000400401720', nama: 'PT KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 210, bgn: 50, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 31.593.690' },
+      { no: 39, nop: '317104000400401750', nama: 'TAFSIR, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 360, bgn: 150, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 54.534.240' },
+      { no: 40, nop: '317104000400402930', nama: 'MISKA', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 40, bgn: 30, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 6.091.560' },
+      { no: 41, nop: '317104000400402940', nama: 'DJAMILLAH, H.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 80, bgn: 80, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 12.330.960' },
+      { no: 42, nop: '317104000400402950', nama: 'KARIM BIN SAID', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 184, bgn: 135, jns: '1. TANAH + BANGUNAN', jpb: '10. LAIN - LAIN', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 28.138.356' },
+      { no: 43, nop: '317104000400401740', nama: 'KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 400, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 59.655.600' },
+      { no: 44, nop: '317104000400402780', nama: 'PT KODEL', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 350, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 52.356.150' },
+      { no: 45, nop: '317104000400402880', nama: 'SRI WOERJANINGSIH DRA.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 437, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 65.370.393' },
+      { no: 46, nop: '317104000400402890', nama: 'SRI WOERJANINGSIH DRA.', alamat: 'JL PIERRE TENDEAN KAPT', kav: '-', rt: '002', rw: '002', bumi: 107, bgn: 0, jns: '3. TANAH KOSONG', jpb: '-', namaOp: 'PT TELEVISI TRANSFORMASI IND.', pbb: 'Rp 16.006.023' }
+    ];
+
+    const specialParcels = {
       'TANPA_NOP_1': {
         code: 'BIDANG TANPA NOP #1',
         type: 'unregistered',
         owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
-        area: '41,25 m² (Bagian dari total 88,47 m²)',
-        position: 'Di sela antara persil 01640 (Abdullah Bin Ali, H.) dan persil 01650 (Tjarwali)',
-        status: 'Terindikasi dikuasai/dimanfaatkan TRANS TV, belum memiliki SPPT PBB-P2.'
+        area: 'Luas Fisik: 41,25 m² (Bagian dari total 88,47 m²)',
+        position: 'JL PIERRE TENDEAN KAPT — Di sela antara NOP 317104000400401640 dan 317104000400401650',
+        status: 'Belum terbit SPPT PBB-P2; terindikasi dikuasai/dimanfaatkan TRANS TV.'
       },
       'TANPA_NOP_2': {
         code: 'BIDANG TANPA NOP #2',
         type: 'unregistered',
         owner: 'Belum Terdaftar Wajib Pajak (Tanpa NOP)',
-        area: '47,22 m² (Bagian dari total 88,47 m²)',
-        position: 'Di sela antara persil 02960 (Abdullah H Bin Sabeni) dan persil 02950 (Karim Bin Said)',
-        status: 'Terindikasi dikuasai/dimanfaatkan TRANS TV, belum memiliki SPPT PBB-P2.'
-      },
-      '01630': {
-        code: 'Blok/Persil 01630',
-        type: 'registered',
-        owner: 'Abdul Fatah',
-        area: '120 m²',
-        position: 'Sisi Utara bagian barat blok TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '01640': {
-        code: 'Blok/Persil 01640',
-        type: 'registered',
-        owner: 'Abdullah Bin Ali, H.',
-        area: '52 m²',
-        position: 'Berbatasan langsung di sisi Utara Bidang Tanpa NOP #1',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '01650': {
-        code: 'Blok/Persil 01650',
-        type: 'registered',
-        owner: 'Tjarwali',
-        area: '134 m²',
-        position: 'Berbatasan langsung di sisi Selatan Bidang Tanpa NOP #1',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '01690': {
-        code: 'Blok/Persil 01690',
-        type: 'registered',
-        owner: 'Abdoullah Gofar',
-        area: '155 m²',
-        position: 'Sisi Barat kawasan blok pemetaan',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '01700': {
-        code: 'Blok/Persil 01700',
-        type: 'registered',
-        owner: 'PT Kodel',
-        area: '250 m²',
-        position: 'Perbatasan paling Barat peta lokasi (1 NOP Badan dari total 47 NOP peta)',
-        status: 'Persil pembanding batas kawasan.'
-      },
-      '01710': {
-        code: 'Blok/Persil 01710',
-        type: 'registered',
-        owner: 'Hajah Sailah, Ny',
-        area: '300 m²',
-        position: 'Sisi Barat Daya kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '01660': {
-        code: 'Blok/Persil 01660',
-        type: 'registered',
-        owner: 'Miska',
-        area: '300 m²',
-        position: 'Sisi Selatan bagian barat kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02860': {
-        code: 'Blok/Persil 02860',
-        type: 'registered',
-        owner: 'Rohmat Gofar',
-        area: '500 m²',
-        position: 'Sisi Selatan bagian tengah kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02970': {
-        code: 'Blok/Persil 02970',
-        type: 'registered',
-        owner: 'Ahmad Yusuf, H.',
-        area: '378 m²',
-        position: 'Bagian tengah kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02990': {
-        code: 'Blok/Persil 02990',
-        type: 'registered',
-        owner: 'Miska',
-        area: '140 m²',
-        position: 'Bagian tengah kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '03000': {
-        code: 'Blok/Persil 03000',
-        type: 'registered',
-        owner: 'Ahmad Yusuf, H.',
-        area: '260 m²',
-        position: 'Sisi Utara bagian tengah kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02960': {
-        code: 'Blok/Persil 02960',
-        type: 'registered',
-        owner: 'Abdullah H Bin Sabeni',
-        area: '320 m²',
-        position: 'Berbatasan langsung di sisi Barat Bidang Tanpa NOP #2',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02950': {
-        code: 'Blok/Persil 02950',
-        type: 'registered',
-        owner: 'Karim Bin Said',
-        area: '164 m²',
-        position: 'Berbatasan langsung di sisi Timur Bidang Tanpa NOP #2',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02910': {
-        code: 'Blok/Persil 02910',
-        type: 'registered',
-        owner: 'Sarnadi',
-        area: '80 m²',
-        position: 'Bagian tengah-timur kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02920': {
-        code: 'Blok/Persil 02920',
-        type: 'registered',
-        owner: "Mas'ud, R",
-        area: '70 m²',
-        position: 'Bagian tengah-timur kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02930': {
-        code: 'Blok/Persil 02930',
-        type: 'registered',
-        owner: 'Miska',
-        area: '41 m²',
-        position: 'Bagian timur kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02940': {
-        code: 'Blok/Persil 02940',
-        type: 'registered',
-        owner: 'Sjaifullah, H.',
-        area: '80 m²',
-        position: 'Sisi Timur kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02900': {
-        code: 'Blok/Persil 02900',
-        type: 'registered',
-        owner: 'Muhamad Nashoha (Alm)',
-        area: '410 m²',
-        position: 'Sisi Tenggara kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
-      },
-      '02980': {
-        code: 'Blok/Persil 02980',
-        type: 'registered',
-        owner: 'Sri Woerjaningsih Dra',
-        area: '437 m²',
-        position: 'Sisi Selatan bagian timur kawasan TRANS TV',
-        status: 'NOP Perorangan terindikasi dikuasai/dimiliki TRANS TV.'
+        area: 'Luas Fisik: 47,22 m² (Bagian dari total 88,47 m²)',
+        position: 'JL PIERRE TENDEAN KAPT — Di sela antara NOP 317104000400402960 dan 317104000400402950',
+        status: 'Belum terbit SPPT PBB-P2; dimanfaatkan sebagai area akses/parkir TRANS TV.'
       }
     };
-
-    const sampleNopList = [
-      { blok: '02860', nama: 'Rohmat Gofar', luas: '500', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '02980', nama: 'Sri Woerjaningsih Dra', luas: '437', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '02900', nama: 'Muhamad Nashoha (Alm)', luas: '410', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '02970', nama: 'Ahmad Yusuf, H.', luas: '378', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '02960', nama: 'Abdullah H Bin Sabeni', luas: '320', ket: 'Berbatasan Bidang Tanpa NOP #2' },
-      { blok: '01710', nama: 'Hajah Sailah, Ny', luas: '300', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '01660', nama: 'Miska', luas: '300', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '03000', nama: 'Ahmad Yusuf, H.', luas: '260', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '02950', nama: 'Karim Bin Said', luas: '164', ket: 'Berbatasan Bidang Tanpa NOP #2' },
-      { blok: '01690', nama: 'Abdoullah Gofar', luas: '155', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '02990', nama: 'Miska', luas: '140', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '01650', nama: 'Tjarwali', luas: '134', ket: 'Berbatasan Bidang Tanpa NOP #1' },
-      { blok: '01630', nama: 'Abdul Fatah', luas: '120', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '02910', nama: 'Sarnadi', luas: '80', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '02940', nama: 'Sjaifullah, H.', luas: '80', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '02920', nama: "Mas'ud, R", luas: '70', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' },
-      { blok: '01640', nama: 'Abdullah Bin Ali, H.', luas: '52', ket: 'Berbatasan Bidang Tanpa NOP #1' },
-      { blok: '02930', nama: 'Miska', luas: '41', ket: 'Terindikasi dikuasai/dimiliki TRANS TV' }
-    ];
 
     let currentSlide = 1;
     const totalSlides = 7;
@@ -1751,7 +1662,7 @@
     const STEP_TEXT_ZOOM = 10;
 
     window.onload = function () {
-      renderNopTable(sampleNopList);
+      renderNopTable(fullNopList);
       buildSlideMenu();
       applyTextZoom(100, false);
       updateSlideUI();
@@ -1860,11 +1771,11 @@
         btn.setAttribute('aria-pressed', 'false');
         btn.classList.remove('btn-red');
         btn.classList.add('btn-green');
-        textEl.textContent = 'LAYAR PENUH';
-        iconEnter.style.display = 'inline-block';
-        iconExit.style.display = 'none';
-        floatingBtn.classList.remove('visible');
-      }
+    function toggleAutoFit() {
+      const active = document.body.classList.toggle('auto-fit-mode');
+      const btn = document.getElementById('btnAutoFit');
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      btn.classList.toggle('active-toggle', active);
     }
 
     function changeTextZoom(delta) {
@@ -1946,59 +1857,92 @@
     }
 
     // ==========================================================================
-    // INTERAKSI PETA PERSIL & TABEL NOP
+    // INTERAKSI PETA PERSIL (18 DIGIT NOP PENUH) & TABEL 46 NOP LENGKAP
     // ==========================================================================
     function selectParcel(parcelId) {
-      const data = parcelDatabase[parcelId];
-      if (!data) return;
-
       document.querySelectorAll('.parcel-shape rect').forEach(r => r.classList.remove('parcel-selected'));
       const targetRect = document.getElementById('rect-' + parcelId);
       if (targetRect) targetRect.classList.add('parcel-selected');
 
-      document.getElementById('detailCode').textContent = data.code;
-      document.getElementById('detailOwner').textContent = data.owner;
-      document.getElementById('detailArea').textContent = data.area;
-      document.getElementById('detailPosition').textContent = data.position;
-      document.getElementById('detailStatus').textContent = data.status;
-
       const areaEl = document.getElementById('detailArea');
-      areaEl.style.color = data.type === 'unregistered' ? 'var(--brand-red)' : 'var(--brand-navy)';
+
+      if (specialParcels[parcelId]) {
+        const sp = specialParcels[parcelId];
+        document.getElementById('detailCode').textContent = sp.code;
+        document.getElementById('detailOwner').textContent = sp.owner;
+        document.getElementById('detailArea').textContent = sp.area;
+        document.getElementById('detailPosition').textContent = sp.position;
+        document.getElementById('detailStatus').textContent = sp.status;
+        areaEl.style.color = 'var(--brand-red)';
+        return;
+      }
+
+      const item = fullNopList.find(row => row.nop === parcelId);
+      if (!item) return;
+
+      const kavInfo = item.kav && item.kav !== '-' ? ' • Kav ' + item.kav : '';
+      document.getElementById('detailCode').textContent = item.nop;
+      document.getElementById('detailOwner').textContent = item.nama;
+      document.getElementById('detailArea').textContent = 'Luas Bumi: ' + item.bumi + ' m² • Luas Bangunan: ' + item.bgn + ' m²';
+      document.getElementById('detailPosition').textContent = item.alamat + kavInfo + ' (RT ' + item.rt + ' / RW ' + item.rw + ')';
+      document.getElementById('detailStatus').textContent = 'PBB Hutang SPPT: ' + item.pbb + ' — Nama OP: ' + item.namaOp;
+      areaEl.style.color = 'var(--brand-navy)';
     }
 
     function renderNopTable(list) {
       const tbody = document.getElementById('nopTableBody');
+      const countEl = document.getElementById('filterCountInfo');
       if (!tbody) return;
 
+      if (countEl) {
+        countEl.textContent = 'Menampilkan ' + list.length + ' dari ' + fullNopList.length + ' NOP (18 digit lengkap).';
+      }
+
       if (list.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; font-weight:800; padding:24px;">Data tidak ditemukan. Silakan coba kata kunci lain.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; font-weight:800; padding:24px;">Data tidak ditemukan. Silakan coba kata kunci 18 digit NOP atau Nama Wajib Pajak lainnya.</td></tr>';
         return;
       }
 
-      tbody.innerHTML = list.map((item, index) => `
-        <tr>
-          <td><strong>${index + 1}</strong></td>
-          <td><span class="badge-status-blue">${item.blok}</span></td>
-          <td><strong>${item.nama}</strong></td>
-          <td><strong>${item.luas} m²</strong></td>
-          <td>${item.ket}</td>
-        </tr>
-      `).join('');
+      tbody.innerHTML = list.map((item) => {
+        const kavBadge = item.kav && item.kav !== '-' ? ' • Kav ' + item.kav : '';
+        return `
+          <tr>
+            <td><strong>${item.no}</strong></td>
+            <td><span class="badge-status-blue">${item.nop}</span></td>
+            <td><strong>${item.nama}</strong></td>
+            <td>
+              <div style="font-weight: 700;">${item.alamat}</div>
+              <div class="text-small" style="color: var(--text-muted);">RT ${item.rt} / RW ${item.rw}${kavBadge}</div>
+            </td>
+            <td style="text-align: right; white-space: nowrap;"><strong>${item.bumi} m²</strong></td>
+            <td style="text-align: right; white-space: nowrap;"><strong>${item.bgn} m²</strong></td>
+            <td>
+              <div style="font-weight: 700;">${item.jns}</div>
+              <div class="text-small" style="color: var(--text-muted);">${item.jpb}</div>
+            </td>
+            <td><strong>${item.namaOp}</strong></td>
+            <td style="text-align: right; white-space: nowrap; font-weight: 800; color: var(--brand-navy);">${item.pbb}</td>
+          </tr>
+        `;
+      }).join('');
     }
 
     function filterNopTable() {
       const query = document.getElementById('nopSearchInput').value.toLowerCase().trim();
-      const filtered = sampleNopList.filter(item =>
-        item.blok.toLowerCase().includes(query) ||
+      const filtered = fullNopList.filter(item =>
+        item.nop.toLowerCase().includes(query) ||
         item.nama.toLowerCase().includes(query) ||
-        item.ket.toLowerCase().includes(query)
+        item.alamat.toLowerCase().includes(query) ||
+        item.jns.toLowerCase().includes(query) ||
+        item.jpb.toLowerCase().includes(query) ||
+        item.pbb.toLowerCase().includes(query)
       );
       renderNopTable(filtered);
     }
 
     function resetNopSearch() {
       document.getElementById('nopSearchInput').value = '';
-      renderNopTable(sampleNopList);
+      renderNopTable(fullNopList);
     }
 
     // ==========================================================================
